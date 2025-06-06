@@ -1,0 +1,449 @@
+[Statedef 17000]
+type=A
+physics=N
+movetype=A
+anim=1300
+ctrl=0
+velset=0,0
+poweradd=-500
+juggle=15
+facep2=1
+sprpriority=1
+
+
+[State 19000, snd]
+type=playsnd
+trigger1 = time = 0
+value=4,10
+
+
+[State 1600,0]
+type = HitDef
+Trigger1 = Time = 0
+attr = S, HT          
+hitflag = M         
+priority = 1, miss   
+sparkno = -1          
+sprpriority = -3     
+p1facing = 1 
+p2facing = 1         
+p1stateno = 9000
+p2stateno = 9100
+guard.dist = 0        
+fall = 1         
+
+
+[State Idle]
+type=statetypeset
+trigger1= animelemtime(3)>=0
+movetype=I
+
+[State 800, misssnd]
+type=playsnd
+trigger1= animelem=4
+value=5000,1
+channel=0
+
+[State 800, end]
+type=changestate
+trigger1= !animtime
+value=0
+ctrl=1
+
+
+;---PLAYER---
+[Statedef 9000]
+type=S
+physics=N
+movetype=A
+anim=9001
+ctrl=0
+velset=0,0
+sprpriority=1
+
+[State 9001, キャッチ]
+type = PlaySnd
+trigger1 = time = 0
+value = 8150,4
+
+
+[State 1610, 掴んだ相手の位置]
+type = TargetBind
+trigger1 = time = 0
+pos = ceil(50*const(size.xscale)),ceil(0*const(size.yscale))
+;pos = 50, 0
+
+
+[State 9000, leilei]
+type = Explod
+trigger1 = time = 0
+anim = 9101
+ID =9101
+postype = p2
+pos = ceil(0*const(size.xscale)),ceil(-20*const(size.yscale))
+;pos = 0,-20
+scale = Const(size.xscale),Const(size.yscale)
+shadow = -1
+bindtime = -1
+sprpriority = 4
+supermovetime = 30
+ownpal = 1
+removeongethit = 1
+[State 9001, leilei]
+type = PlaySnd
+trigger1 = time = 0
+value = 8200,1
+
+
+[State 9000, Explodドリル1]
+type = Explod
+trigger1 = time = 30
+anim = 9102
+ID =9102
+postype = p2
+pos = ceil(0*const(size.xscale)),ceil(42*const(size.yscale))
+;pos = 0,42
+scale = Const(size.xscale),Const(size.yscale)
+removetime = 970
+bindtime = -1
+sprpriority = 4
+supermovetime = 30
+ownpal = 1
+removeongethit = 1
+
+
+[State 9000, 次へ]
+type = ChangeState
+trigger1 = Time = 74
+value = 9001
+
+[Statedef 9001]
+type = L
+movetype = H
+physics = N
+velset = 0,0
+anim=9100
+ctrl = 0
+
+[State 1610, 掴んだ相手の位置]
+type = TargetFacing
+trigger1 = time = 0
+value = -1
+
+[State 1610, 掴んだ相手の位置]
+type = TargetBind
+trigger1 = time = 0
+pos = ceil(70*const(size.xscale)),ceil(-30*const(size.yscale))
+;pos = 70, -30
+
+[State 9100, anim]
+type=PosSet
+trigger1 = time = 0
+y = -20
+
+[State 9001, 飛沫]
+type = Explod
+trigger1 = time = 0
+anim = 9108
+ID =9108
+postype = p1
+pos = ceil(1*const(size.xscale)),ceil(1*const(size.yscale))
+;pos = 1,1
+removetime = 950
+bindtime = -1
+sprpriority = 6
+supermovetime = 30
+ownpal = 1
+removeongethit = 1
+
+
+[State 9001, ドリル]
+type = PlaySnd
+trigger1 = Time > 4
+value = 8150,2+(Random%2)
+Persistent = 6
+
+[State 9001, leilei2]
+type = Explod
+trigger1 = time = 0
+anim = 9103
+ID =9103
+postype = p2
+pos = ceil(0*const(size.xscale)),ceil(50*const(size.yscale))
+;pos = 0,50
+scale = Const(size.xscale),Const(size.yscale)
+removetime = 910
+bindtime = -1
+shadow = -1
+sprpriority = -1
+supermovetime = 30
+ownpal = 1
+removeongethit = 1
+[State 9001, leilei2]
+type = PlaySnd
+trigger1 = time = 0
+value = 8200,3
+
+[State 9001, leilei3]
+type = Explod
+trigger1 = time = 910
+anim = 9105
+ID =9105
+postype = p2
+pos = ceil(0*const(size.xscale)),ceil(20*const(size.yscale))
+;pos = 0,20
+scale = Const(size.xscale),Const(size.yscale)
+shadow = -1
+bindtime = -1
+sprpriority = -1
+supermovetime = 30
+ownpal = 1
+removeongethit = 1
+[State 9001, leilei3]
+type = PlaySnd
+trigger1 = time = 941
+value = 8200,2
+
+
+[State 9001, 飛沫]
+type = Explod
+trigger1 = time = 0
+anim = 9107
+ID =9107
+postype = p2
+pos = ceil(-3*const(size.xscale)),ceil(0*const(size.yscale))
+;pos = -3,0
+removetime = 910
+bindtime = -1
+sprpriority = 6
+supermovetime = 30
+ownpal = 1
+removeongethit = 1
+
+[State 9001, 尿]
+type = Explod
+trigger1 = time = 700
+anim = 9104
+ID =9104
+pos = ceil(0*const(size.xscale)),ceil(0*const(size.yscale))
+;pos = 0,0
+postype = p2
+bindtime = -1
+removetime = 600
+sprpriority = 6
+supermovetime = 30
+ownpal = 1
+removeongethit = 1
+[State 9001, 尿]
+type = PlaySnd
+trigger1 = time = 700
+value = 8200,0
+[State 9001, 尿]
+type = PlaySnd
+trigger1 = time = 750
+value = 4,6
+
+
+[State 9001, Explodドリル2]
+type = Explod
+trigger1 = time = 910
+anim = 9106
+ID =9106
+postype = p2
+pos = ceil(0*const(size.xscale)),ceil(20*const(size.yscale))
+;pos = 0,20
+scale = Const(size.xscale),Const(size.yscale)
+bindtime = -1
+sprpriority = 4
+supermovetime = 30
+ownpal = 1
+removeongethit = 1
+
+[State 9000,w]
+type = PlaySnd
+trigger1 = time = 910
+value = 4,20
+
+[State 9100, 落下]
+type=PosAdd
+trigger1 = time = 910
+y = 20
+
+[State 9000, 次へ]
+type = ChangeState
+trigger1 = Time = 970
+value = 9002
+
+
+
+[Statedef 9002]
+type    = L
+movetype= H
+physics = N
+velset=0,0
+ctrl=0
+
+[State 9103, エフェクト消去]
+type = RemoveExplod
+trigger1 = time = 99
+ID = 9104
+
+[State 9002, 終了]
+type = ChangeState
+trigger1 = Time = 100
+value = 0
+ctrl = 1
+
+
+;---DIZZY TARGET---
+[Statedef 9100]
+type    = L
+movetype= H
+physics = N
+velset=0,0
+ctrl=0
+
+
+[State 1610, 幅]
+type = Width
+trigger1 = 1
+edge = 64,64
+player = 32,32
+
+[State 9100, anim1]
+type=changeanim
+Trigger1 = Time = 0
+value=5300
+
+
+
+
+[State 9100, 次へ]
+type = ChangeState
+trigger1 = Time = 90
+value = 9102
+
+[Statedef 9102]
+type = L
+movetype = H
+physics = N
+velset = 0,0
+ctrl = 0
+
+
+[State 1610, 幅]
+type = Width
+trigger1 = 1
+edge = 94,94
+player = 32,32
+
+
+[State 51220,3,画面の固定]
+type = Screenbound
+trigger1 = 1
+value = 0
+
+
+
+[State 9100, 専用アニメ]
+type = ChangeAnim
+trigger1 = SelfAnimExist(15906)
+trigger1 = time = 0
+value = 15906
+[State 9100, 専用アニメ]
+type = AngleDraw
+trigger1 = 1
+[State 9100, 専用アニメ]
+type = AngleSet
+trigger1 = time = 0
+value = 180
+
+
+[State 9100, 汎用アニメ]
+type = ChangeAnim2
+trigger1 = !SelfAnimExist(15906)
+trigger1 = time = 0
+value = 9209
+
+[State 6064, 体力減少]
+type = LifeAdd
+trigger1 = Time = 0 || Time = 100 || Time = 200 || Time = 300 || Time = 400
+trigger2 = Time = 50 || Time = 150 || Time = 250 || Time = 350 || Time = 450
+trigger3 = Time = 500 || Time = 600 || Time = 700 || Time = 800 || Time = 900
+trigger4 = Time = 550 || Time = 650 || Time = 750 || Time = 850 || Time = 950
+value = -10
+kill = 0
+
+
+[State 6064, 体力減少]
+type = LifeAdd
+trigger1 = Time = 700
+value = -100
+
+[State 6064, ゲージ回復]
+type = poweradd
+trigger1 = Time = 0 || Time = 100 || Time = 200 || Time = 300 || Time = 400
+trigger2 = Time = 50 || Time = 150 || Time = 250 || Time = 350 || Time = 450
+trigger3 = Time = 500 || Time = 600 || Time = 700 || Time = 800 || Time = 900
+trigger4 = Time = 550 || Time = 650 || Time = 750 || Time = 850 || Time = 950
+value = -100
+
+
+[State 9102, 長い悲鳴]
+type = PlaySnd
+trigger1 = Alive
+trigger1 = Time = 700
+value = 11,0
+
+[State 9102, 悲鳴]
+type = PlaySnd
+trigger1 = Time > 23
+value = 4218,21+(Random%2)
+Persistent = 50
+
+
+
+[State 9100, 次へ]
+type = ChangeState
+trigger1 = Time = 900
+value = 9103
+
+[Statedef 9103]
+type = L
+movetype = H
+physics = N
+velset = 0,0
+ctrl = 0
+
+[State 9100, anim]
+type=PosSet
+trigger1 = time = 0
+x = 50
+y = 0
+
+
+[State 9103, エフェクト消去]
+type = RemoveExplod
+trigger1 = time = 0
+ID = 36643
+
+[State 9103, エフェクト消去]
+type = RemoveExplod
+trigger1 = time = 0
+ID = 36648
+
+[State 9103, エフェクト消去]
+type = RemoveExplod
+trigger1 = time = 0
+ID = 9214
+
+[State 9103, anim2]
+type=changeanim
+Trigger1 = Time = 0
+value=5110
+
+[State 1114102, end]
+type=selfstate
+trigger1=time>=200
+trigger1= 1
+value=ifelse(alive,5120,5150)

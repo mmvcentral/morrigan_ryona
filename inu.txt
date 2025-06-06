@@ -1,0 +1,3253 @@
+; 犬攻撃S
+[Statedef 6077]
+type    = S
+movetype= A
+physics = S
+velset = 5,0
+poweradd=-500
+ctrl = 0
+anim = 4102
+
+
+[State 7067]
+type = PlaySnd
+trigger1 = AnimElem = 1
+value = 4,0
+
+[State 6067]
+type = PlaySnd
+trigger1 = AnimElem = 2
+value = 6060,0
+
+[State 6067]        ;犬登場
+type = Helper
+trigger1 = Time = 5
+ID = 6150
+name = "dog"
+sprpriority = 4
+pos = ceil(5*const(size.xscale)),ceil(0*const(size.yscale))
+;pos = 5, 0; ※下記注意
+posttype = p1
+facing = 1       ;向きはそのまま
+stateno = 6078  ;呼び出されたヘルパーはこのステートから始まる
+helpertype = normal
+keyctrl = 0
+
+[State 1110, strengthvar]
+type=varset
+trigger1= var(10)!=4
+var(10)=4
+
+
+[State 6062,]
+type = changestate
+trigger1 = P2StateNo = 6064
+value = 6079
+
+
+[State 6067, ステート変更]
+type = ChangeState
+trigger1 = Time = 64
+value = 0
+ctrl = 1
+
+
+[Statedef 6079,]
+type = A
+movetype = A
+physics = N
+velset= 0,0
+anim = 2013
+
+[State 6062]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+flag2 = noFG
+
+
+[State 6067]
+type = PlaySnd
+trigger1 = time = 90
+value = 4,20
+
+[State 6067]
+type = PlaySnd
+trigger1 = time = 890
+value = 4,21
+
+
+[State 6062];射精
+type = PlaySnd
+trigger1 = time = 1300
+value = 6065, 1
+
+[State 6062];
+type = PlaySnd
+trigger1 = time = 740 || time = 792 || time = 847
+value = 8200, 5
+
+[State 6062];
+type = PlaySnd
+trigger1 = time = 1180 || time = 1232 || time = 1282
+value = 8200, 5
+
+
+[State 6062, Explod] ;蜂
+type = Explod
+trigger1 = time = 740
+anim = 2014
+ID = 2014
+pos = ceil(7*const(size.xscale)),ceil(-22*const(size.yscale))
+;pos = 10, -20
+facing=1
+postype = p2
+scale = 1, .8
+sprpriority = 2
+ontop = 0
+
+[State 6062];射精
+type = PlaySnd
+trigger1 = time = 1300
+value = 6080, 11
+
+
+[State 4614, Explod] ;精液
+type = Explod
+trigger1 = time = 1300
+anim = 2012
+ID = 2012
+pos = ceil(10*const(size.xscale)),ceil(-17*const(size.yscale))
+;pos = 10, -20
+postype = p2
+scale = 1, .8
+sprpriority = 2
+ontop = 0
+
+
+
+[State 4614, Explod] ;精液1
+type = Explod
+trigger1 = time = 740
+anim = 2015
+ID = 2015
+pos = ceil(7*const(size.xscale)),ceil(-17*const(size.yscale))
+;pos = 10, -20
+postype = p2
+scale = 1, .8
+sprpriority = 2
+ontop = 0
+[State 4614, Explod] ;精液2
+type = Explod
+trigger1 = time = 1180
+anim = 2015
+ID = 2015
+pos = ceil(10*const(size.xscale)),ceil(-17*const(size.yscale))
+;pos = 10, -20
+postype = p2
+scale = 1, .8
+sprpriority = 2
+ontop = 0
+
+
+
+
+[State 4100, end]
+type=changestate
+trigger1 = time = 1500
+value=0
+ctrl=1
+
+
+
+;以下がヘルパーを操作するステート。ヒットしたら位置をＰ２にあわせる。
+;防御、または画面下で消滅ステートへ移行。
+[Statedef 6078,]
+type = A
+movetype = A
+physics = N
+velset = 1,0
+anim = 2005
+
+
+[State 6068]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State 6060]
+type = DestroySelf
+trigger1 = time = 200
+
+[State 6068] 
+type = veladd 
+trigger1 = 1 
+x = 1
+
+[State 6068,00 ]
+type = NotHitBy
+trigger1 = Time >= 0
+value = SCA ;,ST,HT
+
+[State 6068]                    ;相殺しますように・・・(；´Д`A
+type = HitOverRide
+Trigger1 = 1
+Time = -1
+attr = SCA, NA, HA , SA , NP, SP, HP
+slot = 0
+forceair = 1
+stateno = 6066
+
+
+[State 6068]
+type = TargetState
+trigger1 = MoveHit = 1
+trigger1 = NumTarget
+value = 6064
+
+[State 6068,]                     ;ヒットすると捕縛！
+type = ChangeState 
+trigger1 = MoveHit = 1
+trigger1 = NumTarget
+value = 6062
+
+[State 6068,]                  ;ガードで消えます
+type = ChangeState
+trigger1 = MoveGuarded = 1
+value = 6066
+
+[State 6068]
+type = HitDef
+Trigger1 = Time = 0
+attr = S, SP          ;攻撃属性: これは Standing, Normal Throw（立ち通常投げ）
+hitflag = M-         ;相手がやられ状態ではない地上の時でしか掴む事が出来ません
+priority = 1, miss    ;投げなので優先度を低く、かつmissかdodgeの属性でなければなりません
+sparkno = -1          ;-1にすればヒットスパークが表示しなくなります
+sprpriority = 2       ;攻撃が当たった時に画像表示優先度を1に出来ます
+p2facing = 1
+fall = 0         ;1にすれば相手がダウン状態
+
+;----犬やられ----------------------------------------------------------------
+
+[Statedef 6062,]
+type = S
+movetype = A
+physics = N
+velset = 0,0
+anim = 2007
+ctrl = 0
+sprpriority = 0
+
+
+[State 6062,a ];専用アニメが無い ステート変更
+type = ChangeState
+trigger1 = time = 0
+trigger1 = enemyNear,AnimExist(19230) = 0
+trigger1 = enemyNear,AnimExist(19231) = 0
+value = 6091
+
+[State 6064]
+type = ChangeAnim
+trigger1 = time = 0
+trigger1 = enemyNear,SelfAnimExist(19234)
+value = 2003
+
+[State 4614, Explod] ;手前に表示したい画像
+type = Explod
+trigger1 = time = 0
+anim = 2004
+ID = 2004
+pos = ceil(0*const(size.xscale)),ceil(20*const(size.yscale))
+;pos = 0, 20
+postype = p2
+scale = const(size.xscale),const(size.yscale)
+sprpriority = 5
+ontop = 0
+removetime = 896
+
+
+[State 4614, Explod] ;手前に表示したい画像
+type = Explod
+trigger1 = time = 0
+anim = 2016
+ID = 2016
+pos = ceil(5*const(size.xscale)),ceil(-20*const(size.yscale))
+;pos = 0, 20
+postype = p2
+scale = const(size.xscale),const(size.yscale)
+sprpriority = 1
+ontop = 0
+removetime = 896
+
+
+[State 6062]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+flag2 = noFG
+
+[State 6062, ]
+type = NotHitBy
+trigger1 = Time >= 0
+value = SCA,NA,SA,HA,NT,ST,HT
+
+[State 6062]
+type = PlaySnd
+trigger1 = time = 0
+value = 8150,4
+
+[State 6062]
+type = PlaySnd
+trigger1 = AnimElem = 3 || AnimElem = 8 || AnimElem = 14 || AnimElem = 20 || AnimElem = 27
+trigger2 = AnimElem = 34 || AnimElem = 41 || AnimElem = 47 || AnimElem = 53
+trigger3 = AnimElem = 59 || AnimElem = 65 || AnimElem = 71 || AnimElem = 77
+trigger4 = AnimElem = 83 || AnimElem = 89 || AnimElem = 95 || AnimElem = 101
+trigger5 = AnimElem = 107 || AnimElem = 113 || AnimElem = 119 || AnimElem = 125
+trigger6 = AnimElem = 131 || AnimElem = 137 || AnimElem = 143
+trigger7 = AnimElem = 149 || AnimElem = 155 || AnimElem = 161
+trigger8 = AnimElem = 167 || AnimElem = 173 || AnimElem = 176 || AnimElem = 213 || AnimElem = 215 
+value = 6060, 2
+
+[State 6062]
+type = PlaySnd
+trigger1 = AnimElem = 3 || AnimElem = 8 || AnimElem = 14 || AnimElem = 20 || AnimElem = 27
+trigger2 = AnimElem = 34 || AnimElem = 41 || AnimElem = 47 || AnimElem = 53
+trigger3 = AnimElem = 59 || AnimElem = 65 || AnimElem = 71 || AnimElem = 77
+trigger4 = AnimElem = 83 || AnimElem = 89 || AnimElem = 95 || AnimElem = 101
+trigger5 = AnimElem = 107 || AnimElem = 113 || AnimElem = 119 || AnimElem = 125
+trigger6 = AnimElem = 131 || AnimElem = 137 || AnimElem = 143
+trigger7 = AnimElem = 149 || AnimElem = 155 || AnimElem = 161
+trigger8 = AnimElem = 167 || AnimElem = 173 || AnimElem = 176 || AnimElem = 213 || AnimElem = 215 
+value = 8150, 2
+
+[State 6062]
+type = PlaySnd
+trigger1 = AnimElem = 4 || AnimElem = 10 || AnimElem = 17 || AnimElem = 24
+trigger2 = AnimElem = 31 || AnimElem = 38 || AnimElem = 44 || AnimElem = 50
+trigger3 = AnimElem = 56 || AnimElem = 62 || AnimElem = 68 || AnimElem = 74
+trigger4 = AnimElem = 80 || AnimElem = 86 || AnimElem = 82 || AnimElem = 98
+trigger5 = AnimElem = 104 || AnimElem = 110 || AnimElem = 116 || AnimElem = 121
+trigger6 = AnimElem = 128 || AnimElem = 134 || AnimElem = 140 || AnimElem = 146
+trigger7 = AnimElem = 152 || AnimElem = 158 || AnimElem = 164 || AnimElem = 170
+trigger8 = AnimElem = 181 || AnimElem = 212 || AnimElem = 214
+value = 8150, 3
+
+
+[State 6064, ゲージ回復]
+type = poweradd
+trigger1 = AnimElem = 4 || AnimElem = 10 || AnimElem = 17 || AnimElem = 24
+trigger2 = AnimElem = 31 || AnimElem = 38 || AnimElem = 44 || AnimElem = 50
+trigger3 = AnimElem = 56 || AnimElem = 62 || AnimElem = 68 || AnimElem = 74
+trigger4 = AnimElem = 80 || AnimElem = 86 || AnimElem = 82 || AnimElem = 98
+trigger5 = AnimElem = 104 || AnimElem = 110 || AnimElem = 116 || AnimElem = 121
+trigger6 = AnimElem = 128 || AnimElem = 134 || AnimElem = 140 || AnimElem = 146
+trigger7 = AnimElem = 152 || AnimElem = 158 || AnimElem = 164 || AnimElem = 170
+trigger8 = AnimElem = 181 || AnimElem = 212 || AnimElem = 214 || AnimElem = 220
+value = 150
+
+
+
+[State 6062];射精
+type = PlaySnd
+trigger1 = AnimElem = 191 || AnimElem = 201 || AnimElem = 210
+value = 6065, 0
+
+[State 6062];射精
+type = PlaySnd
+trigger1 = AnimElem = 191 || AnimElem = 201 || AnimElem = 210
+value = 6060, 1
+
+[State 6062]
+type = PlaySnd
+trigger1 = AnimElem = 220
+value = 6065, 1
+
+[State 6062, Explod] ;精液
+type = Explod
+trigger1 = time = 795
+anim = 2012
+ID = 2012
+pos = ceil(10*const(size.xscale)),ceil(-20*const(size.yscale))
+;pos = 10, -20
+postype = p2
+scale = 1, .8
+sprpriority = 3
+ontop = 0
+
+
+
+
+[State 6062]
+type = BindToTarget
+trigger1 = Time >= 0
+id = -1
+pos = ceil(0*const(size.xscale)),ceil(20*const(size.yscale))
+;pos = 0, 20,food          ;この位置を調節すること。
+
+[State 6062,a ];犬射精専用アニメ ステート変更
+type = ChangeState
+trigger1 = enemynear,StateNo = 6095
+value = 6090
+
+[State 6062,a ];犬射精専用アニメ ステート変更
+type = ChangeState
+trigger1 = enemynear,StateNo = 6097
+value = 6090
+
+[State 6062,]
+type = TargetState
+trigger1 = AnimTime = 0
+value = 6065
+
+[State 6062,]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 6066
+;-------------------------------------------end8454
+;---------------------------------------------------------------------------
+; 相手側の投げられモーション1
+; CNS レベル: 中級
+;
+[Statedef 6064]
+type    = L
+movetype= H
+physics = N
+velset = 0,0
+sprpriority = 1
+anim = 19231
+
+[State 6064]               ;専用アニメ無い 19230が存在するとき
+type = ChangeAnim2
+Triggerall = Time = 0
+;trigger1 = SelfAnimExist(19230) = 1
+trigger1 = SelfAnimExist(19231) = 0
+value = 6621
+
+[State 4614, Explod] ;手前に表示したい画像
+type = Explod
+trigger1 = time = 0
+trigger1 = SelfAnimExist(19234)
+anim = 19234
+ID = 19234
+pos = ceil(0*const(size.xscale)),ceil(0*const(size.yscale))
+;pos = 0, 0
+postype = p1
+scale = const(size.xscale),const(size.yscale)
+sprpriority = 3
+ontop = 0
+removetime = 891
+
+
+
+[State 6064, 悲鳴1]
+type = PlaySnd
+trigger1 = AnimElem = 9 || AnimElem = 21 || AnimElem = 27
+trigger2 = AnimElem = 39 || AnimElem = 45 || AnimElem = 51
+trigger3 = AnimElem = 69 || AnimElem = 75
+trigger4 = AnimElem = 99 || AnimElem = 111 || AnimElem = 123 || AnimElem = 135
+trigger5 = AnimElem = 147 || AnimElem = 159 || AnimElem = 171 || AnimElem = 183
+value = 4218,21
+
+[State 6064, 悲鳴2]
+type = PlaySnd
+trigger1 = AnimElem = 3 || AnimElem = 15 || AnimElem = 33
+trigger2 = AnimElem = 57 || AnimElem = 63 || AnimElem = 87
+trigger3 = AnimElem = 81 || AnimElem = 93 || AnimElem = 179
+value = 4218,22
+
+[State 3522, 悲鳴3]
+type = PlaySnd
+trigger1 = AnimElem = 175
+value = 4218,23
+
+[State 6080-6, ステート変更]
+type = ChangeState
+trigger1 = SelfAnimExist(19232) = 1
+trigger1 = Time = 580
+value = 6095
+
+[State 6080-6, ステート変更]
+type = ChangeState
+trigger1 = SelfAnimExist(19232) = 0
+trigger1 = Time = 580
+value = 6097
+
+[State 6064,ダメージ]
+type = LifeAdd
+;triggerall = Life > 12
+trigger1 = AnimElem = 9 || AnimElem = 15 || AnimElem = 21 || AnimElem = 27
+trigger2 = AnimElem = 33 || AnimElem = 39 || AnimElem = 45 || AnimElem = 51
+trigger3 = AnimElem = 57 || AnimElem = 63 || AnimElem = 69 || AnimElem = 75
+trigger4 = AnimElem = 81 || AnimElem = 87 || AnimElem = 93 || AnimElem = 99
+trigger5 = AnimElem = 105 || AnimElem = 111 || AnimElem = 117 || AnimElem = 123
+trigger6 = AnimElem = 129 || AnimElem = 135 || AnimElem = 141
+trigger7 = AnimElem = 147 || AnimElem = 153 || AnimElem = 159
+trigger8 = AnimElem = 165 || AnimElem = 171
+value = -8
+kill = 0
+
+[State 6064, 体力減少]
+type = LifeAdd
+trigger1 = AnimElem = 175 || AnimElem = 177 || AnimElem = 179
+value = -10
+kill = 0
+
+[State 6064, 体力減少]
+type = LifeAdd
+trigger1 = AnimElem = 181
+value = -20
+
+[State 6064,ダメージ]
+type = PowerAdd
+triggerall = Life > 12
+trigger1 = AnimElem = 9 || AnimElem = 15 || AnimElem = 21 || AnimElem = 27
+trigger2 = AnimElem = 33 || AnimElem = 39 || AnimElem = 45 || AnimElem = 51
+trigger3 = AnimElem = 57 || AnimElem = 63 || AnimElem = 69 || AnimElem = 75
+trigger4 = AnimElem = 81 || AnimElem = 87 || AnimElem = 93 || AnimElem = 99
+trigger5 = AnimElem = 105 || AnimElem = 111 || AnimElem = 117 || AnimElem = 123
+trigger6 = AnimElem = 129 || AnimElem = 135 || AnimElem = 141
+trigger7 = AnimElem = 147 || AnimElem = 153 || AnimElem = 159
+trigger8 = AnimElem = 165 || AnimElem = 171
+value = -50
+
+[State 6064, パワー減少]
+type = PowerAdd
+trigger1 = AnimElem = 175
+value = -100
+
+[State 6064, パワー減少]
+type = PowerAdd
+trigger1 = AnimElem = 177 || AnimElem = 179 || AnimElem = 181
+value = -50
+
+
+;---------------------------------------------------------------------------
+; 相手側の投げられモーション２
+; CNS レベル: 中級
+;
+; このステートは相手が放り投げられた後に地面に落ちるまでの動作です。
+; 着地した時やcmdファイルにある"recovery"のコマンドを相手が入力した時に、
+;「SelfState」のステートコントローラで相手の制御を解除し、コントロールを戻させています。
+
+[Statedef 6065]
+type    = A
+movetype= H
+physics = N
+velset = 0,0
+poweradd = 40
+
+
+[State 6065, 速度加算] ;重力
+type = VelAdd
+Trigger1 = 1
+y = 10
+
+[State 6065, 悲鳴3]
+type = PlaySnd
+trigger1 = AnimElem = 1
+value = 4218,22
+
+[State 6065, ステート変更]
+type = ChangeState
+triggerall = Vel Y > 0        ;★７
+triggerall = Pos Y >= -20
+triggerall = alive
+triggerall = CanRecover
+trigger1 = Command = "recovery"
+value = 5110 ;common1.cns参照
+
+[State 6065, 制御解除して相手のステートに戻す]
+type = SelfState
+triggerall = Vel Y > 0
+triggerall = alive
+triggerall = CanRecover
+trigger1 = Command = "recovery"
+value = 5110 ;common1.cns参照
+
+[State 6065, 制御解除して相手のステートに戻す]
+type = SelfState
+trigger1 = Vel Y > 0
+trigger1 = Pos Y >= 0
+value = 5110 ;common1.cns参照
+
+;★７：「triggerall」
+;　「条件を限定したり絞り込む」ために使われるトリガーの定義です。
+;　なのでtrigger1などは、triggerallの条件が全て揃わない限り、有効になる事はありません。
+;　なお、triggerallのみでは働かないので、設置する時はtrigger1は絶対に消さないでください。
+;
+;---------------------------------------------------------------------------
+;以下ヘルパーの消滅ステート
+;
+;
+
+[Statedef 6066,]
+type     = A
+movetype = A
+physics  = N
+poweradd = 0
+ctrl     = 0
+velset   = 7,0
+anim     = 2005
+sprpriority = 2
+
+[State 6066, 無敵]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+
+[State 6066, 消滅]
+type = DestroySelf
+trigger1 =  ScreenPos X >= 360;
+trigger2 = ScreenPos X <= -30
+
+;犬射精--------------------------------------------
+[Statedef 6090]
+type = S
+movetype = A
+physics = N
+velset = 0,0
+anim = 2008
+ctrl = 0
+sprpriority = 3
+
+[State 4614, RemoveExplod] ;2004
+type = RemoveExplod
+trigger1 = time = 0
+ID = 2004
+
+[State 6062]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+flag2 = noFG
+
+
+[State 4614, Explod] ;手前に表示したい画像
+type = Explod
+trigger1 = time = 0
+anim = 2017
+ID = 2017
+pos = ceil(0*const(size.xscale)),ceil(20*const(size.yscale))
+;pos = 0, 20
+postype = p2
+scale = const(size.xscale),const(size.yscale)
+sprpriority = 5
+ontop = 0
+removetime = 211
+
+
+
+
+
+[State 6062];射精
+type = PlaySnd
+trigger1 = AnimElem = 1|| AnimElem = 10 || AnimElem = 20 || AnimElem = 20 || AnimElem = 30
+value = 6065, 0
+
+[State 6062];射精
+type = PlaySnd
+trigger1 = AnimElem = 1|| AnimElem = 10 || AnimElem = 20 || AnimElem = 20 || AnimElem = 30
+value = 6060, 1
+
+[State 6062];射精
+type = PlaySnd
+trigger1 = AnimElem = 40
+value = 11, 0
+
+[State 6062,]
+type = SelfState
+trigger1 = AnimTime = 0
+value = 6066
+
+;犬専用アニメが無い--------------------------------------------
+[Statedef 6091]
+type = S
+movetype = A
+physics = N
+velset = 0,0
+anim = 2010
+ctrl = 0
+sprpriority = 1
+
+[State 1]
+type = TargetState
+trigger1 = time = 0
+value = 6096
+
+[State 6062,]
+type = SelfState
+trigger1 = AnimTime = 0
+value = 6066
+
+;犬射精相手側-----------------------------------
+[Statedef 6095]
+type    = L
+movetype= H
+physics = N
+anim = 19232
+
+[State 4614, RemoveExplod] ;19234
+type = RemoveExplod
+trigger1 = time = 0
+ID = 19234
+
+[State 4614, Explod] ;手前に表示したい画像
+type = Explod
+trigger1 = time = 0
+trigger1 = SelfAnimExist(19233)
+anim = 19233
+ID = 19233
+pos = ceil(0*const(size.xscale)),ceil(0*const(size.yscale))
+;pos = 0, 0
+postype = p1
+scale = const(size.xscale),const(size.yscale)
+sprpriority = 4
+ontop = 0
+removetime = 442
+
+
+[State 4614, Explod] ;手前に表示したい画像2
+type = Explod
+trigger1 = time = 0
+trigger1 = !SelfAnimExist(19233)
+trigger1 = SelfAnimExist(19232)
+anim = 19232
+ID = 19232
+pos = ceil(0*const(size.xscale)),ceil(0*const(size.yscale))
+;pos = 0, 0
+postype = p1
+scale = const(size.xscale),const(size.yscale)
+sprpriority = 4
+ontop = 0
+removetime = 442
+
+
+
+[State 6064, 悲鳴];射精悲鳴
+type = PlaySnd
+trigger1 = time = 157 || time = 209 || time = 261
+value = 4218,22
+
+
+[State 6064, 体力減少]
+type = LifeAdd
+trigger1 = time = 157 || time = 209 || time = 261
+value = -10
+kill = 0
+
+
+
+[State 6064, パワー減少]
+type = PowerAdd
+trigger1 = time = 157 || time = 209 || time = 261
+value = -50
+
+
+
+
+
+
+
+[State 1699, 起き上がりへ]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 6099
+
+
+;犬射精相手側2-----------------------------------
+;犬射精相手側2-----------------------------------
+[Statedef 6099]
+type    = L
+movetype= H
+physics = N
+anim = 19232
+
+[State 4614, RemoveExplod] ;19234
+type = RemoveExplod
+trigger1 = time = 0
+ID = 19234
+
+[State 4614, Explod] ;手前に表示したい画像
+type = Explod
+trigger1 = time = 0
+trigger1 = SelfAnimExist(19233)
+anim = 19233
+ID = 19233
+pos = ceil(0*const(size.xscale)),ceil(0*const(size.yscale))
+;pos = 0, 0
+postype = p1
+scale = const(size.xscale),const(size.yscale)
+sprpriority = 4
+ontop = 0
+removetime = 442
+
+
+[State 4614, Explod] ;手前に表示したい画像2
+type = Explod
+trigger1 = time = 0
+trigger1 = !SelfAnimExist(19233)
+trigger1 = SelfAnimExist(19232)
+anim = 19232
+ID = 19232
+pos = ceil(0*const(size.xscale)),ceil(0*const(size.yscale))
+;pos = 0, 0
+postype = p1
+scale = const(size.xscale),const(size.yscale)
+sprpriority = 4
+ontop = 0
+removetime = 442
+
+
+
+
+[State 6064, 悲鳴];射精悲鳴
+type = PlaySnd
+trigger1 = time = 157 || time = 209 || time = 261
+value = 4218,22
+
+[State 6064, 悲鳴]
+type = PlaySnd
+trigger1 = time = 313
+value = 11,0
+
+[State 6064, 体力減少]
+type = LifeAdd
+trigger1 = time = 157 || time = 209 || time = 261
+value = -10
+kill = 0
+
+[State 6064, 体力減少]
+type = LifeAdd
+trigger1 = time = 313
+value = -20
+
+[State 6064, パワー減少]
+type = PowerAdd
+trigger1 = time = 157 || time = 209 || time = 261
+value = -50
+
+[State 6064, パワー減少]
+type = PowerAdd
+trigger1 = time = 313
+value = -100
+
+
+
+
+
+[State 1699, 起き上がりへ]
+type = SelfState
+trigger1 = AnimTime = 0
+value = ifelse(Alive,5120,5150)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+;犬射精相手側-----------------------------------
+[Statedef 6097]
+type    = L
+movetype= H
+physics = N
+sprpriority = 3
+
+[State 4614, RemoveExplod] ;19234
+type = RemoveExplod
+trigger1 = time = 0
+ID = 19234
+
+
+[State 6064]               ;専用アニメ無い 19230が存在するとき
+type = ChangeAnim2
+Triggerall = Time = 0
+;trigger1 = SelfAnimExist(19230) = 1
+trigger1 = SelfAnimExist(19231) = 0
+value = 6623
+
+
+[State 6064, 悲鳴];射精悲鳴
+type = PlaySnd
+trigger1 = time = 157 || time = 209 || time = 261
+value = 4218,22
+
+
+[State 6064, 体力減少]
+type = LifeAdd
+trigger1 = time = 157 || time = 209 || time = 261
+value = -10
+kill = 0
+
+
+
+[State 6064, パワー減少]
+type = PowerAdd
+trigger1 = time = 157 || time = 209 || time = 261
+value = -50
+
+
+
+
+
+
+
+[State 1699, 起き上がりへ]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 6101
+
+
+;犬射精相手側2-----------------------------------
+;犬射精相手側2-----------------------------------
+[Statedef 6101]
+type    = L
+movetype= H
+physics = N
+sprpriority = 3
+
+[State 4614, RemoveExplod] ;19234
+type = RemoveExplod
+trigger1 = time = 0
+ID = 19234
+
+
+[State 6064]               ;専用アニメ無い 19230が存在するとき
+type = ChangeAnim2
+Triggerall = Time = 0
+;trigger1 = SelfAnimExist(19230) = 1
+trigger1 = SelfAnimExist(19231) = 0
+value = 6623
+
+
+[State 6064, 悲鳴];射精悲鳴
+type = PlaySnd
+trigger1 = time = 157 || time = 209 || time = 261
+value = 4218,22
+
+
+[State 6064, 体力減少]
+type = LifeAdd
+trigger1 = time = 157 || time = 209 || time = 261
+value = -10
+kill = 0
+
+
+
+[State 6064, パワー減少]
+type = PowerAdd
+trigger1 = time = 157 || time = 209 || time = 261
+value = -50
+
+
+
+
+
+[State 1699, 起き上がりへ]
+type = SelfState
+trigger1 = AnimTime = 0
+value = ifelse(Alive,5120,5150)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+;犬専用アニメが無い 相手側------------------------------
+[Statedef 6096]
+type    = L
+movetype= H
+physics = N
+
+[State 6064, 体力減少]
+type = LifeAdd
+trigger1 = time = 3
+value = -260
+
+[State 6064, 悲鳴]
+type = PlaySnd
+trigger1 = time = 3
+value = 4218,23
+
+[State 1699, 起き上がりへ]
+type = SelfState
+trigger1 =Time = 4
+value = ifelse(Alive,5120,5150)
+
+
+
+
+
+
+
+
+
+
+
+;--------------------------------------------------------------------
+
+
+
+
+; 犬攻撃強
+[Statedef 7067]
+type    = S
+movetype= A
+physics = S
+velset = 5,0
+ctrl = 0
+anim = 4102
+
+[State 7067]
+type = PlaySnd
+trigger1 = AnimElem = 1
+value = 4,0
+
+[State 7067]
+type = PlaySnd
+trigger1 = AnimElem = 2
+value = 6069,0
+
+[State 7067]        ;犬登場
+type = Helper
+trigger1 = Time = 5
+ID = 7150
+name = "cat"
+sprpriority = 4
+pos = ceil(5*const(size.xscale)),ceil(0*const(size.yscale))
+;pos = 5, 0; ※下記注意
+posttype = p1
+facing = 1       ;向きはそのまま
+stateno = 7068  ;呼び出されたヘルパーはこのステートから始まる
+helpertype = normal
+keyctrl = 0
+
+
+
+[State 6062,]
+type = changestate
+trigger1 = P2StateNo = 7085
+value = 7089
+
+
+
+[State 7067, ステート変更]
+type = ChangeState
+trigger1 = Time = 64
+value = 0
+ctrl = 1
+
+
+[Statedef 7089,]
+type = A
+movetype = A
+physics = N
+velset= 0,0
+anim = 2013
+
+
+
+[State 6067]
+type = PlaySnd
+trigger1 = time = 90
+value = 4,20
+
+[State 6067]
+type = PlaySnd
+trigger1 = time = 190
+value = 4,6
+
+
+[State 4100, end]
+type=changestate
+trigger1 = time = 200
+value=0
+ctrl=1
+
+
+
+;以下がヘルパーを操作するステート。ヒットしたら位置をＰ２にあわせる。
+;防御、または画面下で消滅ステートへ移行。
+;-------------------------------------------------
+
+[Statedef 7068,]
+type = A
+movetype = A
+physics = N
+velset = 1,0
+anim = 2011
+
+
+[State 7068]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State 7060]
+type = DestroySelf
+trigger1 = time = 200
+
+[State 7068] 
+type = veladd 
+trigger1 = 1 
+x = 1
+
+[State 7068,00 ]
+type = NotHitBy
+trigger1 = Time >= 0
+value = SCA ;,ST,HT
+
+[State 7068]                    ;相殺しますように・・・(；´Д`A
+type = HitOverRide
+Trigger1 = 1
+Time = -1
+attr = SCA, NA, HA , SA , NP, SP, HP
+slot = 0
+forceair = 1
+stateno = 7066
+
+
+[State 7068]
+type = TargetState
+trigger1 = MoveHit = 1
+trigger1 = NumTarget
+value = 7085
+
+[State 7068,]                     ;ヒットすると捕縛！
+type = ChangeState 
+trigger1 = MoveHit = 1
+trigger1 = NumTarget
+value = 7080
+
+[State 7068,]                  ;ガードで消えます
+type = ChangeState
+trigger1 = MoveGuarded = 1
+value = 7066
+
+[State 7068]
+type = HitDef
+Trigger1 = Time = 0
+attr = S, SP          ;攻撃属性: これは Standing, Normal Throw（立ち通常投げ）
+hitflag = M-         ;相手がやられ状態ではない地上の時でしか掴む事が出来ません
+priority = 1, miss    ;投げなので優先度を低く、かつmissかdodgeの属性でなければなりません
+sparkno = -1          ;-1にすればヒットスパークが表示しなくなります
+sprpriority = 2       ;攻撃が当たった時に画像表示優先度を1に出来ます
+p2facing = 1
+fall = 0         ;1にすれば相手がダウン状態
+
+;-------------------------------------------------------------------------------
+; 犬舐め
+[Statedef 7080]
+type = S
+movetype = A
+physics = N
+velset = 0,0
+anim = 2006
+ctrl = 0
+sprpriority = 3
+
+[State 7062]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+flag2 = noFG
+
+[State 7062, ]
+type = NotHitBy
+trigger1 = Time >= 0
+value = SCA,NA,SA,HA,NT,ST,HT
+
+[State 7062]
+type = BindToTarget
+trigger1 = 1
+id = -1
+pos = ceil(13*const(size.xscale)),ceil(20*const(size.yscale))
+;pos = 13, 20 
+
+[State 7062, ]
+type = PlaySnd
+trigger1 = Time > 20
+value = 8150,3
+Persistent = 20
+
+[State 7080-3, ヒット数]
+type = HitAdd
+trigger1 = AnimElem = 2
+value = 1
+
+[State 7080-4, 多少はダメージ]
+type = TargetLifeAdd
+trigger1 = AnimElem = 2
+value = -20
+
+[State 7080-5, ゲージ増加]
+type = PowerAdd
+trigger1 = AnimElem = 2
+value = 100
+
+[State 7080-6, ステート変更]
+type = ChangeState
+trigger1 = Time > 200
+value = ifelse((enemyNear,Alive),7066,6062) 
+
+
+
+; 相手側・犬舐め
+[Statedef 7085]
+type    = L
+movetype= H
+physics = N
+
+[State 1525, 声]
+type = PlaySnd
+trigger1 = Time%28 = 10
+value = 4218,22
+
+[State 1525, 専用アニメ]
+type = ChangeAnim
+trigger1 = SelfAnimExist(36525)
+trigger1 = time = 0
+value = 36525
+
+[State 1525, 専用アニメ2] 
+type = ChangeAnim2
+Trigger1 = Time = 0
+trigger1 = SelfAnimExist(18200) = 1
+trigger1 = SelfAnimExist(36525) = 0
+value = 4822
+
+[State 1525, 汎用アニメ]
+type = ChangeAnim2
+trigger1 = SelfAnimExist(18200) = 0
+trigger1 = SelfAnimExist(36525) = 0
+trigger1 = time = 0
+value = 4832
+
+[State 1525, Explod] ;手前に表示したい画像
+type = Explod
+trigger1 = time = 0
+trigger1 = SelfAnimExist(36526)
+anim = 36526
+ID = 36526
+pos = ceil(0*const(size.xscale)),ceil(0*const(size.yscale))
+;pos = 0, 0
+postype = p1
+scale = const(size.xscale),const(size.yscale)
+sprpriority = 4
+ontop = 0
+removetime = 200
+
+[State 1114102, end]
+type=selfstate
+trigger1=time>=200
+trigger1= 1
+value=ifelse(alive,5120,5150)
+
+
+;-------------------------------------------------------------------------------
+
+[Statedef 7066,]
+type     = A
+movetype = A
+physics  = N
+poweradd = 0
+ctrl     = 0
+velset   = 7,0
+anim     = 2011
+sprpriority = 2
+
+[State 7066, 無敵]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+
+[State 7066, 消滅]
+type = DestroySelf
+trigger1 =  ScreenPos X >= 360;
+trigger2 = ScreenPos X <= -30
+
+
+
+
+
+
+
+
+
+
+;-------------------------------------------------------------------------------
+
+;-------------------------------------------------------------------------------
+
+;-------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+[Statedef 45000]
+type=S
+physics=S
+movetype=A
+anim=45021
+ctrl=0
+velset=0,0
+poweradd=-3000
+sprpriority=1
+facep2=1
+
+
+[State 45000]        ;犬登場
+type = Helper
+trigger1 = Time = 5
+ID = 9999
+name = "Bulleta"
+sprpriority = 4
+pos = ceil(5*const(size.xscale)),ceil(0*const(size.yscale))
+;pos = 5, 0; ※下記注意
+scale = const(size.xscale),const(size.yscale)
+posttype = p1
+facing = 1       ;向きはそのまま
+stateno = 9999  ;呼び出されたヘルパーはこのステートから始まる
+helpertype = normal
+keyctrl = 0
+
+
+
+[State 19000, strengthvar]
+type=varset
+trigger1= var(10)!=7
+var(10)=7
+
+[State 19000, strengthvar]
+type=varset
+trigger1= var(10)!=7
+var(10)=7
+
+
+[State 19000, snd]
+type=playsnd
+trigger1 = time = 0
+value=4,10
+channel=0
+volume=200
+[State 19000, superchargehelper]
+type=helper
+trigger1 = time = 0
+helpertype=normal
+stateno=7500
+ID=7500
+name="Super Charge"
+postype=p1
+pos = ceil(20*const(size.xscale)),ceil(-73*const(size.yscale))
+;pos=20,-73
+ownpal=1
+persistent=0
+supermovetime=9999
+[State 4000, superchargepause]
+type=superpause
+trigger1 = time = 0
+time=60
+anim=-1
+sound=s7,0
+p2defmul=1
+darken=0
+[State 19000, nhb]
+type=nothitby
+trigger1= time<8
+time=1
+value=SCA
+
+[State 19000, jet]
+type=helper
+trigger1= animelemtime(3)>0 && !numhelper(6020)
+helpertype=normal
+stateno=6020
+ID=6020
+name="Jets"
+postype=p1
+ownpal=1
+
+
+
+
+[State 6062,]
+type = changestate
+trigger1 = P2StateNo = 47000
+value = 45001
+
+[State 4100, end]
+type=changestate
+trigger1 = time = 300
+value=0
+ctrl=1
+
+;---------------------------------------------------------------------------
+
+[Statedef 45001,]
+type = A
+movetype = A
+physics = N
+velset= 0,0
+anim = 45010
+
+[State 6067]
+type = PlaySnd
+trigger1 = time = 0
+value = 4,20
+
+
+[State 13100, 次へ]
+type = ChangeState
+trigger1 = time = 1895
+value = 45002
+
+
+;---------------------------------------------------------------------------
+
+[Statedef 45002,]
+type = A
+movetype = A
+physics = N
+velset= 0,0
+anim = 12009
+
+
+
+[State 6067]
+type = PlaySnd
+trigger1 = time = 40
+value = 4,22
+
+[State 4100, end]
+type=changestate
+trigger1 = time = 200
+value=0
+ctrl=1
+
+
+;---------------------------------------------------------------------------
+
+[Statedef 9999,]
+type = A
+movetype = A
+physics = N
+velset = 3.5,0
+anim = 45000
+
+
+[State 6067]
+type = PlaySnd
+trigger1 = time = 20
+value = 6080,0
+
+[State 6068]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State 6060]
+type = DestroySelf
+trigger1 = time = 1000
+
+
+
+[State 6068,00 ]
+type = NotHitBy
+trigger1 = Time >= 0
+value = SCA ;,ST,HT
+
+[State 6068]                    ;相殺しますように・・・(；´Д`A
+type = HitOverRide
+Trigger1 = 1
+Time = -1
+attr = SCA, NA, HA , SA , NP, SP, HP
+slot = 0
+forceair = 1
+stateno = 6066
+
+
+[State 6068]
+type = TargetState
+trigger1 = MoveHit = 1
+trigger1 = NumTarget
+value = 47000
+
+[State 6068,]                     ;ヒットすると捕縛！
+type = ChangeState 
+trigger1 = MoveHit = 1
+trigger1 = NumTarget
+value = 46000
+
+[State 6068,]                  ;ガードで消えます
+type = ChangeState
+trigger1 = MoveGuarded = 1
+value = 6066
+
+[State 6068]
+type = HitDef
+Trigger1 = Time = 0
+attr = S, SP          ;攻撃属性: これは Standing, Normal Throw（立ち通常投げ）
+hitflag = M-         ;相手がやられ状態ではない地上の時でしか掴む事が出来ません
+priority = 1, miss    ;投げなので優先度を低く、かつmissかdodgeの属性でなければなりません
+sparkno = -1          ;-1にすればヒットスパークが表示しなくなります
+sprpriority = 2      ;攻撃が当たった時に画像表示優先度を1に出来ます
+p2facing = 1
+fall = 0         ;1にすれば相手がダウン状態
+
+
+
+;---------------------------------------------------------------------------
+
+
+[Statedef 46000,]
+type = S
+movetype = A
+physics = N
+velset = 0,0
+anim = 45001
+ctrl = 0
+sprpriority = 3
+
+
+[State 51209,１]
+type = PlaySnd
+trigger1 = time = 0
+value = 8150,4
+
+[State 6067]
+type = PlaySnd
+trigger1 = time = 30
+value = 6080,4
+
+[State 4101, curtain]
+type=helper
+trigger1 = Time = 150
+helpertype=normal
+stateno=19070
+ID=19070
+name="Curtain"
+postype=p1
+facing=1
+ownpal=1
+[State 4101, curtain]
+type=helper
+trigger1 = Time = 150
+helpertype=normal
+stateno=19070
+ID=19070
+name="Curtain"
+postype=p1
+facing=-1
+ownpal=1
+
+[State 1610, 幅]
+type = Width
+trigger1 = 1
+edge = 75,75
+player = 32,32
+
+
+[State 6062,]
+type = changestate
+trigger1 = P2StateNo = 47101
+value = 46101
+
+
+[State 13100, 次へ]
+type = ChangeState
+trigger1 = Time = 200
+value = 46001
+
+
+;---------------------------------------------------------------------------
+
+
+[Statedef 46001,]
+type = S
+movetype = A
+physics = N
+velset = 0,0
+anim = 45016
+ctrl = 0
+sprpriority = 3
+
+
+[State 6067]
+type = PlaySnd
+trigger1 = time = 50
+value = 6080,2
+
+[State 6062]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+flag2 = noFG
+
+
+[State 1610, 幅]
+type = PosSet
+trigger1 = time = 0
+x = 0
+
+[State 1610, 幅]
+type = Width
+trigger1 = 1
+edge = 75,75
+player = 32,32
+
+[State 1805, Bind]
+type = TargetBind
+trigger1 = 1
+pos = ceil(-60*const(size.xscale)),ceil(-50*const(size.yscale))
+;pos = 0, -50
+
+
+[State 1805, Bind]
+type = TargetBind
+trigger1 = 1
+pos = ceil(-60*const(size.xscale)),ceil(-50*const(size.yscale))
+;pos = 0, -50
+
+
+[State 12002, 本体2]
+type = Explod
+trigger1 = time = 100
+anim = 45014
+ID =45014
+postype = p2
+facing = -1
+pos = ceil(5*const(size.xscale)),ceil(45*const(size.yscale))
+;pos = 5,45
+removetime = -1
+bindtime = -1
+sprpriority = 4
+supermovetime = 30
+removeongethit = 1
+
+
+
+[State 12002, 背景]
+type = Explod
+trigger1 = time = 0
+anim = 45005
+ID =45005
+postype = left
+pos = ceil(0*const(size.xscale)),ceil(0*const(size.yscale))
+;pos = 0,0
+scale = 0.5,0.5
+removetime = -5
+bindtime = -1
+sprpriority = -5
+supermovetime = 30
+removeongethit = 1
+
+
+[State 12002, 背景2]
+type = Explod
+trigger1 = time = 0
+anim = 45013
+ID =45013
+postype = p2
+pos = ceil(0*const(size.xscale)),ceil(80*const(size.yscale))
+;pos = 0,80
+removetime = -1
+bindtime = -1
+sprpriority = 5
+supermovetime = 30
+removeongethit = 1
+
+
+[State 12002, ブロック]
+type = Explod
+trigger1 = time = 0
+anim = 45004
+ID =45004
+postype = p2
+pos = ceil(3*const(size.xscale)),ceil(45*const(size.yscale))
+;pos = 3,45
+removetime = -1
+bindtime = -1
+sprpriority = -1
+supermovetime = 30
+removeongethit = 1
+
+[State 12002, ブロック2]
+type = Explod
+trigger1 = time = 0
+anim = 45006
+ID =45006
+postype = p2
+pos = ceil(3*const(size.xscale)),ceil(45*const(size.yscale))
+;pos = 3,45
+removetime = -1
+bindtime = -1
+sprpriority = 2
+supermovetime = 30
+removeongethit = 1
+
+[State 13100, 次へ]
+type = ChangeState
+trigger1 = Time = 200
+value = 46002
+
+;---------------------------------------------------------------------------
+
+
+[Statedef 46002,]
+type = S
+movetype = A
+physics = N
+velset = 0,0
+anim = 45002
+ctrl = 0
+sprpriority = 3
+
+
+[State 6062]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+flag2 = noFG
+
+
+
+[State 51210,音声]
+type = PlaySnd
+trigger1 = time = 300
+value = 6080,1
+
+
+[State 51209,音声１];挿入音
+type = PlaySnd
+trigger1 = time = 16
+value = 6080,6
+
+[State 51209, 音声2];ピストン1
+type = PlaySnd
+trigger1 = time = 80 ||time = 100 || time = 120 || time = 140
+trigger2 = time = 160 ||time = 180 || time = 200 || time = 220
+value = 8200,4
+
+[State 51209, 音声2-2];ピストン2
+type = PlaySnd
+trigger1 = time = 240 ||time = 252 || time = 264 || time = 276
+trigger2 = time = 288 ||time = 300 || time = 312 || time = 324
+value = 8200,4
+
+
+[State 51209, 音声2];ピストン3
+type = PlaySnd
+trigger1 = time = 80 ||time = 100 || time = 120 || time = 140
+trigger2 = time = 160 ||time = 180 || time = 200 || time = 220
+value = 8150,3
+
+[State 51209, 音声2-2];ピストン4
+type = PlaySnd
+trigger1 = time = 240 ||time = 252 || time = 264 || time = 276
+trigger2 = time = 288 ||time = 300 || time = 312 || time = 324
+value = 8150,3
+
+
+[State 51209,音声３];射精音
+type = PlaySnd
+trigger1 = time =332||time = 367||time = 403
+value = 8200,5
+
+[State 51209,音声４];喘ぎ声
+type = PlaySnd
+trigger1 = time = 240
+value = 5000,23
+
+[State 51209,音声４-2];喘ぎ声
+type = PlaySnd
+trigger1 = time = 475
+value = 5000,90
+
+
+[State 9103, エフェクト消去]
+type = RemoveExplod
+trigger1 = time = 0
+ID = 45014
+
+
+[State 12002, 本体2]
+type = Explod
+trigger1 = time = 0
+anim = 45018
+ID =45018
+postype = p2
+facing = -1
+pos = ceil(5*const(size.xscale)),ceil(45*const(size.yscale))
+;pos = 5,45
+removetime = -1
+bindtime = -1
+sprpriority = 5
+supermovetime = 30
+removeongethit = 1
+
+
+
+[State 13100, 次へ]
+type = ChangeState
+trigger1 = Time = 523
+value = 46003
+
+
+;---------------------------------------------------------------------------
+
+
+[Statedef 46003,]
+type = S
+movetype = A
+physics = N
+velset = 0,0
+anim = 45017
+ctrl = 0
+sprpriority = 3
+
+
+[State 51210,音声]
+type = PlaySnd
+trigger1 = time = 0
+value = 6080,3
+
+
+[State 6062]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+flag2 = noFG
+
+
+
+[State 9103, エフェクト消去]
+type = RemoveExplod
+trigger1 = time = 0
+ID = 45018
+
+
+
+[State 51210,音声0];挿入音小
+type = PlaySnd
+trigger1 = time = 20
+value = 8150,2
+
+[State 51210,音声１];挿入音大
+type = PlaySnd
+trigger1 = time = 98||time = 558
+value = 6080,6
+
+
+[State 51210,音声１];微動
+type = PlaySnd
+trigger1 = time = 66
+value = 8150,1
+
+[State 51210, 音声2];ピストン1
+type = PlaySnd
+trigger1 = time = 192 ||time = 212 || time = 232 || time = 252
+trigger2 = time = 272 ||time = 292 
+value = 8200,4
+
+[State 51210, 音声2-2];ピストン2
+type = PlaySnd
+trigger1 = time = 310 ||time = 322 || time = 334 || time = 346
+trigger2 = time = 358 ||time = 370 || time = 382 
+trigger3 = time = 603 ||time = 615 || time = 627 || time = 639|| time = 651|| time = 663|| time = 675
+value = 8200,4
+
+[State 51210, 音声2];ピストン3
+type = PlaySnd
+trigger1 = time = 192 ||time = 212 || time = 232 || time = 252
+trigger2 = time = 272 ||time = 292 
+value = 8150,3
+
+[State 51210, 音声2-2];ピストン4
+type = PlaySnd
+trigger1 = time = 310 ||time = 322 || time = 334 || time = 346
+trigger2 = time = 358 ||time = 370 || time = 382 
+trigger3 = time = 603 ||time = 615 || time = 627 || time = 639|| time = 651|| time = 663|| time = 675
+value = 8150,3
+
+[State 51210,音声３];射精音
+type = PlaySnd
+trigger1 = time =402||time = 429||time = 442||time = 462||time = 482
+trigger2 = time =683||time = 713||time = 743||time = 773
+value = 8200,5
+
+[State 51210,音声３];射精音小
+type = PlaySnd
+trigger1 = time =803||time = 833
+value = 8150,2
+
+
+[State 51210,音声5-1];抜いた音
+type = PlaySnd
+trigger1 = time = 516||time = 903
+value = 6080,7
+
+
+[State 51210,音声6];奥まで入ってきてる・・・的な
+type = PlaySnd
+trigger1 = time = 863
+value = 8150,0
+
+
+[State 12002, 本体2]
+type = Explod
+trigger1 = time = 0
+anim = 45015
+ID =45015
+postype = p2
+facing = -1
+pos = ceil(5*const(size.xscale)),ceil(45*const(size.yscale))
+;pos = 5,45
+removetime = -1
+bindtime = -1
+sprpriority = 5
+supermovetime = 30
+removeongethit = 1
+
+
+[State 4101, curtain]
+type=helper
+trigger1 = Time = 935
+helpertype=normal
+stateno=19070
+ID=19070
+name="Curtain"
+postype=p1
+pausemovetime = 300
+facing=1
+ownpal=1
+[State 4101, curtain]
+type=helper
+trigger1 = Time = 935
+helpertype=normal
+stateno=19070
+ID=19070
+name="Curtain"
+postype=p1
+pausemovetime = 300
+facing=-1
+ownpal=1
+
+
+
+[State 13100, 次へ]
+type = ChangeState
+trigger1 = Time = 973
+value = 46004
+
+
+;---------------------------------------------------------------------------
+
+
+[Statedef 46004,]
+type = S
+movetype = A
+physics = N
+velset = 0,0
+anim = 4112
+ctrl = 0
+sprpriority = 3
+
+[State 1618, ]
+type = Pause
+trigger1 = time = 0
+time = 70
+movetime = 70
+
+[State 1610, 掴んだ相手の位置]
+type = TargetBind
+trigger1 = time = 0
+pos = ceil(0*const(size.xscale)),ceil(0*const(size.yscale))
+;pos = 0, 0
+
+[State 9103, エフェクト消去]
+type = RemoveExplod
+trigger1 = time = 0
+ID = 45005
+
+[State 9103, エフェクト消去]
+type = RemoveExplod
+trigger1 = time = 0
+ID = 45013
+
+
+[State 9103, エフェクト消去]
+type = RemoveExplod
+trigger1 = time = 0
+ID = 45004
+
+
+[State 9103, エフェクト消去]
+type = RemoveExplod
+trigger1 = time = 0
+ID = 45006
+
+[State 9103, エフェクト消去]
+type = RemoveExplod
+trigger1 = time = 0
+ID = 45015
+
+
+[State 4110, end]
+type=destroyself
+trigger1 = time = 30
+
+;---------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+[Statedef 46101,]
+type = S
+movetype = A
+physics = N
+velset = 0,0
+anim = 4112
+ctrl = 0
+sprpriority = 3
+
+[State 6067]
+type = PlaySnd
+trigger1 = time = 0
+value = 6085,2
+
+
+[State 6062]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+flag2 = noFG
+
+
+[State 12002, 背景]
+type = Explod
+trigger1 = time = 0
+anim = 45005
+ID =45005
+postype = left
+pos = ceil(0*const(size.xscale)),ceil(0*const(size.yscale))
+;pos = 0,0
+scale = 0.5,0.5
+removetime = -5
+bindtime = -1
+sprpriority = -5
+supermovetime = 30
+removeongethit = 1
+
+[State 12002, 背景2]
+type = Explod
+trigger1 = time = 0
+anim = 45013
+ID =45013
+postype = p2
+pos = ceil(110*const(size.xscale)),ceil(25*const(size.yscale))
+;pos = 110,25
+removetime = -1
+bindtime = -1
+sprpriority = 5
+supermovetime = 30
+removeongethit = 1
+
+[State 12002, 本体]
+type = Explod
+trigger1 = time = 0
+anim = 45009
+ID =45009
+postype = p2
+pos = ceil(110*const(size.xscale)),ceil(0*const(size.yscale))
+;pos = 110,0
+scale = Const(size.xscale),Const(size.yscale)
+removetime = -1
+bindtime = -1
+sprpriority = -1
+supermovetime = 30
+removeongethit = 1
+
+
+[State 12002, 本体2]
+type = Explod
+trigger1 = time = 100
+anim = 45014
+ID =45014
+postype = p2
+facing = -1
+pos = ceil(115*const(size.xscale)),ceil(0*const(size.yscale))
+;pos = 115,0
+removetime = -1
+bindtime = -1
+sprpriority = 5
+supermovetime = 30
+removeongethit = 1
+
+
+[State 12002, ブロック]
+type = Explod
+trigger1 = time = 0
+anim = 45007
+ID =45007
+postype = p2
+pos = ceil(110*const(size.xscale)),ceil(45*const(size.yscale))
+;pos = 110,45
+removetime = -1
+bindtime = -1
+sprpriority = -1
+supermovetime = 30
+removeongethit = 1
+
+[State 12002, ブロック2]
+type = Explod
+trigger1 = time = 0
+anim = 45008
+ID =45008
+postype = p2
+pos = ceil(110*const(size.xscale)),ceil(45*const(size.yscale))
+;pos = 110,45
+removetime = -1
+bindtime = -1
+sprpriority = 2
+supermovetime = 30
+removeongethit = 1
+
+
+[State 13100, 次へ]
+type = ChangeState
+trigger1 = Time = 200
+value = 46102
+
+
+;---------------------------------------------------------------------------
+
+[Statedef 46102,]
+type = S
+movetype = A
+physics = N
+velset = 0,0
+anim = 4112
+ctrl = 0
+sprpriority = 3
+
+[State 6062]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+flag2 = noFG
+
+
+
+[State 51209,音声１];挿入音
+type = PlaySnd
+trigger1 = time = 16
+value = 6080,6
+
+[State 51209, 音声2];ピストン1
+type = PlaySnd
+trigger1 = time = 80 ||time = 100 || time = 120 || time = 140
+trigger2 = time = 160 ||time = 180 || time = 200 || time = 220
+value = 8200,4
+
+[State 51209, 音声2-2];ピストン2
+type = PlaySnd
+trigger1 = time = 240 ||time = 252 || time = 264 || time = 276
+trigger2 = time = 288 ||time = 300 || time = 312 || time = 324
+value = 8200,4
+
+
+[State 51209, 音声2];ピストン3
+type = PlaySnd
+trigger1 = time = 80 ||time = 100 || time = 120 || time = 140
+trigger2 = time = 160 ||time = 180 || time = 200 || time = 220
+value = 8150,3
+
+[State 51209, 音声2-2];ピストン4
+type = PlaySnd
+trigger1 = time = 240 ||time = 252 || time = 264 || time = 276
+trigger2 = time = 288 ||time = 300 || time = 312 || time = 324
+value = 8150,3
+
+
+[State 51209,音声３];射精音
+type = PlaySnd
+trigger1 = time =332||time = 367||time = 403
+value = 8200,5
+
+[State 51209,音声４];喘ぎ声
+type = PlaySnd
+trigger1 = time = 240
+value = 5000,23
+
+[State 51209,音声４-2];喘ぎ声
+type = PlaySnd
+trigger1 = time = 475
+value = 5000,90
+
+
+
+
+[State 9103, エフェクト消去]
+type = RemoveExplod
+trigger1 = time = 0
+ID = 45009
+
+
+[State 9103, エフェクト消去]
+type = RemoveExplod
+trigger1 = time = 0
+ID = 45014
+
+[State 12002, 本体]
+type = Explod
+trigger1 = time = 0
+anim = 45020
+ID =45020
+postype = p2
+pos = ceil(110*const(size.xscale)),ceil(0*const(size.yscale))
+;pos = 110,0
+scale = Const(size.xscale),Const(size.yscale)
+removetime = -1
+bindtime = -1
+sprpriority = -1
+supermovetime = 30
+removeongethit = 1
+
+[State 51209,音声１];挿入音
+type = PlaySnd
+trigger1 = time = 16
+value = 6085,2
+
+[State 51209, 音声2];ピストン1
+type = PlaySnd
+trigger1 = time = 81 ||time = 101 || time = 121 || time = 141
+trigger2 = time = 161 ||time = 181 || time = 201 || time = 221
+value = 6085,0
+
+[State 51209, 音声2-2];ピストン2
+type = PlaySnd
+trigger1 = time = 241 ||time = 253 || time = 265 || time = 277
+trigger2 = time = 289 ||time = 301 || time = 313 || time = 325
+value = 6085,1
+
+
+[State 51209,音声３];射精音
+type = PlaySnd
+trigger1 = time =332||time = 367||time = 403
+value = 6085,0
+
+
+
+
+
+[State 12002, 本体2]
+type = Explod
+trigger1 = time = 0
+anim = 45018
+ID =45018
+postype = p2
+facing = -1
+pos = ceil(115*const(size.xscale)),ceil(0*const(size.yscale))
+;pos = 115,0
+removetime = -1
+bindtime = -1
+sprpriority = 5
+supermovetime = 30
+removeongethit = 1
+
+
+[State 13100, 次へ]
+type = ChangeState
+trigger1 = Time = 523
+value = 46103
+
+
+;---------------------------------------------------------------------------
+
+
+
+[Statedef 46103,]
+type = S
+movetype = A
+physics = N
+velset = 0,0
+anim = 4112
+ctrl = 0
+sprpriority = 3
+
+[State 6062]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+flag2 = noFG
+
+
+[State 51210,音声0];挿入音小
+type = PlaySnd
+trigger1 = time = 20
+value = 8150,2
+
+[State 51210,音声１];挿入音大
+type = PlaySnd
+trigger1 = time = 98||time = 558
+value = 6080,6
+
+
+[State 51210,音声１];微動
+type = PlaySnd
+trigger1 = time = 66
+value = 8150,1
+
+[State 51210, 音声2];ピストン1
+type = PlaySnd
+trigger1 = time = 192 ||time = 212 || time = 232 || time = 252
+trigger2 = time = 272 ||time = 292 
+value = 8200,4
+
+[State 51210, 音声2-2];ピストン2
+type = PlaySnd
+trigger1 = time = 310 ||time = 322 || time = 334 || time = 346
+trigger2 = time = 358 ||time = 370 || time = 382 
+trigger3 = time = 603 ||time = 615 || time = 627 || time = 639|| time = 651|| time = 663|| time = 675
+value = 8200,4
+
+[State 51210, 音声2];ピストン3
+type = PlaySnd
+trigger1 = time = 192 ||time = 212 || time = 232 || time = 252
+trigger2 = time = 272 ||time = 292 
+value = 8150,3
+
+[State 51210, 音声2-2];ピストン4
+type = PlaySnd
+trigger1 = time = 310 ||time = 322 || time = 334 || time = 346
+trigger2 = time = 358 ||time = 370 || time = 382 
+trigger3 = time = 603 ||time = 615 || time = 627 || time = 639|| time = 651|| time = 663|| time = 675
+value = 8150,3
+
+[State 51210,音声３];射精音
+type = PlaySnd
+trigger1 = time =402||time = 429||time = 442||time = 462||time = 482
+trigger2 = time =683||time = 713||time = 743||time = 773
+value = 8200,5
+
+[State 51210,音声３];射精音小
+type = PlaySnd
+trigger1 = time =803||time = 833
+value = 8150,2
+
+
+[State 51210,音声5-1];抜いた音
+type = PlaySnd
+trigger1 = time = 516||time = 903
+value = 6080,7
+
+
+[State 51210,音声6];奥まで入ってきてる・・・的な
+type = PlaySnd
+trigger1 = time = 863
+value = 8150,0
+
+
+
+[State 9103, エフェクト消去]
+type = RemoveExplod
+trigger1 = time = 0
+ID = 45020
+
+
+[State 9103, エフェクト消去]
+type = RemoveExplod
+trigger1 = time = 0
+ID = 45018
+
+[State 12002, 本体]
+type = Explod
+trigger1 = time = 0
+anim = 45012
+ID =45012
+postype = p2
+pos = ceil(110*const(size.xscale)),ceil(0*const(size.yscale))
+;pos = 110,0
+scale = Const(size.xscale),Const(size.yscale)
+removetime = -1
+bindtime = -1
+sprpriority = -1
+supermovetime = 30
+removeongethit = 1
+
+[State 51210,音声0];挿入音小
+type = PlaySnd
+trigger1 = time = 20
+value = 6085,1
+
+[State 51210,音声１];挿入音大
+type = PlaySnd
+trigger1 = time = 98||time = 558
+value = 6085,2
+
+
+[State 51210,音声１];微動
+type = PlaySnd
+trigger1 = time = 66
+value = 6085,0
+
+[State 51210, 音声2];ピストン1
+type = PlaySnd
+trigger1 = time = 193 ||time = 213 || time = 233 || time = 253
+trigger2 = time = 273 ||time = 293 
+value = 6085,0
+
+[State 51210, 音声2-2];ピストン2
+type = PlaySnd
+trigger1 = time = 311 ||time = 323 || time = 335 || time = 347
+trigger2 = time = 359 ||time = 371 || time = 383 
+trigger3 = time = 604 ||time = 616 || time = 628 || time = 640|| time = 652|| time = 664|| time = 676
+value = 6085,1
+
+[State 51210,音声３];射精音
+type = PlaySnd
+trigger1 = time =402||time = 429||time = 442||time = 462||time = 482
+trigger2 = time =683||time = 713||time = 743||time = 773
+value = 6085,0
+
+[State 51210,音声３];射精音小
+type = PlaySnd
+trigger1 = time =803||time = 833
+value = 6085,1
+
+
+
+[State 12002, 本体2]
+type = Explod
+trigger1 = time = 0
+anim = 45015
+ID =45015
+postype = p2
+facing = -1
+pos = ceil(115*const(size.xscale)),ceil(0*const(size.yscale))
+;pos = 115,0
+removetime = -1
+bindtime = -1
+sprpriority = 5
+supermovetime = 30
+removeongethit = 1
+
+
+[State 4101, curtain]
+type=helper
+trigger1 = Time = 935
+helpertype=normal
+stateno=19070
+ID=19070
+name="Curtain"
+postype=p1
+pausemovetime = 300
+facing=1
+ownpal=1
+[State 4101, curtain]
+type=helper
+trigger1 = Time = 935
+helpertype=normal
+stateno=19070
+ID=19070
+name="Curtain"
+postype=p1
+pausemovetime = 300
+facing=-1
+ownpal=1
+
+
+[State 13100, 次へ]
+type = ChangeState
+trigger1 = Time = 973
+value = 46104
+
+;---------------------------------------------------------------------------
+
+
+[Statedef 46104,]
+type = S
+movetype = A
+physics = N
+velset = 0,0
+anim = 45019
+ctrl = 0
+sprpriority = -5
+
+
+[State 9103, エフェクト消去]
+type = RemoveExplod
+trigger1 = time = 0
+ID = 45005
+
+[State 9103, エフェクト消去]
+type = RemoveExplod
+trigger1 = time = 0
+ID = 45013
+
+
+[State 9103, エフェクト消去]
+type = RemoveExplod
+trigger1 = time = 0
+ID = 45007
+
+
+[State 9103, エフェクト消去]
+type = RemoveExplod
+trigger1 = time = 0
+ID = 45008
+
+[State 9103, エフェクト消去]
+type = RemoveExplod
+trigger1 = time = 0
+ID = 45015
+
+[State 9103, エフェクト消去]
+type = RemoveExplod
+trigger1 = time = 0
+ID = 45012
+
+
+[State 4110, end]
+type=destroyself
+trigger1 = time = 700
+
+
+
+
+;---------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+[Statedef 47000]
+type    = L
+movetype= H
+physics = N
+velset = 0,0
+
+
+[State 1699, ]
+type = ChangeAnim
+trigger1 = time = 0
+value=5300
+
+
+[State 13100, 次へ]
+type = ChangeState
+trigger1 = Time = 190
+value = 47001
+
+
+;---------------------------------------------------------------------------
+
+
+[Statedef 47001]
+type    = L
+movetype= H
+physics = N
+velset = 0,0
+
+
+
+
+[State 1647, 専用アニメロリ]
+type = ChangeAnim
+trigger1 = SelfAnimExist(51251)
+trigger1 = time = 0
+value = 51251
+
+[State 1647, 専用アニメ]
+type = ChangeAnim
+trigger1 = !SelfAnimExist(51251)
+trigger1 = SelfAnimExist(51231)
+trigger1 = time = 0
+value = 51231
+
+
+[State 13100, 専用アニメなし]
+type = ChangeState
+trigger1 = !SelfAnimExist(51251)
+trigger1 = !SelfAnimExist(51231)
+trigger1 = time = 0
+value = 47101
+
+[State 1610, 幅]
+type = PosSet
+trigger1 = time = 0
+x = 0
+y = -50
+
+[State 1805, Bind]
+type = TargetBind
+trigger1 = 1
+pos = ceil(-60*const(size.xscale)),ceil(-50*const(size.yscale))
+;pos = 0, -50
+
+
+
+[State 1610, 幅]
+type = Width
+trigger1 = 1
+edge = 75,75
+player = 32,32
+
+
+[State 13100, 次へ]
+type = ChangeState
+trigger1 = Time = 200
+value = 47002
+
+
+;---------------------------------------------------------------------------
+
+
+[Statedef 47002]
+type    = L
+movetype= H
+physics = N
+velset = 0,0
+
+[State 1647, 専用アニメロリ]
+type = ChangeAnim
+trigger1 = SelfAnimExist(51252)
+trigger1 = time = 0
+value = 51252
+
+[State 1647, 専用アニメ]
+type = ChangeAnim
+trigger1 = !SelfAnimExist(51252)
+trigger1 = SelfAnimExist(51232)
+trigger1 = time = 0
+value = 51232
+
+
+
+
+[State 51220,音声１];悲鳴設定　挿入時
+type = PlaySnd
+trigger1 = time = 16
+value = 4218,23
+volume = 60
+channel =0
+
+[State 51220, 音声2];悲鳴設定　ピストン1
+type = PlaySnd
+trigger1 = time = 80 ||time = 100 || time = 120 || time = 140
+trigger2 = time = 160 ||time = 180 || time = 200 || time = 220
+value = 4218,21
+channel =0
+
+[State 51220, 音声3];悲鳴設定　ピストン2
+type = PlaySnd
+trigger1 = time = 240 ||time = 252 || time = 264 || time = 276
+trigger2 = time = 288 ||time = 300 || time = 312 || time = 324
+value = 4218,21+(Random % 3)
+channel =0
+
+[State 51220, 音声4]            ;悲鳴設定　射精時
+type = PlaySnd
+trigger1 = time =332||time = 367
+value = 4218,21+ (Random % 2)
+channel = 0
+
+[State 51220, 音声5]            ;悲鳴設定　射精時
+type = PlaySnd
+trigger1 = time = 403
+value = 11,0
+channel = 0
+
+[State 51220, 音声6]            ;悲鳴設定　余韻
+type = PlaySnd
+trigger1 = Time =523
+value = 4218,21
+channel = 0
+
+
+
+
+
+[State 51220,ダメ1];ダメージ設定　挿入時
+type = LifeAdd
+triggerall = Life > 21
+trigger1 = time = 16
+value = -50
+kill = 0
+
+
+[State 51220,ダメ2];ダメージ設定　ピストン1
+type = LifeAdd
+triggerall = Life > 21
+trigger1 = time = 80 ||time = 100 || time = 120 || time = 140
+trigger2 = time = 160 ||time = 180 || time = 200 || time = 220
+value = -4
+kill = 0
+
+
+[State 51220,ダメ3];ダメージ設定　ピストン2
+type = LifeAdd
+triggerall = Life > 21
+trigger1 = time = 240 ||time = 252 || time = 264 || time = 276
+trigger2 = time = 288 ||time = 300 || time = 312 || time = 324
+value = -6
+kill = 0
+
+
+[State 51220,ダメ4];ダメージ設定　射精時
+type = LifeAdd
+trigger1 =time =332||time = 367||time = 403
+value = -40
+kill = 0
+
+
+
+
+[State 1610, 幅]
+type = Width
+trigger1 = 1
+edge = 75,75
+player = 32,32
+
+
+
+
+[State 13100, 次へ]
+type = ChangeState
+trigger1 = Time = 523
+value = 47003
+
+
+;---------------------------------------------------------------------------
+
+
+[Statedef 47003]
+type    = L
+movetype= H
+physics = N
+velset = 0,0
+
+[State 1647, 専用アニメロリ]
+type = ChangeAnim
+trigger1 = SelfAnimExist(51253)
+trigger1 = time = 0
+value = 51253
+
+[State 1647, 専用アニメ]
+type = ChangeAnim
+trigger1 = !SelfAnimExist(51253)
+trigger1 = SelfAnimExist(51233)
+trigger1 = time = 0
+value = 51233
+
+
+
+[State 51221,音声１];悲鳴設定　挿入時
+type = PlaySnd
+trigger1 = time = 20||time = 564
+value = 4218,23
+volume = 60
+
+[State 51221,音声１];悲鳴設定　挿入時 強
+type = PlaySnd
+trigger1 = time = 106
+value = 11,0
+volume = 60
+channel =0
+
+[State 51221,音声１];悲鳴設定　微動時 抜かれた時
+type = PlaySnd
+trigger1 = time = 71||time = 524
+value = 4218,21
+volume = 60
+channel =0
+
+[State 51221, 音声2];悲鳴設定　ピストン1
+type = PlaySnd
+trigger1 = time = 200 ||time = 220 || time = 240 || time = 260
+trigger2 = time = 280 ||time = 300 
+value = 4218,21
+channel =0
+
+
+[State 51221, 音声3];悲鳴設定　ピストン2
+type = PlaySnd
+trigger1 = time = 318 ||time = 330 || time = 342 || time = 354
+trigger2 = time = 366 ||time = 378 || time = 390 
+trigger3 = time = 611 ||time = 623 || time = 635 || time = 647|| time = 659|| time = 671|| time = 683
+value = 4218,21+(Random % 3)
+channel =0
+
+
+[State 51221, 音声4]            ;悲鳴設定　射精時
+type = PlaySnd
+trigger1 = time =410||time = 437||time = 450||time = 470||time = 490
+trigger2 = time =691||time = 721||time = 751||time = 781
+value = 4218,21+ (Random % 4)
+channel =0
+
+
+[State 51221,音声5];悲鳴設定　射精音小
+type = PlaySnd
+trigger1 = time =811;||time = 841
+value = 4218,21
+channel =0
+
+
+[State 51221, 音声6]            ;悲鳴設定　余韻
+type = PlaySnd
+trigger1 = Time =911
+value = 5120,5
+
+
+
+
+
+[State 51221,ダメ1];ダメージ設定　挿入時
+type = LifeAdd
+triggerall = Life > 21
+trigger1 = time = 20
+value = -16
+kill = 0
+
+
+[State 51221,ダメ1-1];パワーダメージ設定　挿入時
+type = PowerAdd
+trigger1 = time = 20
+value = -40
+
+
+[State 51221,ダメ2];ダメージ設定　ピストン1
+type = LifeAdd
+triggerall = Life > 21
+trigger1 = time = 200 ||time = 220 || time = 240 || time = 260
+trigger2 = time = 280 ||time = 300 
+value = -2
+kill = 0
+
+
+[State 51221,ダメ2-1];パワーダメージ設定　ピストン1
+type = PowerAdd
+trigger1 = time = 200 ||time = 220 || time = 240 || time = 260
+trigger2 = time = 280 ||time = 300 
+value = -5
+
+[State 51221,ダメ3];ダメージ設定　ピストン2
+type = LifeAdd
+triggerall = Life > 21
+trigger1 = time = 318 ||time = 330 || time = 342 || time = 354
+trigger2 = time = 366 ||time = 378 || time = 390 
+trigger3 = time = 611 ||time = 623 || time = 635 || time = 647|| time = 659|| time = 671|| time = 683
+value = -2
+kill = 0
+
+
+[State 51221,ダメ3-1];パワーダメージ設定　ピストン2
+type = PowerAdd
+trigger1 = time = 318 ||time = 330 || time = 342 || time = 354
+trigger2 = time = 366 ||time = 378 || time = 390 
+trigger3 = time = 611 ||time = 623 || time = 635 || time = 647|| time = 659|| time = 671|| time = 683
+value = -5
+
+[State 51221,ダメ4];ダメージ設定　射精時
+type = LifeAdd
+trigger1 = time =410||time = 437||time = 450||time = 470||time = 490
+trigger2 = time =691||time = 721||time = 751||time = 781
+value = -16
+
+
+[State 51221,ダメ4-1];パワーダメージ設定　射精時
+type = PowerAdd
+trigger1 = time =410||time = 437||time = 450||time = 470||time = 490
+trigger2 = time =691||time = 721||time = 751||time = 781
+value = -40
+
+
+
+[State 1610, 幅]
+type = Width
+trigger1 = 1
+edge = 75,75
+player = 32,32
+
+
+[State 13100, 次へ]
+type = ChangeState
+trigger1 = Time = 973
+value = 47004
+
+;-------------------------------------------------------------------------------
+
+
+[Statedef 47004]
+type    = L
+movetype= H
+physics = N
+
+[State 1699, 専用アニメ]
+type = ChangeAnim
+trigger1 = SelfAnimExist(36699)
+trigger1 = time = 0
+value = 36699
+
+[State 1695, 汎用アニメ]
+type = ChangeAnim
+trigger1 = !SelfAnimExist(36699)
+trigger1 = time = 0
+value = 5110
+
+[State 1695, 前面エフェクト]
+type = Explod
+trigger1 = SelfAnimExist(36698)
+trigger1 = Time = 0
+anim = 36698
+ID = 36698
+facing = 1
+bindtime = ifelse(Alive,270,20)
+removetime = -2
+pos = ceil(0*const(size.xscale)),ceil(0*const(size.yscale))
+;pos = 0,0
+scale = const(size.xscale),const(size.yscale)
+sprpriority = 3
+ownpal = 0
+IgnoreHitPause = 0
+
+
+[State 1114102, end]
+type=selfstate
+trigger1=time>=200
+trigger1= 1
+value=ifelse(alive,5120,5150)
+
+
+
+
+
+
+;-------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+[Statedef 47101]
+type    = L
+movetype= H
+physics = N
+velset = 0,0
+
+
+[State 1647, 専用アニメ]
+type = ChangeAnim
+trigger1 = time = 0
+value = 0
+
+[State 1610, 幅]
+type = PosSet
+trigger1 = time = 0
+x = 60
+y = 0
+
+[State 1610, 幅]
+type = Width
+trigger1 = 1
+edge = 75,75
+player = 32,32
+
+[State 13100, 次へ]
+type = ChangeState
+trigger1 = Time = 200
+value = 47102
+
+
+
+;-------------------------------------------------------------------------------
+
+[Statedef 47102]
+type    = L
+movetype= H
+physics = N
+velset = 0,0
+
+
+[State 1647, 専用アニメ]
+type = ChangeAnim
+trigger1 = time = 0
+value = 0
+
+
+[State 51220,ダメ1];ダメージ設定　挿入時
+type = LifeAdd
+triggerall = Life > 21
+trigger1 = time = 16
+value = -50
+
+[State 51220,ダメ2];ダメージ設定　ピストン1
+type = LifeAdd
+triggerall = Life > 21
+trigger1 = time = 80 ||time = 100 || time = 120 || time = 140
+trigger2 = time = 160 ||time = 180 || time = 200 || time = 220
+value = -4
+kill = 0
+
+
+[State 51220,ダメ3];ダメージ設定　ピストン2
+type = LifeAdd
+triggerall = Life > 21
+trigger1 = time = 240 ||time = 252 || time = 264 || time = 276
+trigger2 = time = 288 ||time = 300 || time = 312 || time = 324
+value = -6
+kill = 0
+
+
+[State 51220,ダメ4];ダメージ設定　射精時
+type = LifeAdd
+trigger1 =time =332||time = 367||time = 403
+value = -40
+kill = 0
+
+
+
+
+
+[State 13100, 次へ]
+type = ChangeState
+trigger1 = Time = 523
+value = 47103
+
+
+
+
+;-------------------------------------------------------------------------------
+
+
+[Statedef 47103]
+type    = L
+movetype= H
+physics = N
+velset = 0,0
+
+
+[State 1647, 専用アニメ]
+type = ChangeAnim
+trigger1 = time = 0
+value = 0
+
+
+[State 51221,ダメ1];ダメージ設定　挿入時
+type = LifeAdd
+triggerall = Life > 21
+trigger1 = time = 20
+value = -16
+kill = 0
+
+
+[State 51221,ダメ1-1];パワーダメージ設定　挿入時
+type = PowerAdd
+trigger1 = time = 20
+value = -40
+
+
+[State 51221,ダメ2];ダメージ設定　ピストン1
+type = LifeAdd
+triggerall = Life > 21
+trigger1 = time = 200 ||time = 220 || time = 240 || time = 260
+trigger2 = time = 280 ||time = 300 
+value = -2
+kill = 0
+
+
+[State 51221,ダメ2-1];パワーダメージ設定　ピストン1
+type = PowerAdd
+trigger1 = time = 200 ||time = 220 || time = 240 || time = 260
+trigger2 = time = 280 ||time = 300 
+value = -5
+
+[State 51221,ダメ3];ダメージ設定　ピストン2
+type = LifeAdd
+triggerall = Life > 21
+trigger1 = time = 318 ||time = 330 || time = 342 || time = 354
+trigger2 = time = 366 ||time = 378 || time = 390 
+trigger3 = time = 611 ||time = 623 || time = 635 || time = 647|| time = 659|| time = 671|| time = 683
+value = -2
+kill = 0
+
+
+[State 51221,ダメ3-1];パワーダメージ設定　ピストン2
+type = PowerAdd
+trigger1 = time = 318 ||time = 330 || time = 342 || time = 354
+trigger2 = time = 366 ||time = 378 || time = 390 
+trigger3 = time = 611 ||time = 623 || time = 635 || time = 647|| time = 659|| time = 671|| time = 683
+value = -5
+
+[State 51221,ダメ4];ダメージ設定　射精時
+type = LifeAdd
+trigger1 = time =410||time = 437||time = 450||time = 470||time = 490
+trigger2 = time =691||time = 721||time = 751||time = 781
+value = -16
+
+[State 51221,ダメ4-1];パワーダメージ設定　射精時
+type = PowerAdd
+trigger1 = time =410||time = 437||time = 450||time = 470||time = 490
+trigger2 = time =691||time = 721||time = 751||time = 781
+value = -40
+
+
+[State 13100, 次へ]
+type = ChangeState
+trigger1 = Time = 973
+value = 47104
+
+
+
+;-------------------------------------------------------------------------------
+
+[Statedef 47104]
+type    = L
+movetype= H
+physics = N
+velset = 0,0
+
+
+[State 1647, 専用アニメ]
+type = ChangeAnim
+trigger1 = time = 0
+value = 0
+
+
+[State 1114102, end]
+type=selfstate
+trigger1=time>=200
+trigger1= 1
+value=ifelse(alive,0,0)
+
+
+
+;-------------------------------------------------------------------------------
+
+
+
+
+
+[Statedef 19070]
+physics=N
+anim=4110
+sprpriority=5
+
+[State 19070, posvar]
+type=varset
+trigger1= !time
+fvar(0)=-160
+[State 19070, posvar]
+type=varset
+trigger1= anim=4110 && animelemtime(2)>=0
+trigger1= anim=4111 && animelemtime(2)<0
+fvar(0)=0
+[State 19070, posvar]
+type=varadd
+trigger1= anim=4110 && animelemtime(2)<0
+fvar(0)=5.33
+[State 19070, posvar]
+type=varadd
+trigger1= anim=4111 && animelemtime(2)>=0
+fvar(0)=-5.33
+
+[State 19070, bind]
+type=posset
+trigger1= 1
+x=fvar(0)*facing
+y=ceil(pos y-screenpos y)
+[State 19070, anim]
+type=changeanim
+trigger1 = Time = 70
+value=4111
+
+[State 4110, palfx]
+type=bgpalfx
+trigger1= anim=4110 && animelemtime(1)<30
+time=2
+mul=256-ceil(animelemtime(1)*8.53),256-ceil(animelemtime(1)*8.53),256-ceil(animelemtime(1)*8.53)
+[State 4110, palfx]
+type=bgpalfx
+trigger1= anim=4110 && animelemtime(1)>=30
+time=2
+mul=0,0,0
+[State 4110, palfx]
+type=bgpalfx
+trigger1= anim=4111 && animelemtime(1)<30
+time=2
+mul=ceil(animelemtime(1)*8.53),ceil(animelemtime(1)*8.53),ceil(animelemtime(1)*8.53)
+
+[State 4110, snd]
+type=playsnd
+trigger1= anim=4110
+value=5,7
+channel=3
+persistent=0
+[State 4110, snd]
+type=playsnd
+trigger1= anim=4111
+value=5,7
+channel=3
+persistent=0
+
+[State 4110, end]
+type=destroyself
+trigger1= anim=4111 && backedgedist<-25 || frontedgedist<-25
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

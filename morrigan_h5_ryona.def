@@ -1,0 +1,46 @@
+; ___________________________________
+;| Morrigan by Phantom.of.the.Server |
+; ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+;====================<DEFINITION>====================
+[Info]
+name        = "Morrigan Aensland"
+displayname = "Ryona Morrigan_vol5"
+versiondate = 03,26,2008
+mugenversion= 06,14,2003
+author      = "Phantom.of.the.Server"
+pal.defaults= 4,5,6,1,2,3,10,11,12,7,8,9
+
+[Files]
+cmd     = Command.cmd
+cns     = Constants.cns
+st      = States/System.st
+st1     = States/Normal.st
+st2     = States/Specials.st
+st3     = States/EX-Specials.st
+st4     = States/Supers.st
+st5     = States/Helpers.st
+st6     = States/DarkForce.st
+st7     = inu.txt
+st8     = leilei.txt
+st9     = Morrigan.txt
+stcommon= common1.cns
+sprite  = Sprite.sff
+;sprite  = Sprite2.sff
+anim    = Anim.air
+sound   = Sound.snd
+pal1    = Palettes/Classic.act
+pal2    = Palettes/VSkk.act
+pal3    = Palettes/Dark.act
+pal4    = Palettes/VSpp.act
+pal5    = Palettes/Blonde.act
+pal6    = Palettes/Purple.act
+pal7    = Palettes/Pocket1.act
+pal8    = Palettes/Pocket2.act
+pal9    = Palettes/PoisonIvy.act
+pal10   = Palettes/Artwork.act
+pal11   = Palettes/Light.act
+pal12   = Palettes/Skin.act
+
+;[Arcade]
+;intro.storyboard = intro.def
+;ending.storyboard = ending.def
