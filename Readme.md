@@ -1,6 +1,6 @@
-                          ____________________________________________
-=========================| Morrigan Aensland by Phantom.of.the.Server |========================
-                          ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯          [v.0.95]
+         
+Morrigan Aensland by Phantom
+[v.0.95]
 
 - Contact: potsmugen@yahoo.com.br
 - Website: http://www.mugenguild.com/pots/
@@ -112,6 +112,35 @@ EX moves are more powerful than regular Special moves, but consume half of a pow
 - Eternal Slumber is unblockable
 
 - You can use as many Lv1 Supers as you want during Astral Vision, but no Lv2 or Lv3
+
+
+
+Caution
+â˜…I don't know if my version of Ryona Morrigan is the latest version, so the patch may not work properly due to version differences.
+â˜…This is an unofficial patch modification. Please do not contact the creator of Ryona Morrigan about this patch.
+
+2015/7/28
+
+Commands
+Feliciaã€€ã€€ã€€ A+X
+Q-BEE (enhanced performance)ã€€ ã€€ã€€ B+Y
+Rei-Reiã€€ã€€ã€€ â†“â†“C
+Morrigan frontã€€ã€€â†“â†“X
+Morrigan backã€€ã€€ã€€ã€€ â†“â†“A
+Barretteã€€ã€€ã€€ã€€ â†“â†“B
+Lilith (enhanced performance)ã€€ã€€ã€€â†“â†“Y
+
+1 gauge
+â†“â†“ ï¼‹ z Do you have manguri gaeshi, sff12250?
+If you have manguri anime 180110 series, if not, try 5011...
+
+50% chance of KO. Forced KO if HP is 0.
+
+â†“â†“ + a Random minion attack (Doggystyle, Cowgirl, or Chausu).
+If there is a special attack
+there is a 50% chance of an Impregnation KO. If HP is 0, an Impregnation KO is forced.
+When an Impregnation KO occurs, if there is an Impregnation KO type attack, it will transition to an Impregnation KO.
+(27319568 or 36800 or 3000732)
 
 
 
