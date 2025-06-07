@@ -589,7 +589,7 @@ value = 6077
 ;triggerall = var(51) != 1
 ;triggerall = var(59) = 1
 triggerall = command = "214c"
-triggerall = power >= 500
+triggerall = power >= 5000
 triggerall = NumHelper(6150) = 0
 ;triggerall = enemy,StateNo != 1064
 trigger1 = statetype != A
@@ -612,7 +612,7 @@ type = ChangeState
 value = 17000
 ;triggerall = var(51) != 1
 ;triggerall = var(59) = 1
-triggerall = power >= 1000
+triggerall = power >= 2000
 triggerall = command = "leilei"
 ;triggerall = enemy,StateNo != 1064
 trigger1 = statetype != A
@@ -623,7 +623,7 @@ type = ChangeState
 value = 19000
 ;triggerall = var(51) != 1
 ;triggerall = var(59) = 1
-triggerall = power >= 1000
+triggerall = power >= 3000
 triggerall = command = "Mori"
 ;triggerall = enemy,StateNo != 1064
 trigger1 = statetype != A
@@ -634,7 +634,7 @@ type = ChangeState
 value = 19500
 ;triggerall = var(51) != 1
 ;triggerall = var(59) = 1
-triggerall = power >= 1000
+triggerall = power >= 4000
 triggerall = command = "Mori2"
 ;triggerall = enemy,StateNo != 1064
 trigger1 = statetype != A
@@ -645,7 +645,7 @@ type = ChangeState
 value = 19001
 ;triggerall = var(51) != 1
 ;triggerall = var(59) = 1
-triggerall = power >= 1000
+triggerall = power >= 5000
 triggerall = command = "Mori3"
 ;triggerall = enemy,StateNo != 1064
 trigger1 = statetype != A
@@ -692,7 +692,7 @@ type=changestate
 value=3300
 triggerall= var(59)<=0
 triggerall= command="shower"
-triggerall = random <= 100
+triggerall= random <= 100
 triggerall= roundstate=2 && statetype!=A && power>=2000 && !var(40)
 triggerall= !numhelper(3305)
 trigger1= ctrl
@@ -702,7 +702,7 @@ type=changestate
 value=3400
 triggerall= var(59)<=0
 triggerall= command="hcbk"
-triggerall = random <= 100
+triggerall= random <= 100
 triggerall= roundstate=2 && power>=(1000*!var(40))
 trigger1= ctrl
 
@@ -720,7 +720,7 @@ type=changestate
 value=3050
 triggerall= var(59)<=0
 triggerall= command="2qcfp"
-triggerall = random <= 100
+triggerall= random <= 100
 triggerall= roundstate=2 && statetype=A && var(9)!=2 && power>=(1000*!var(40))
 triggerall= !numhelper(3005) && !numhelper(3055)
 trigger1= ctrl

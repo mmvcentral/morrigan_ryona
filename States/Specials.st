@@ -75,7 +75,7 @@ movetype=A
 anim=1050
 ctrl=0
 velset=ifelse(vel x<0,-1,ifelse(vel x>0,1,0)),ifelse(vel y<0,-1,1)
-poweradd=72*!var(40)
+poweradd=42*!var(40)
 sprpriority=1
 
 [State 1050, strengthvar]

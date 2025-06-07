@@ -39,7 +39,7 @@ damage=20,0
 animtype=Light
 guardflag=M
 hitflag=MAF
-priority=4,Hit 
+priority=4,Hit
 pausetime=10,10
 sparkno=s7010+(random%8)
 guard.sparkno=s7000
@@ -55,7 +55,7 @@ air.type=Low
 air.hittime=12
 air.velocity= -5, -7
 air.cornerpush.veloff=0
-getpower= 72*!var(40), 36*!var(40)
+getpower=52*!var(40), 46*!var(40)
 givepower=36,36
 yaccel=.5
 fall.recover=0
@@ -124,7 +124,7 @@ air.hittime=12
 air.velocity= -5, -7
 air.cornerpush.veloff=0
 getpower= ifelse(p2movetype=H,72,144)*!var(40), 36*!var(40)
-givepower=36,36
+givepower=76,76
 yaccel=.5
 fall.recover=0
 

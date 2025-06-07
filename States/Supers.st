@@ -424,7 +424,7 @@ movetype=A
 anim=3300
 ctrl=0
 velset=0,0
-poweradd=-2000
+poweradd=-4000
 facep2=1
 sprpriority=1
 
@@ -545,7 +545,7 @@ movetype=I
 anim=3400
 ctrl=0
 velset=0,0
-poweradd=-1000*!var(40)
+poweradd=-2000*!var(40)
 sprpriority=2
 facep2=1
 
@@ -815,7 +815,7 @@ movetype=A
 anim=4000
 ctrl=0
 velset=0,0
-poweradd=-3000
+poweradd=-4000
 juggle=15
 facep2=1
 sprpriority=1

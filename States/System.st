@@ -3007,5 +3007,5 @@ postype=left
 pos=160,-120
 ownpal=1
 ignorehitpause=1
-pausemovetime=999
-supermovetime=999
+pausemovetime=99
+supermovetime=99
