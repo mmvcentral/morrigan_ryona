@@ -1,0 +1,32 @@
+When KO'd by a specific attack, if the opponent's air has [27319568] or [36800] or [3000732],
+  an Impregnation KO performance will occur.
+
+  Animation priority is as follows (higher in list = higher priority):
+
+	[27319568]	Impregnation KO dedicated animation
+	[36800]	nikumusi oviposition KO - Displays frames 2 and 3 in a loop.
+	[3000732]	ero_helper oviposition hitstun - Displays frames 2 and 3 in a loop.
+
+
+  Sound plays on frame 2 animation with [4218, 21].
+  If you don't want sound to play,
+  use Impregnation KO dedicated animation [27319568] and loop from frame 3 onward.
+
+
+  Axis position (0,0) is around the end of the hanging rope.
+
+  Air example:
+
+	;-------Impregnation KO hitstun---------------------
+	[Begin Action 27319568]
+	16800,21, 0,0, 30,
+	16800,22, 0,0, 6, 
+	16800,23, 0,0, 6,
+	16800,24, 0,0, 8,
+	16800,25, 0,0, 8,
+
+  
+  Attacks that trigger Impregnation KO are as follows:
+
+	↓↓ ＋ x
+	↓↓ ＋ a 

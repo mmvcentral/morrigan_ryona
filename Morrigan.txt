@@ -60,13 +60,13 @@ physics = N
 velset = 0,0
 ctrl = 0
 
-[State 11990, ’Í‚ñ‚¾‘Šè‚ÌƒXƒe[ƒg•ÏX]
+[State 11990, Target state change]
 type = TargetState
 trigger1 = NumTarget
 trigger1 = Time = 0
 value = 12980
 
-[State 11990,1];ƒXƒe[ƒg‚ğ•ÏX
+[State 11990,1]; State change
 type = ChangeState
 trigger1 = Time = 0
 value =  13000
@@ -83,14 +83,14 @@ velset=0,0
 sprpriority=1
 
 
-[State 1610, ’Í‚ñ‚¾‘Šè‚ÌƒXƒe[ƒg•ÏX]
+[State 1610, Target state change]
 type = TargetState
 trigger1 = NumTarget
 trigger1 = Time = 0
 value = 13100
 
 
-[State 9001, ƒLƒƒƒbƒ`]
+[State 9001, Catch]
 type = PlaySnd
 trigger1 = time = 0
 value = 8150,4
@@ -100,7 +100,7 @@ trigger1 = time = 0
 value = 4,4
 
 
-[State 12000, Ÿ‚Ö]
+[State 12000, Next]
 type = ChangeState
 trigger1 = Time = 80
 value = 13001
@@ -123,19 +123,19 @@ trigger1 = time = 100
 value = 4,21
 
 
-[State 1610, •]
+[State 1610, Width]
 type = Width
 trigger1 = 1
 edge = 75,75
 player = 32,32
 
-[State 1610, ’Í‚ñ‚¾‘Šè‚ÌˆÊ’u]
+[State 1610, Grabbed opponent position]
 type = TargetBind
 trigger1 = time = 0
 pos = ceil(0*const(size.xscale)),ceil(0*const(size.yscale))
 ;pos = 0, 0
 
-[State 12001, Ÿ‚Ö]
+[State 12001, Next]
 type = ChangeState
 trigger1 = Time = 200
 value = 13022
@@ -154,17 +154,17 @@ anim=21701
 ctrl=0
 
 
-[State 12003, Ÿ‚Ö]
+[State 12003, Next]
 type = ChangeState
 trigger1 = Random < 100
 value = 13002
 
-[State 12003, Ÿ‚Ö]
+[State 12003, Next]
 type = ChangeState
 trigger1 = Random < 150
 value = 13004
 
-[State 12003, Ÿ‚Ö]
+[State 12003, Next]
 type = ChangeState
 trigger1 = Random < 300
 value = 13014
@@ -188,12 +188,12 @@ trigger1 = !enemy,AnimExist(16007)
 value = 21700
 
 
-[State 1618, ”ß–Â]
+[State 1618, Scream]
 type = PlaySnd
 trigger1 = AnimElem = 3
 value = 8150,1+(Random%2)
 
-[State 1618, ”ß–Â]
+[State 1618, Scream]
 type = PlaySnd
 trigger1 = Time = 250
 value = 11,1
@@ -204,13 +204,13 @@ trigger1 = time = 400
 value = 4,25
 
 
-[State 1622, ‘½­‚Íƒ_ƒ[ƒW]
+[State 1622, Some damage]
 type = TargetLifeAdd
 trigger1 = AnimElem = 7
 value = -3
 
 
-[State 13002, Ÿ‚Ö]
+[State 13002, Next]
 type = ChangeState
 trigger1 = Time = 600
 value = 13003
@@ -260,10 +260,10 @@ trigger1 = time = 100
 value = 4,23
 
 
-[State 1000, ²ˆÊ’uˆÚ“®]
+[State 1000, Axis position move]
 type = PosAdd
 trigger1 = time <30
-trigger1 = BackEdgeBodyDist > 15  ;©•ª‚ÆŒã•û‚Ì‰æ–Ê’[‚Æ‚Ì‹——£
+trigger1 = BackEdgeBodyDist > 15  ; Distance to back screen edge
 x = -2
 
 [State 1610, ]
@@ -283,7 +283,7 @@ sprpriority= 1
 anim=21705
 ctrl=0
 
-[State 1610, ’Í‚ñ‚¾‘Šè‚ÌƒXƒe[ƒg•ÏX]
+[State 1610, Target state change]
 type = TargetState
 trigger1 = NumTarget
 trigger1 = Time = 0
@@ -302,7 +302,7 @@ type = PlaySnd
 trigger1 = AnimElem = 5
 value = 8200,4
 
-[State 1622, ‘½­‚Íƒ_ƒ[ƒW]
+[State 1622, Some damage]
 type = TargetLifeAdd
 trigger1 = AnimElem = 5
 value = -6
@@ -333,7 +333,7 @@ trigger1 = time = 776
 time = 70
 movetime = 70
 
-[State 1622, ‘½­‚Íƒ_ƒ[ƒW]
+[State 1622, Some damage]
 type = TargetLifeAdd
 trigger1 = time = 774 ||  time = 775 ||  time = 776
 value = -60
@@ -366,7 +366,7 @@ trigger1 = time = 776
 value = 5000,3
 
 
-[State 1336, 7_2];’f–Ê}‚Ì•\¦
+[State 1336, 7_2]; Cross-section display
 type = Explod
 trigger1 = Time = 754
 id = 21709
@@ -387,7 +387,7 @@ removetime = 180 ;-1
 
 
 
-[State 12004, Ÿ‚Ö]
+[State 12004, Next]
 type = ChangeState
 trigger1 = Time = 780
 value = 13006
@@ -406,13 +406,13 @@ anim=12008
 ctrl=0
 
 
-[State 1610, ’Í‚ñ‚¾‘Šè‚ÌˆÊ’u]
+[State 1610, Grabbed opponent position]
 type = TargetBind
 trigger1 = time = 0
 pos = ceil(70*const(size.xscale)),ceil(0*const(size.yscale))
 ;pos = 70, 0
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 21708
@@ -451,7 +451,7 @@ trigger1 = 1
 flag = noshadow
 flag2 = noFG
 
-[State 1642, ‰º”¼g]
+[State 1642, Lower body]
 type = Explod
 trigger1 = time = 0
 anim = 21708
@@ -474,14 +474,14 @@ pos = ceil(0*const(size.xscale)),ceil(0*const(size.yscale))
 ;pos = 0, 0
 
 
-[State 1610, ’Í‚ñ‚¾‘Šè‚ÌƒXƒe[ƒg•ÏX]
+[State 1610, Target state change]
 type = TargetState
 trigger1 = NumTarget
 trigger1 = Time = 0
 value = 13114
 
 
-[State 1336, 7_2];’f–Ê}‚Ì•\¦
+[State 1336, 7_2]; Cross-section display
 type = Explod
 trigger1 = Time = 528
 id = 21709
@@ -536,7 +536,7 @@ trigger8 = AnimElem = 181
 value = 8150, 3
 
 
-[State 1622, ‘½­‚Íƒ_ƒ[ƒW]
+[State 1622, Some damage]
 type = TargetLifeAdd
 trigger1 = time = 528 ||  time = 608 ||  time = 663
 value = -60
@@ -575,13 +575,13 @@ type = PlaySnd
 trigger1 = AnimElem = 3
 value = 6080,6
 
-[State 51210,‰¹º‚R];Ë¸‰¹¬
+[State 51210,Soundï¼“]; Ejaculation sound small
 type = PlaySnd
 trigger1 = AnimElem = 213
 value = 8150,2
 
 
-[State 12004, Ÿ‚Ö]
+[State 12004, Next]
 type = ChangeState
 trigger1 = Time = 896
 value = 13006
@@ -629,7 +629,7 @@ type=changeanim
 Trigger1 = Time = 0
 value=5300
 
-[State 13100, Ÿ‚Ö]
+[State 13100, Next]
 type = ChangeState
 trigger1 = Time = 80
 value = 13101
@@ -649,7 +649,7 @@ Trigger1 = Time = 0
 value=5300
 
 
-[State 13101, Ÿ‚Ö]
+[State 13101, Next]
 type = ChangeState
 trigger1 = Time = 200
 value = 13102
@@ -662,26 +662,26 @@ type    = L
 movetype= H
 physics = N
 
-[State 51220,3,‰æ–Ê‚ÌŒÅ’è]
+[State 51220,3,Screenbound]
 type = Screenbound
 trigger1 = 1
 value = 0
 
 
-[State 13102, ê—pƒAƒjƒ]
+[State 13102, Dedicated anim]
 type = ChangeAnim
 trigger1 = SelfAnimExist(16007)
 trigger1 = time = 0
 value = 16007
 
-[State 13102, ê—pƒAƒjƒ2]
+[State 13102, Dedicated anim2]
 type = ChangeAnim
 trigger1 = !SelfAnimExist(16007)
 trigger1 = SelfAnimExist(16005)
 trigger1 = time = 0
 value = 16005
 
-[State 13102, ”Ä—pƒAƒjƒ]
+[State 13102, Generic anim]
 type = ChangeAnim2
 trigger1 = !SelfAnimExist(16007)
 trigger1 = !SelfAnimExist(16005)
@@ -708,7 +708,7 @@ channel = 0
 lowpriority = 1
 
 
-[State 13102, Ÿ‚Ö]
+[State 13102, Next]
 type = ChangeState
 trigger1 = Time = 600
 value = 13103
@@ -721,24 +721,24 @@ type    = L
 movetype= H
 physics = N
 
-[State 51220,3,‰æ–Ê‚ÌŒÅ’è]
+[State 51220,3,Screenbound]
 type = Screenbound
 trigger1 = 1
 value = 0
 
-[State 1525, º]
+[State 1525, Voice]
 type = PlaySnd
 trigger1 = Time = 0
 value = 4218,23
 
 
-[State 1618, ê—pƒAƒjƒ]
+[State 1618, Dedicated anim]
 type = ChangeAnim
 trigger1 = SelfAnimExist(16008)
 trigger1 = time = 0
 value = 16008
 
-[State 1618, ”Ä—pƒAƒjƒ]
+[State 1618, Generic anim]
 type = ChangeAnim2
 trigger1 = !SelfAnimExist(16008)
 trigger1 = time = 0
@@ -760,7 +760,7 @@ movetype= H
 physics = N
 
 
-[State 51220,3,‰æ–Ê‚ÌŒÅ’è]
+[State 51220,3,Screenbound]
 type = Screenbound
 trigger1 = 1
 value = 0
@@ -771,20 +771,20 @@ trigger1 = (Time % 18) = 0
 value = 4218,21+(Random%2)
 
 
-[State 1649, ê—pƒAƒjƒ]
+[State 1649, Dedicated anim]
 type = ChangeAnim
 trigger1 = SelfAnimExist(15910)
 trigger1 = time = 0
 value = 15910
 
-[State 1649, ê—pƒAƒjƒ2]
+[State 1649, Dedicated anim2]
 type = ChangeAnim2
 trigger1 = !SelfAnimExist(15910)
 trigger1 = SelfAnimExist(15915)
 trigger1 = time = 0
 value = 15915
 
-[State 1649, ”Ä—pƒAƒjƒ]
+[State 1649, Generic anim]
 type = ChangeAnim2
 trigger1 = !SelfAnimExist(15910)
 trigger1 = !SelfAnimExist(15915)
@@ -792,7 +792,7 @@ trigger1 = time = 0
 value = 15915
 
 
-[State 1811, Explod];œ‚æ‚è‘O‚É—ˆ‚é‰æ‘œA15910—p
+[State 1811, Explod]; Image in front of bullet, for 15910
 type = Explod
 triggerall = anim = 15910
 trigger1 = animelem = 1,= 1
@@ -808,7 +808,7 @@ bindtime = -1
 removetime = 12
 anim = 15912
 
-[State 1811, Explod];œ‚æ‚è‘O‚É—ˆ‚é‰æ‘œA15910—p
+[State 1811, Explod]; Image in front of bullet, for 15910
 type = Explod
 triggerall = anim = 15915
 trigger1 = animelem = 1,= 1
@@ -825,7 +825,7 @@ removetime = 12
 anim = 15917
 
 
-[State 13104, Ÿ‚Ö]
+[State 13104, Next]
 type = ChangeState
 trigger1 = Time = 780
 value = 13106
@@ -843,24 +843,24 @@ type    = L
 movetype= H
 physics = N
 
-[State 51220,3,‰æ–Ê‚ÌŒÅ’è]
+[State 51220,3,Screenbound]
 type = Screenbound
 trigger1 = 1
 value = 0
 
-[State 1699, ê—pƒAƒjƒ]
+[State 1699, Dedicated anim]
 type = ChangeAnim
 trigger1 = SelfAnimExist(36699)
 trigger1 = time = 0
 value = 36699
 
-[State 1695, ”Ä—pƒAƒjƒ]
+[State 1695, Generic anim]
 type = ChangeAnim
 trigger1 = !SelfAnimExist(36699)
 trigger1 = time = 0
 value = 5110
 
-[State 1695, ‘O–ÊƒGƒtƒFƒNƒg]
+[State 1695, Front effect]
 type = Explod
 trigger1 = SelfAnimExist(36698)
 trigger1 = Time = 0
@@ -895,25 +895,25 @@ movetype= H
 physics = N
 sprpriority = 0
 
-[State 51220,3,‰æ–Ê‚ÌŒÅ’è]
+[State 51220,3,Screenbound]
 type = Screenbound
 trigger1 = 1
 value = 0
 
 
-[State 1649, ê—pƒAƒjƒ]
+[State 1649, Dedicated anim]
 type = ChangeAnim
 trigger1 = SelfAnimExist(19231)
 trigger1 = time = 0
 value = 19231
 
-[State 1649, ê—pƒAƒjƒ2]
+[State 1649, Dedicated anim2]
 type = changestate
 trigger1 = !SelfAnimExist(19231)
 trigger1 = time = 0
 value = 13115
 
-[State 4614, Explod] ;è‘O‚É•\¦‚µ‚½‚¢‰æ‘œ
+[State 4614, Explod] ; Image to display in front
 type = Explod
 trigger1 = time = 0
 trigger1 = SelfAnimExist(19234)
@@ -929,7 +929,7 @@ removetime = 891
 
 
 
-[State 6064, ”ß–Â1]
+[State 6064, Scream1]
 type = PlaySnd
 trigger1 = AnimElem = 9 || AnimElem = 21 || AnimElem = 27
 trigger2 = AnimElem = 39 || AnimElem = 45 || AnimElem = 51
@@ -938,20 +938,20 @@ trigger4 = AnimElem = 99 || AnimElem = 111 || AnimElem = 123 || AnimElem = 135
 trigger5 = AnimElem = 147 || AnimElem = 159 || AnimElem = 171 || AnimElem = 183
 value = 4218,21
 
-[State 6064, ”ß–Â2]
+[State 6064, Scream2]
 type = PlaySnd
 trigger1 = AnimElem = 3 || AnimElem = 15 || AnimElem = 33
 trigger2 = AnimElem = 57 || AnimElem = 63 || AnimElem = 87
 trigger3 = AnimElem = 81 || AnimElem = 93 || AnimElem = 179
 value = 4218,22
 
-[State 3522, ”ß–Â3]
+[State 3522, Scream3]
 type = PlaySnd
 trigger1 = AnimElem = 175
 value = 4218,23
 
 
-[State 6064,ƒ_ƒ[ƒW]
+[State 6064,Damage]
 type = LifeAdd
 ;triggerall = Life > 12
 trigger1 = AnimElem = 9 || AnimElem = 15 || AnimElem = 21 || AnimElem = 27
@@ -965,19 +965,19 @@ trigger8 = AnimElem = 165 || AnimElem = 171
 value = -8
 kill = 0
 
-[State 6064, ‘Ì—ÍŒ¸­]
+[State 6064, Life decrease]
 type = LifeAdd
 trigger1 = AnimElem = 175 || AnimElem = 177 || AnimElem = 179
 value = -10
 kill = 0
 
-[State 6064, ‘Ì—ÍŒ¸­]
+[State 6064, Life decrease]
 type = LifeAdd
 trigger1 = AnimElem = 181
 value = -20
 
 
-[State 13105, Ÿ‚Ö]
+[State 13105, Next]
 type = ChangeState
 trigger1 = Time = 896
 value = 13106
@@ -991,24 +991,24 @@ movetype= H
 physics = N
 sprpriority = 1
 
-[State 51220,3,‰æ–Ê‚ÌŒÅ’è]
+[State 51220,3,Screenbound]
 type = Screenbound
 trigger1 = 1
 value = 0
 
-[State 1618, ”Ä—pƒAƒjƒ]
+[State 1618, Generic anim]
 type = ChangeAnim2
 trigger1 = !SelfAnimExist(19230)
 trigger1 = time = 0
 value = 21712
 
-[State 1649, ê—pƒAƒjƒ2]
+[State 1649, Dedicated anim2]
 type = ChangeAnim2
 trigger1 = SelfAnimExist(19230)
 trigger1 = time = 0
 value = 6621
 
-[State 6064, ”ß–Â1]
+[State 6064, Scream1]
 type = PlaySnd
 trigger1 = AnimElem = 9 || AnimElem = 21 || AnimElem = 27
 trigger2 = AnimElem = 39 || AnimElem = 45 || AnimElem = 51
@@ -1017,20 +1017,20 @@ trigger4 = AnimElem = 99 || AnimElem = 111 || AnimElem = 123 || AnimElem = 135
 trigger5 = AnimElem = 147 || AnimElem = 159 || AnimElem = 171 || AnimElem = 183
 value = 4218,21
 
-[State 6064, ”ß–Â2]
+[State 6064, Scream2]
 type = PlaySnd
 trigger1 = AnimElem = 3 || AnimElem = 15 || AnimElem = 33
 trigger2 = AnimElem = 57 || AnimElem = 63 || AnimElem = 87
 trigger3 = AnimElem = 81 || AnimElem = 93 || AnimElem = 179
 value = 4218,22
 
-[State 3522, ”ß–Â3]
+[State 3522, Scream3]
 type = PlaySnd
 trigger1 = AnimElem = 175
 value = 4218,23
 
 
-[State 6064,ƒ_ƒ[ƒW]
+[State 6064,Damage]
 type = LifeAdd
 ;triggerall = Life > 12
 trigger1 = AnimElem = 9 || AnimElem = 15 || AnimElem = 21 || AnimElem = 27
@@ -1044,19 +1044,19 @@ trigger8 = AnimElem = 165 || AnimElem = 171
 value = -8
 kill = 0
 
-[State 6064, ‘Ì—ÍŒ¸­]
+[State 6064, Life decrease]
 type = LifeAdd
 trigger1 = AnimElem = 175 || AnimElem = 177 || AnimElem = 179
 value = -10
 kill = 0
 
-[State 6064, ‘Ì—ÍŒ¸­]
+[State 6064, Life decrease]
 type = LifeAdd
 trigger1 = AnimElem = 181
 value = -20
 
 
-[State 13105, Ÿ‚Ö]
+[State 13105, Next]
 type = ChangeState
 trigger1 = Time = 896
 value = 13106
@@ -1180,25 +1180,25 @@ physics = N
 velset = 0,0
 ctrl = 0
 
-[State 11990, ’Í‚ñ‚¾‘Šè‚ÌƒXƒe[ƒg•ÏX]
+[State 11990, Target state change]
 type = TargetState
 trigger1 = NumTarget
 trigger1 = Time = 0
 value = 11980
 
-[State 11990,1];ƒXƒe[ƒg‚ğ•ÏX
+[State 11990,1]; State change
 type = ChangeState
 triggerall = time>1
 trigger1 = Random < 100
 value =  12000
 
-[State 11990,1];ƒXƒe[ƒg‚ğ•ÏX
+[State 11990,1]; State change
 type = ChangeState
 triggerall = time>1
 trigger1 = Random < 100
 value =  12010
 
-[State 11990,1];ƒXƒe[ƒg‚ğ•ÏX
+[State 11990,1]; State change
 type = ChangeState
 triggerall = time>1
 trigger1 = Random < 100
@@ -1216,14 +1216,14 @@ velset=0,0
 sprpriority=1
 
 
-[State 1610, ’Í‚ñ‚¾‘Šè‚ÌƒXƒe[ƒg•ÏX]
+[State 1610, Target state change]
 type = TargetState
 trigger1 = NumTarget
 trigger1 = Time = 0
 value = 12100
 
 
-[State 9001, ƒLƒƒƒbƒ`]
+[State 9001, Catch]
 type = PlaySnd
 trigger1 = time = 0
 value = 8150,4
@@ -1253,7 +1253,7 @@ postype=p1
 facing=-1
 ownpal=1
 
-[State 12000, Ÿ‚Ö]
+[State 12000, Next]
 type = ChangeState
 trigger1 = Time = 80
 value = 12600
@@ -1294,24 +1294,24 @@ type = PlaySnd
 trigger1 = time = 30
 value = 4,4
 
-[State 1610, •]
+[State 1610, Width]
 type = Width
 trigger1 = 1
 edge = 75,75
 player = 32,32
 
-[State 1610, •]
+[State 1610, Width]
 type = PosSet
 trigger1 = time = 0
 x = 15
 
-[State 1610, ’Í‚ñ‚¾‘Šè‚ÌˆÊ’u]
+[State 1610, Grabbed opponent position]
 type = TargetBind
 trigger1 = time = 0
 pos = ceil(15*const(size.xscale)),ceil(-50*const(size.yscale))
 ;pos = 15, -50
 
-[State 9000, ƒxƒbƒh]
+[State 9000, Bed]
 type = Explod
 trigger1 = time = 0
 anim = 12001
@@ -1347,7 +1347,7 @@ postype=p1
 facing=-1
 ownpal=1
 
-[State 12001, Ÿ‚Ö]
+[State 12001, Next]
 type = ChangeState
 trigger1 = Time = 300
 value = 12002
@@ -1364,38 +1364,38 @@ sprpriority= -1
 anim=12003
 ctrl=0
 
-[State 1610, ’Í‚ñ‚¾‘Šè‚ÌˆÊ’u]
+[State 1610, Grabbed opponent position]
 type = TargetBind
 trigger1 = time = 0
 pos = ceil(15*const(size.xscale)),ceil(-70*const(size.yscale))
 ;pos = 15, -70
 
 
-[State 12102, ”ß–Â]
+[State 12102, Scream]
 type = PlaySnd
 trigger1 = Time > 14
 value = 8200,4
 Persistent = 30
 
-[State 12102, ”ß–Â]
+[State 12102, Scream]
 type = PlaySnd
 trigger1 = Time > 14
 value = 8150,1+(Random%2)
 Persistent = 30
 
-[State 1622, ‘½­‚Íƒ_ƒ[ƒW]
+[State 1622, Some damage]
 type = TargetLifeAdd
 trigger1 = AnimElem = 3
 value = -6
 kill = 0
 
-[State 1622, ‘½­‚Íƒ_ƒ[ƒW]
+[State 1622, Some damage]
 type = poweradd
 trigger1 = AnimElem = 3
 value = 100
 kill = 0
 
-[State 12002, ”ò–—]
+[State 12002, Splash]
 type = Explod
 trigger1 = time = 0
 anim = 9110
@@ -1411,7 +1411,7 @@ ownpal = 1
 removeongethit = 1
 
 
-[State 12002, Ÿ‚Ö]
+[State 12002, Next]
 type = ChangeState
 trigger1 = Time = 600
 value = 12003
@@ -1427,26 +1427,26 @@ sprpriority= -1
 anim=12004
 ctrl=0
 
-[State 1618, ”ß–Â]
+[State 1618, Scream]
 type = PlaySnd
 trigger1 = Time > 7
 value = 8200,4
 Persistent = 15
 
-[State 1618, ”ß–Â]
+[State 1618, Scream]
 type = PlaySnd
 trigger1 = Time > 7
 value = 8150,1+(Random%2)
 Persistent = 15
 
 
-[State 1622, ‘½­‚Íƒ_ƒ[ƒW]
+[State 1622, Some damage]
 type = TargetLifeAdd
 trigger1 = AnimElem = 3
 value = -6
 kill = 0
 
-[State 1622, ‘½­‚Íƒ_ƒ[ƒW]
+[State 1622, Some damage]
 type = poweradd
 trigger1 = AnimElem = 3
 value = 100
@@ -1457,12 +1457,12 @@ type = PlaySnd
 trigger1 = time = 0
 value = 4,6
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 9110
 
-[State 12002, ”ò–—]
+[State 12002, Splash]
 type = Explod
 trigger1 = time = 0
 anim = 9111
@@ -1477,7 +1477,7 @@ supermovetime = 30
 ownpal = 1
 removeongethit = 1
 
-[State 12002, ¸‰t]
+[State 12002, Semen]
 type = Explod
 trigger1 = time = 308
 anim = 12006
@@ -1494,7 +1494,7 @@ ownpal = 1
 removeongethit = 1
 
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 320
 ID = 9111
@@ -1517,18 +1517,18 @@ trigger1 = time = 330
 time = 70
 movetime = 70
 
-[State 1622, ‘½­‚Íƒ_ƒ[ƒW]
+[State 1622, Some damage]
 type = TargetLifeAdd
 trigger1 = time = 328 ||  time = 329
 value = -60
 kill = 0
 
-[State 1622, ‘½­‚Íƒ_ƒ[ƒW]
+[State 1622, Some damage]
 type = TargetLifeAdd
 trigger1 = time = 330
 value = -60
 
-[State 1622, ‘½­‚Íƒ_ƒ[ƒW]
+[State 1622, Some damage]
 type = TargetLifeAdd
 trigger1 = time = 330
 trigger1= Random < 500
@@ -1569,7 +1569,7 @@ type = PlaySnd
 trigger1 = AnimElem = 5
 value = 8150,1+(Random%2)
 
-[State 1336, 7_2];’f–Ê}‚Ì•\¦
+[State 1336, 7_2]; Cross-section display
 type = Explod
 trigger1 = Time = 308
 id = 21709
@@ -1615,7 +1615,7 @@ ownpal=1
 
 
 
-[State 12003, Ÿ‚Ö]
+[State 12003, Next]
 type = ChangeState
 trigger1 = Time = 335
 value = 12005
@@ -1640,63 +1640,63 @@ type=PosAdd
 trigger1 = time = 0
 x = -70
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 12006
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 12017
 
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 12018
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 12019
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 12001
 
-[State 1610, ’Í‚ñ‚¾‘Šè‚ÌˆÊ’u]
+[State 1610, Grabbed opponent position]
 type = TargetBind
 trigger1 = time = 0
 pos = ceil(70*const(size.xscale)),ceil(0*const(size.yscale))
 ;pos = 70, 0
 
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 12031
 
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 12041
 
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 12043
 
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 12051
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 12053
@@ -1731,14 +1731,14 @@ velset=0,0
 sprpriority=1
 
 
-[State 1610, ’Í‚ñ‚¾‘Šè‚ÌƒXƒe[ƒg•ÏX]
+[State 1610, Target state change]
 type = TargetState
 trigger1 = NumTarget
 trigger1 = Time = 0
 value = 12110
 
 
-[State 9001, ƒLƒƒƒbƒ`]
+[State 9001, Catch]
 type = PlaySnd
 trigger1 = time = 0
 value = 8150,4
@@ -1768,7 +1768,7 @@ postype=p1
 facing=-1
 ownpal=1
 
-[State 12000, Ÿ‚Ö]
+[State 12000, Next]
 type = ChangeState
 trigger1 = Time = 80
 value = 12601
@@ -1814,25 +1814,25 @@ type = PlaySnd
 trigger1 = time = 30
 value = 4,4
 
-[State 1610, •]
+[State 1610, Width]
 type = Width
 trigger1 = 1
 edge = 75,75
 player = 32,32
 
-[State 1610, •]
+[State 1610, Width]
 type = PosSet
 trigger1 = time = 0
 x = 15
 
 
-[State 1610, ’Í‚ñ‚¾‘Šè‚ÌˆÊ’u]
+[State 1610, Grabbed opponent position]
 type = TargetBind
 trigger1 = time = 0
 pos = ceil(15*const(size.xscale)),ceil(-50*const(size.yscale))
 ;pos = 15, -50
 
-[State 9000, ƒxƒbƒh]
+[State 9000, Bed]
 type = Explod
 trigger1 = time = 0
 anim = 12001
@@ -1868,7 +1868,7 @@ postype=p1
 facing=-1
 ownpal=1
 
-[State 12001, Ÿ‚Ö]
+[State 12001, Next]
 type = ChangeState
 trigger1 = Time = 300
 value = 12012
@@ -1886,14 +1886,14 @@ anim=12013
 ctrl=0
 
 
-[State 12102, ”ß–Â]
+[State 12102, Scream]
 type = PlaySnd
 trigger1 = Time > 14
 value = 8200,4
 Persistent = 30
 
 
-[State 12102, ”ß–Â]
+[State 12102, Scream]
 type = PlaySnd
 trigger1 = Time > 14
 value = 8150,1+(Random%2)
@@ -1901,20 +1901,20 @@ Persistent = 30
 
 
 
-[State 1622, ‘½­‚Íƒ_ƒ[ƒW]
+[State 1622, Some damage]
 type = TargetLifeAdd
 trigger1 = AnimElem = 3
 value = -6
 kill = 0
 
-[State 1622, ‘½­‚Íƒ_ƒ[ƒW]
+[State 1622, Some damage]
 type = poweradd
 trigger1 = AnimElem = 3
 value = 100
 kill = 0
 
 
-[State 1642, ‰º”¼g]
+[State 1642, Lower body]
 type = Explod
 trigger1 = time = 0
 anim = 12016
@@ -1930,13 +1930,13 @@ IgnoreHitPause = 0
 removeongethit = 1
 
 
-[State 1610, ’Í‚ñ‚¾‘Šè‚ÌˆÊ’u]
+[State 1610, Grabbed opponent position]
 type = TargetBind
 trigger1 = time = 0
 pos = ceil(0*const(size.xscale)),ceil(-40*const(size.yscale))
 ;pos = 0, -40
 
-[State 12002, ”ò–—]
+[State 12002, Splash]
 type = Explod
 trigger1 = time = 0
 anim = 9110
@@ -1952,7 +1952,7 @@ ownpal = 1
 removeongethit = 1
 
 
-[State 12002, Ÿ‚Ö]
+[State 12002, Next]
 type = ChangeState
 trigger1 = Time = 600
 value = 12013
@@ -1968,19 +1968,19 @@ sprpriority = -1
 anim=12014
 ctrl=0
 
-[State 1622, ‘½­‚Íƒ_ƒ[ƒW]
+[State 1622, Some damage]
 type = TargetLifeAdd
 trigger1 = AnimElem = 3
 value = -6
 kill = 0
 
-[State 1622, ‘½­‚Íƒ_ƒ[ƒW]
+[State 1622, Some damage]
 type = poweradd
 trigger1 = AnimElem = 3
 value = 100
 kill = 0
 
-[State 1642, ‰º”¼g]
+[State 1642, Lower body]
 type = Explod
 trigger1 = time = 0
 anim = 12017
@@ -1995,17 +1995,17 @@ sprpriority = 1
 IgnoreHitPause = 0
 removeongethit = 1
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 9110
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 12016
 
-[State 12002, ”ò–—]
+[State 12002, Splash]
 type = Explod
 trigger1 = time = 0
 anim = 9111
@@ -2020,7 +2020,7 @@ supermovetime = 30
 ownpal = 1
 removeongethit = 1
 
-[State 12002, ¸‰t]
+[State 12002, Semen]
 type = Explod
 trigger1 = time = 308
 anim = 12019
@@ -2036,13 +2036,13 @@ supermovetime = 30
 ownpal = 1
 removeongethit = 1
 
-[State 1618, ”ß–Â]
+[State 1618, Scream]
 type = PlaySnd
 trigger1 = Time > 7
 value = 8200,4
 Persistent = 15
 
-[State 1618, ”ß–Â]
+[State 1618, Scream]
 type = PlaySnd
 trigger1 = Time > 7
 value = 8150,1+(Random%2)
@@ -2054,7 +2054,7 @@ trigger1 = time = 0
 value = 4,6
 
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 320
 ID = 9111
@@ -2078,18 +2078,18 @@ time = 70
 movetime = 70
 
 
-[State 1622, ‘½­‚Íƒ_ƒ[ƒW]
+[State 1622, Some damage]
 type = TargetLifeAdd
 trigger1 = time = 328 ||  time = 329
 value = -60
 kill = 0
 
-[State 1622, ‘½­‚Íƒ_ƒ[ƒW]
+[State 1622, Some damage]
 type = TargetLifeAdd
 trigger1 = time = 330
 value = -60
 
-[State 1622, ‘½­‚Íƒ_ƒ[ƒW]
+[State 1622, Some damage]
 type = TargetLifeAdd
 trigger1 = time = 330
 trigger1= Random < 500
@@ -2129,7 +2129,7 @@ type = PlaySnd
 trigger1 = AnimElem = 5
 value = 8150,1+(Random%2)
 
-[State 1336, 7_2];’f–Ê}‚Ì•\¦
+[State 1336, 7_2]; Cross-section display
 type = Explod
 trigger1 = Time = 308
 id = 21709
@@ -2177,7 +2177,7 @@ ownpal=1
 
 
 
-[State 12013, Ÿ‚Ö]
+[State 12013, Next]
 type = ChangeState
 trigger1 = Time = 335
 value = 12005
@@ -2202,14 +2202,14 @@ velset=0,0
 sprpriority=1
 
 
-[State 1610, ’Í‚ñ‚¾‘Šè‚ÌƒXƒe[ƒg•ÏX]
+[State 1610, Target state change]
 type = TargetState
 trigger1 = NumTarget
 trigger1 = Time = 0
 value = 12120
 
 
-[State 9001, ƒLƒƒƒbƒ`]
+[State 9001, Catch]
 type = PlaySnd
 trigger1 = time = 0
 value = 8150,4
@@ -2239,7 +2239,7 @@ postype=p1
 facing=-1
 ownpal=1
 
-[State 12000, Ÿ‚Ö]
+[State 12000, Next]
 type = ChangeState
 trigger1 = Time = 80
 value = 12602
@@ -2284,24 +2284,24 @@ type = PlaySnd
 trigger1 = time = 30
 value = 4,4
 
-[State 1610, •]
+[State 1610, Width]
 type = Width
 trigger1 = 1
 edge = 75,75
 player = 32,32
 
-[State 1610, •]
+[State 1610, Width]
 type = PosSet
 trigger1 = time = 0
 x = 15
 
-[State 1610, ’Í‚ñ‚¾‘Šè‚ÌˆÊ’u]
+[State 1610, Grabbed opponent position]
 type = TargetBind
 trigger1 = time = 0
 pos = ceil(15*const(size.xscale)),ceil(-50*const(size.yscale))
 ;pos = 15, -50
 
-[State 9000, ƒxƒbƒh]
+[State 9000, Bed]
 type = Explod
 trigger1 = time = 0
 anim = 12001
@@ -2337,7 +2337,7 @@ postype=p1
 facing=-1
 ownpal=1
 
-[State 12001, Ÿ‚Ö]
+[State 12001, Next]
 type = ChangeState
 trigger1 = Time = 300
 value = 12022
@@ -2354,38 +2354,38 @@ sprpriority= -1
 anim=12020
 ctrl=0
 
-[State 1610, ’Í‚ñ‚¾‘Šè‚ÌˆÊ’u]
+[State 1610, Grabbed opponent position]
 type = TargetBind
 trigger1 = time = 0
 pos = ceil(0*const(size.xscale)),ceil(-55*const(size.yscale))
 ;pos = 0, -55
 
 
-[State 12102, ”ß–Â]
+[State 12102, Scream]
 type = PlaySnd
 trigger1 = Time > 14
 value = 8200,4
 Persistent = 30
 
-[State 12102, ”ß–Â]
+[State 12102, Scream]
 type = PlaySnd
 trigger1 = Time > 14
 value = 8150,1+(Random%2)
 Persistent = 30
 
-[State 1622, ‘½­‚Íƒ_ƒ[ƒW]
+[State 1622, Some damage]
 type = TargetLifeAdd
 trigger1 = AnimElem = 3
 value = -6
 kill = 0
 
-[State 1622, ‘½­‚Íƒ_ƒ[ƒW]
+[State 1622, Some damage]
 type = poweradd
 trigger1 = AnimElem = 3
 value = 100
 kill = 0
 
-[State 12002, ”ò–—]
+[State 12002, Splash]
 type = Explod
 trigger1 = time = 0
 anim = 9110
@@ -2401,7 +2401,7 @@ ownpal = 1
 removeongethit = 1
 
 
-[State 12002, Ÿ‚Ö]
+[State 12002, Next]
 type = ChangeState
 trigger1 = Time = 600
 value = 12023
@@ -2417,26 +2417,26 @@ sprpriority= -1
 anim=12021
 ctrl=0
 
-[State 1618, ”ß–Â]
+[State 1618, Scream]
 type = PlaySnd
 trigger1 = Time > 7
 value = 8200,4
 Persistent = 15
 
-[State 1618, ”ß–Â]
+[State 1618, Scream]
 type = PlaySnd
 trigger1 = Time > 7
 value = 8150,1+(Random%2)
 Persistent = 15
 
 
-[State 1622, ‘½­‚Íƒ_ƒ[ƒW]
+[State 1622, Some damage]
 type = TargetLifeAdd
 trigger1 = AnimElem = 3
 value = -6
 kill = 0
 
-[State 1622, ‘½­‚Íƒ_ƒ[ƒW]
+[State 1622, Some damage]
 type = poweradd
 trigger1 = AnimElem = 3
 value = 100
@@ -2447,12 +2447,12 @@ type = PlaySnd
 trigger1 = time = 0
 value = 4,6
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 9110
 
-[State 12002, ”ò–—]
+[State 12002, Splash]
 type = Explod
 trigger1 = time = 0
 anim = 9111
@@ -2469,7 +2469,7 @@ removeongethit = 1
 
 
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 320
 ID = 9111
@@ -2492,18 +2492,18 @@ trigger1 = time = 330
 time = 70
 movetime = 70
 
-[State 1622, ‘½­‚Íƒ_ƒ[ƒW]
+[State 1622, Some damage]
 type = TargetLifeAdd
 trigger1 = time = 328 ||  time = 329
 value = -60
 kill = 0
 
-[State 1622, ‘½­‚Íƒ_ƒ[ƒW]
+[State 1622, Some damage]
 type = TargetLifeAdd
 trigger1 = time = 330
 value = -60
 
-[State 1622, ‘½­‚Íƒ_ƒ[ƒW]
+[State 1622, Some damage]
 type = TargetLifeAdd
 trigger1 = time = 330
 trigger1= Random < 500
@@ -2542,7 +2542,7 @@ type = PlaySnd
 trigger1 = AnimElem = 5
 value = 8150,1+(Random%2)
 
-[State 1336, 7_2];’f–Ê}‚Ì•\¦
+[State 1336, 7_2]; Cross-section display
 type = Explod
 trigger1 = Time = 308
 id = 21709
@@ -2589,7 +2589,7 @@ ownpal=1
 
 
 
-[State 12003, Ÿ‚Ö]
+[State 12003, Next]
 type = ChangeState
 trigger1 = Time = 335
 value = 12005
@@ -2616,24 +2616,24 @@ type = PlaySnd
 trigger1 = time = 30
 value = 4,4
 
-[State 1610, •]
+[State 1610, Width]
 type = Width
 trigger1 = 1
 edge = 75,75
 player = 32,32
 
-[State 1610, •]
+[State 1610, Width]
 type = PosSet
 trigger1 = time = 0
 x = 15
 
-[State 1610, ’Í‚ñ‚¾‘Šè‚ÌˆÊ’u]
+[State 1610, Grabbed opponent position]
 type = TargetBind
 trigger1 = time = 0
 pos = ceil(15*const(size.xscale)),ceil(-50*const(size.yscale))
 ;pos = 15, -50
 
-[State 12002, –{‘Ì2]
+[State 12002, Body 2]
 type = Explod
 trigger1 = time = 0
 anim = 12032
@@ -2648,7 +2648,7 @@ sprpriority = 4
 supermovetime = 30
 removeongethit = 1
 
-[State 9000, ƒxƒbƒh]
+[State 9000, Bed]
 type = Explod
 trigger1 = time = 0
 anim = 12001
@@ -2684,7 +2684,7 @@ postype=p1
 facing=-1
 ownpal=1
 
-[State 12001, Ÿ‚Ö]
+[State 12001, Next]
 type = ChangeState
 trigger1 = Time = 300
 value = 12702
@@ -2701,13 +2701,13 @@ sprpriority= -1
 anim=12003
 ctrl=0
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 12032
 
 
-[State 12002, –{‘Ì2]
+[State 12002, Body 2]
 type = Explod
 trigger1 = time = 0
 anim = 12030
@@ -2723,44 +2723,44 @@ supermovetime = 30
 removeongethit = 1
 
 
-[State 1610, ’Í‚ñ‚¾‘Šè‚ÌˆÊ’u]
+[State 1610, Grabbed opponent position]
 type = TargetBind
 trigger1 = time = 0
 pos = ceil(15*const(size.xscale)),ceil(-70*const(size.yscale))
 ;pos = 15, -70
 
 
-[State 12102, ”ß–Â]
+[State 12102, Scream]
 type = PlaySnd
 trigger1 = Time > 14
 value = 8200,4
 Persistent = 30
 
-[State 12102, ”ß–Â]
+[State 12102, Scream]
 type = PlaySnd
 trigger1 = Time > 14
 value = 8150,1+(Random%2)
 Persistent = 30
 
-[State 12102, ”ß–Â]
+[State 12102, Scream]
 type = PlaySnd
 trigger1 = Time > 14
 value = 6070,0+(Random%2)
 Persistent = 30
 
-[State 1622, ‘½­‚Íƒ_ƒ[ƒW]
+[State 1622, Some damage]
 type = TargetLifeAdd
 trigger1 = AnimElem = 3
 value = -6
 kill = 0
 
-[State 1622, ‘½­‚Íƒ_ƒ[ƒW]
+[State 1622, Some damage]
 type = poweradd
 trigger1 = AnimElem = 3
 value = 100
 kill = 0
 
-[State 12002, ”ò–—]
+[State 12002, Splash]
 type = Explod
 trigger1 = time = 0
 anim = 9110
@@ -2776,7 +2776,7 @@ ownpal = 1
 removeongethit = 1
 
 
-[State 12002, Ÿ‚Ö]
+[State 12002, Next]
 type = ChangeState
 trigger1 = Time = 600
 value = 12703
@@ -2792,7 +2792,7 @@ sprpriority= -1
 anim=12004
 ctrl=0
 
-[State 12002, –{‘Ì2]
+[State 12002, Body 2]
 type = Explod
 trigger1 = time = 0
 anim = 12031
@@ -2808,32 +2808,32 @@ supermovetime = 30
 removeongethit = 1
 
 
-[State 1618, ”ß–Â]
+[State 1618, Scream]
 type = PlaySnd
 trigger1 = Time > 7
 value = 8200,4
 Persistent = 15
 
-[State 1618, ”ß–Â]
+[State 1618, Scream]
 type = PlaySnd
 trigger1 = Time > 7
 value = 8150,1+(Random%2)
 Persistent = 15
 
-[State 1618, ”ß–Â]
+[State 1618, Scream]
 type = PlaySnd
 trigger1 = Time > 7
 value = 6070,0+(Random%2)
 Persistent = 15
 
 
-[State 1622, ‘½­‚Íƒ_ƒ[ƒW]
+[State 1622, Some damage]
 type = TargetLifeAdd
 trigger1 = AnimElem = 3
 value = -6
 kill = 0
 
-[State 1622, ‘½­‚Íƒ_ƒ[ƒW]
+[State 1622, Some damage]
 type = poweradd
 trigger1 = AnimElem = 3
 value = 100
@@ -2845,22 +2845,22 @@ trigger1 = time = 0
 value = 4,6
 
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 12030
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 12032
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 9110
 
-[State 12002, ”ò–—]
+[State 12002, Splash]
 type = Explod
 trigger1 = time = 0
 anim = 9111
@@ -2875,7 +2875,7 @@ supermovetime = 30
 ownpal = 1
 removeongethit = 1
 
-[State 12002, ¸‰t]
+[State 12002, Semen]
 type = Explod
 trigger1 = time = 308
 anim = 12006
@@ -2892,7 +2892,7 @@ ownpal = 1
 removeongethit = 1
 
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 320
 ID = 9111
@@ -2915,12 +2915,12 @@ trigger1 = time = 330
 time = 70
 movetime = 70
 
-[State 1622, ‘½­‚Íƒ_ƒ[ƒW]
+[State 1622, Some damage]
 type = TargetLifeAdd
 trigger1 = time = 328 ||  time = 329 ||  time = 330
 value = -60
 
-[State 1622, ‘½­‚Íƒ_ƒ[ƒW]
+[State 1622, Some damage]
 type = LifeAdd
 trigger1 = time = 328 ||  time = 329 ||  time = 330
 value = 200
@@ -2975,7 +2975,7 @@ type = PlaySnd
 trigger1 = AnimElem = 5
 value = 8150,1+(Random%2)
 
-[State 1336, 7_2];’f–Ê}‚Ì•\¦
+[State 1336, 7_2]; Cross-section display
 type = Explod
 trigger1 = Time = 308
 id = 21709
@@ -3014,7 +3014,7 @@ facing=-1
 ownpal=1
 
 
-[State 12003, Ÿ‚Ö]
+[State 12003, Next]
 type = ChangeState
 trigger1 = Time = 335
 value = 12005
@@ -3040,25 +3040,25 @@ type = PlaySnd
 trigger1 = time = 30
 value = 4,4
 
-[State 1610, •]
+[State 1610, Width]
 type = Width
 trigger1 = 1
 edge = 75,75
 player = 32,32
 
-[State 1610, •]
+[State 1610, Width]
 type = PosSet
 trigger1 = time = 0
 x = 15
 
 
-[State 1610, ’Í‚ñ‚¾‘Šè‚ÌˆÊ’u]
+[State 1610, Grabbed opponent position]
 type = TargetBind
 trigger1 = time = 0
 pos = ceil(15*const(size.xscale)),ceil(-50*const(size.yscale))
 ;pos = 15, -50
 
-[State 12002, –{‘Ì2]
+[State 12002, Body 2]
 type = Explod
 trigger1 = time = 0
 anim = 12044
@@ -3073,7 +3073,7 @@ sprpriority = 4
 supermovetime = 30
 removeongethit = 1
 
-[State 9000, ƒxƒbƒh]
+[State 9000, Bed]
 type = Explod
 trigger1 = time = 0
 anim = 12001
@@ -3109,7 +3109,7 @@ postype=p1
 facing=-1
 ownpal=1
 
-[State 12001, Ÿ‚Ö]
+[State 12001, Next]
 type = ChangeState
 trigger1 = Time = 300
 value = 12712
@@ -3126,12 +3126,12 @@ sprpriority = -1
 anim=12013
 ctrl=0
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 12044
 
-[State 12002, –{‘Ì2]
+[State 12002, Body 2]
 type = Explod
 trigger1 = time = 0
 anim = 12040
@@ -3147,7 +3147,7 @@ supermovetime = 30
 removeongethit = 1
 
 
-[State 12002, –{‘Ì2]
+[State 12002, Body 2]
 type = Explod
 trigger1 = time = 0
 anim = 12042
@@ -3164,20 +3164,20 @@ removeongethit = 1
 
 
 
-[State 12102, ”ß–Â]
+[State 12102, Scream]
 type = PlaySnd
 trigger1 = Time > 14
 value = 8200,4
 Persistent = 30
 
 
-[State 12102, ”ß–Â]
+[State 12102, Scream]
 type = PlaySnd
 trigger1 = Time > 14
 value = 8150,1+(Random%2)
 Persistent = 30
 
-[State 12102, ”ß–Â]
+[State 12102, Scream]
 type = PlaySnd
 trigger1 = Time > 14
 value = 6071,0+(Random%2)
@@ -3185,20 +3185,20 @@ Persistent = 30
 
 
 
-[State 1622, ‘½­‚Íƒ_ƒ[ƒW]
+[State 1622, Some damage]
 type = TargetLifeAdd
 trigger1 = AnimElem = 3
 value = -6
 kill = 0
 
-[State 1622, ‘½­‚Íƒ_ƒ[ƒW]
+[State 1622, Some damage]
 type = poweradd
 trigger1 = AnimElem = 3
 value = 100
 kill = 0
 
 
-[State 1642, ‰º”¼g]
+[State 1642, Lower body]
 type = Explod
 trigger1 = time = 0
 anim = 12016
@@ -3214,13 +3214,13 @@ IgnoreHitPause = 0
 removeongethit = 1
 
 
-[State 1610, ’Í‚ñ‚¾‘Šè‚ÌˆÊ’u]
+[State 1610, Grabbed opponent position]
 type = TargetBind
 trigger1 = time = 0
 pos = ceil(0*const(size.xscale)),ceil(-40*const(size.yscale))
 ;pos = 0, -40
 
-[State 12002, ”ò–—]
+[State 12002, Splash]
 type = Explod
 trigger1 = time = 0
 anim = 9110
@@ -3236,7 +3236,7 @@ ownpal = 1
 removeongethit = 1
 
 
-[State 12002, Ÿ‚Ö]
+[State 12002, Next]
 type = ChangeState
 trigger1 = Time = 600
 value = 12713
@@ -3252,7 +3252,7 @@ sprpriority = -1
 anim=12014
 ctrl=0
 
-[State 12002, –{‘Ì2]
+[State 12002, Body 2]
 type = Explod
 trigger1 = time = 0
 anim = 12041
@@ -3267,7 +3267,7 @@ sprpriority = -4
 supermovetime = 30
 removeongethit = 1
 
-[State 12002, –{‘Ì2]
+[State 12002, Body 2]
 type = Explod
 trigger1 = time = 0
 anim = 12043
@@ -3282,19 +3282,19 @@ sprpriority = 4
 supermovetime = 30
 removeongethit = 1
 
-[State 1622, ‘½­‚Íƒ_ƒ[ƒW]
+[State 1622, Some damage]
 type = TargetLifeAdd
 trigger1 = AnimElem = 3
 value = -6
 kill = 0
 
-[State 1622, ‘½­‚Íƒ_ƒ[ƒW]
+[State 1622, Some damage]
 type = poweradd
 trigger1 = AnimElem = 3
 value = 100
 kill = 0
 
-[State 1642, ‰º”¼g]
+[State 1642, Lower body]
 type = Explod
 trigger1 = time = 0
 anim = 12017
@@ -3309,29 +3309,29 @@ sprpriority = 1
 IgnoreHitPause = 0
 removeongethit = 1
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 12040
 
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 12042
 
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 9110
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 12016
 
-[State 12002, ”ò–—]
+[State 12002, Splash]
 type = Explod
 trigger1 = time = 0
 anim = 9111
@@ -3346,7 +3346,7 @@ supermovetime = 30
 ownpal = 1
 removeongethit = 1
 
-[State 12002, ¸‰t]
+[State 12002, Semen]
 type = Explod
 trigger1 = time = 308
 anim = 12019
@@ -3362,19 +3362,19 @@ supermovetime = 30
 ownpal = 1
 removeongethit = 1
 
-[State 1618, ”ß–Â]
+[State 1618, Scream]
 type = PlaySnd
 trigger1 = Time > 7
 value = 8200,4
 Persistent = 15
 
-[State 1618, ”ß–Â]
+[State 1618, Scream]
 type = PlaySnd
 trigger1 = Time > 7
 value = 8150,1+(Random%2)
 Persistent = 15
 
-[State 1618, ”ß–Â]
+[State 1618, Scream]
 type = PlaySnd
 trigger1 = Time > 7
 value = 6071,0+(Random%2)
@@ -3387,7 +3387,7 @@ trigger1 = time = 0
 value = 4,6
 
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 320
 ID = 9111
@@ -3411,12 +3411,12 @@ time = 70
 movetime = 70
 
 
-[State 1622, ‘½­‚Íƒ_ƒ[ƒW]
+[State 1622, Some damage]
 type = TargetLifeAdd
 trigger1 = time = 328 ||  time = 329 ||  time = 330
 value = -60
 
-[State 1622, ‘½­‚Íƒ_ƒ[ƒW]
+[State 1622, Some damage]
 type = LifeAdd
 trigger1 = time = 328 ||  time = 329 ||  time = 330
 value = 200
@@ -3470,7 +3470,7 @@ type = PlaySnd
 trigger1 = AnimElem = 5
 value = 8150,1+(Random%2)
 
-[State 1336, 7_2];’f–Ê}‚Ì•\¦
+[State 1336, 7_2]; Cross-section display
 type = Explod
 trigger1 = Time = 308
 id = 21709
@@ -3508,7 +3508,7 @@ pausemovetime = 70
 facing=-1
 ownpal=1
 
-[State 12013, Ÿ‚Ö]
+[State 12013, Next]
 type = ChangeState
 trigger1 = Time = 335
 value = 12005
@@ -3532,24 +3532,24 @@ type = PlaySnd
 trigger1 = time = 30
 value = 4,4
 
-[State 1610, •]
+[State 1610, Width]
 type = Width
 trigger1 = 1
 edge = 75,75
 player = 32,32
 
-[State 1610, •]
+[State 1610, Width]
 type = PosSet
 trigger1 = time = 0
 x = 15
 
-[State 1610, ’Í‚ñ‚¾‘Šè‚ÌˆÊ’u]
+[State 1610, Grabbed opponent position]
 type = TargetBind
 trigger1 = time = 0
 pos = ceil(15*const(size.xscale)),ceil(-50*const(size.yscale))
 ;pos = 15, -50
 
-[State 12002, –{‘Ì2]
+[State 12002, Body 2]
 type = Explod
 trigger1 = time = 0
 anim = 12054
@@ -3564,7 +3564,7 @@ sprpriority = 4
 supermovetime = 30
 removeongethit = 1
 
-[State 9000, ƒxƒbƒh]
+[State 9000, Bed]
 type = Explod
 trigger1 = time = 0
 anim = 12001
@@ -3600,7 +3600,7 @@ postype=p1
 facing=-1
 ownpal=1
 
-[State 12001, Ÿ‚Ö]
+[State 12001, Next]
 type = ChangeState
 trigger1 = Time = 300
 value = 12722
@@ -3617,12 +3617,12 @@ sprpriority= -1
 anim=12020
 ctrl=0
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 12054
 
-[State 12002, –{‘Ì2]
+[State 12002, Body 2]
 type = Explod
 trigger1 = time = 0
 anim = 12050
@@ -3637,7 +3637,7 @@ sprpriority = -4
 supermovetime = 30
 removeongethit = 1
 
-[State 12002, –{‘Ì2]
+[State 12002, Body 2]
 type = Explod
 trigger1 = time = 0
 anim = 12052
@@ -3654,45 +3654,45 @@ removeongethit = 1
 
 
 
-[State 1610, ’Í‚ñ‚¾‘Šè‚ÌˆÊ’u]
+[State 1610, Grabbed opponent position]
 type = TargetBind
 trigger1 = time = 0
 pos = ceil(0*const(size.xscale)),ceil(-55*const(size.yscale))
 ;pos = 0, -55
 
 
-[State 12102, ”ß–Â]
+[State 12102, Scream]
 type = PlaySnd
 trigger1 = Time > 14
 value = 8200,4
 Persistent = 30
 
-[State 12102, ”ß–Â]
+[State 12102, Scream]
 type = PlaySnd
 trigger1 = Time > 14
 value = 8150,1+(Random%2)
 Persistent = 30
 
 
-[State 12102, ”ß–Â]
+[State 12102, Scream]
 type = PlaySnd
 trigger1 = Time > 14
 value = 6072,0+(Random%2)
 Persistent = 30
 
-[State 1622, ‘½­‚Íƒ_ƒ[ƒW]
+[State 1622, Some damage]
 type = TargetLifeAdd
 trigger1 = AnimElem = 3
 value = -6
 kill = 0
 
-[State 1622, ‘½­‚Íƒ_ƒ[ƒW]
+[State 1622, Some damage]
 type = poweradd
 trigger1 = AnimElem = 3
 value = 100
 kill = 0
 
-[State 12002, ”ò–—]
+[State 12002, Splash]
 type = Explod
 trigger1 = time = 0
 anim = 9110
@@ -3708,7 +3708,7 @@ ownpal = 1
 removeongethit = 1
 
 
-[State 12002, Ÿ‚Ö]
+[State 12002, Next]
 type = ChangeState
 trigger1 = Time = 600
 value = 12723
@@ -3725,7 +3725,7 @@ anim=12021
 ctrl=0
 
 
-[State 12002, –{‘Ì2]
+[State 12002, Body 2]
 type = Explod
 trigger1 = time = 0
 anim = 12051
@@ -3740,7 +3740,7 @@ sprpriority = -4
 supermovetime = 30
 removeongethit = 1
 
-[State 12002, –{‘Ì2]
+[State 12002, Body 2]
 type = Explod
 trigger1 = time = 0
 anim = 12053
@@ -3756,32 +3756,32 @@ supermovetime = 30
 removeongethit = 1
 
 
-[State 1618, ”ß–Â]
+[State 1618, Scream]
 type = PlaySnd
 trigger1 = Time > 7
 value = 8200,4
 Persistent = 15
 
-[State 1618, ”ß–Â]
+[State 1618, Scream]
 type = PlaySnd
 trigger1 = Time > 7
 value = 8150,1+(Random%2)
 Persistent = 15
 
-[State 1618, ”ß–Â]
+[State 1618, Scream]
 type = PlaySnd
 trigger1 = Time > 7
 value = 6072,0+(Random%2)
 Persistent = 15
 
 
-[State 1622, ‘½­‚Íƒ_ƒ[ƒW]
+[State 1622, Some damage]
 type = TargetLifeAdd
 trigger1 = AnimElem = 3
 value = -6
 kill = 0
 
-[State 1622, ‘½­‚Íƒ_ƒ[ƒW]
+[State 1622, Some damage]
 type = poweradd
 trigger1 = AnimElem = 3
 value = 100
@@ -3792,23 +3792,23 @@ type = PlaySnd
 trigger1 = time = 0
 value = 4,6
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 12050
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 12052
 
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 9110
 
-[State 12002, ”ò–—]
+[State 12002, Splash]
 type = Explod
 trigger1 = time = 0
 anim = 9111
@@ -3825,7 +3825,7 @@ removeongethit = 1
 
 
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 320
 ID = 9111
@@ -3848,12 +3848,12 @@ trigger1 = time = 330
 time = 70
 movetime = 70
 
-[State 1622, ‘½­‚Íƒ_ƒ[ƒW]
+[State 1622, Some damage]
 type = TargetLifeAdd
 trigger1 = time = 328 ||  time = 329 ||  time = 330
 value = -60
 
-[State 1622, ‘½­‚Íƒ_ƒ[ƒW]
+[State 1622, Some damage]
 type = LifeAdd
 trigger1 = time = 328 ||  time = 329 ||  time = 330
 value = 200
@@ -3910,7 +3910,7 @@ type = PlaySnd
 trigger1 = AnimElem = 5
 value = 8150,1+(Random%2)
 
-[State 1336, 7_2];’f–Ê}‚Ì•\¦
+[State 1336, 7_2]; Cross-section display
 type = Explod
 trigger1 = Time = 308
 id = 21709
@@ -3949,7 +3949,7 @@ facing=-1
 ownpal=1
 
 
-[State 12003, Ÿ‚Ö]
+[State 12003, Next]
 type = ChangeState
 trigger1 = Time = 335
 value = 12005
@@ -3998,13 +3998,13 @@ Trigger1 = Time = 0
 value=5300
 
 
-[State 12100, Ÿ‚Ö]
+[State 12100, Next]
 type = ChangeState
 trigger1 = SelfAnimExist(36617)
 trigger1 = Time = 80
 value = 12101
 
-[State 12100, Ÿ‚Ö]
+[State 12100, Next]
 type = ChangeState
 trigger1 = !SelfAnimExist(36617)
 trigger1 = Time = 80
@@ -4023,21 +4023,21 @@ type=changeanim
 Trigger1 = Time = 0
 value=5110
 
-[State 51220,3,‰æ–Ê‚ÌŒÅ’è]
+[State 51220,3,Screenbound]
 type = Screenbound
 trigger1 = 1
 value = 0
 
 
 
-[State 1610, •]
+[State 1610, Width]
 type = Width
 trigger1 = 1
 edge = 75,75
 player = 32,32
 
 
-[State 12101, Ÿ‚Ö]
+[State 12101, Next]
 type = ChangeState
 trigger1 = Time = 300
 value = 12102
@@ -4050,31 +4050,31 @@ type    = L
 movetype= H
 physics = N
 
-[State 12102, ê—pƒAƒjƒ]
+[State 12102, Dedicated anim]
 type = ChangeAnim
 trigger1 = SelfAnimExist(36617)
 trigger1 = time = 0
 value = 36617
 
-[State 12102, ”Ä—pƒAƒjƒ]
+[State 12102, Generic anim]
 type = ChangeAnim2
 trigger1 = !SelfAnimExist(36617)
 trigger1 = time = 0
 value = 9210
 
-[State 12102, ”ß–Â]
+[State 12102, Scream]
 type = PlaySnd
 trigger1 = Time > 14
 value = 4218,21+(Random%2)
 Persistent = 30
 
-[State 51220,3,‰æ–Ê‚ÌŒÅ’è]
+[State 51220,3,Screenbound]
 type = Screenbound
 trigger1 = 1
 value = 0
 
 
-[State 12102, Ÿ‚Ö]
+[State 12102, Next]
 type = ChangeState
 trigger1 = Time = 600
 value = 12103
@@ -4087,51 +4087,51 @@ type    = L
 movetype= H
 physics = N
 
-[State 1618, ”ß–Â]
+[State 1618, Scream]
 type = PlaySnd
 trigger1 = Time > 7
 value = 4218,21
 Persistent = 15
 
-[State 9102, ’·‚¢”ß–Â]
+[State 9102, Long scream]
 type = PlaySnd
 trigger1 = Alive
 trigger1 = Time = 328
 value = 4218,22
 
 
-[State 9102, ’·‚¢”ß–Â]
+[State 9102, Long scream]
 type = PlaySnd
 trigger1 = Alive
 trigger1 = Time = 329
 value = 4218,23
 
-[State 9102, ’·‚¢”ß–Â]
+[State 9102, Long scream]
 type = PlaySnd
 trigger1 = Alive
 trigger1 = Time = 330
 value = 11,0
 
 
-[State 1618, ê—pƒAƒjƒ]
+[State 1618, Dedicated anim]
 type = ChangeAnim
 trigger1 = SelfAnimExist(36618)
 trigger1 = time = 0
 value = 36618
 
-[State 1618, ”Ä—pƒAƒjƒ]
+[State 1618, Generic anim]
 type = ChangeAnim2
 trigger1 = !SelfAnimExist(36618)
 trigger1 = time = 0
 value = 9211
 
-[State 51220,3,‰æ–Ê‚ÌŒÅ’è]
+[State 51220,3,Screenbound]
 type = Screenbound
 trigger1 = 1
 value = 0
 
 
-[State 12103, Ÿ‚Ö]
+[State 12103, Next]
 type = ChangeState
 trigger1 = Time = 335
 value = 12105
@@ -4145,29 +4145,29 @@ type    = L
 movetype= H
 physics = N
 
-[State 1648, ƒGƒtƒFƒNƒgÁ‹]
+[State 1648, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 36643
 
-[State 1648, ƒGƒtƒFƒNƒgÁ‹]
+[State 1648, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 36648
 
-[State 1699, ê—pƒAƒjƒ]
+[State 1699, Dedicated anim]
 type = ChangeAnim
 trigger1 = SelfAnimExist(36699)
 trigger1 = time = 0
 value = 36699
 
-[State 1695, ”Ä—pƒAƒjƒ]
+[State 1695, Generic anim]
 type = ChangeAnim
 trigger1 = !SelfAnimExist(36699)
 trigger1 = time = 0
 value = 5110
 
-[State 1695, ‘O–ÊƒGƒtƒFƒNƒg]
+[State 1695, Front effect]
 type = Explod
 trigger1 = SelfAnimExist(36698)
 trigger1 = Time = 0
@@ -4216,13 +4216,13 @@ value=5300
 
 
 
-[State 12100, Ÿ‚Ö]
+[State 12100, Next]
 type = ChangeState
 trigger1 = SelfAnimExist(36647)
 trigger1 = Time = 80
 value = 12111
 
-[State 12100, Ÿ‚Ö]
+[State 12100, Next]
 type = ChangeState
 trigger1 = !SelfAnimExist(36647)
 trigger1 = Time = 80
@@ -4241,21 +4241,21 @@ type=changeanim
 Trigger1 = Time = 0
 value=5110
 
-[State 51220,3,‰æ–Ê‚ÌŒÅ’è]
+[State 51220,3,Screenbound]
 type = Screenbound
 trigger1 = 1
 value = 0
 
 
 
-[State 1610, •]
+[State 1610, Width]
 type = Width
 trigger1 = 1
 edge = 75,75
 player = 32,32
 
 
-[State 12101, Ÿ‚Ö]
+[State 12101, Next]
 type = ChangeState
 trigger1 = Time = 300
 value = 12112
@@ -4268,19 +4268,19 @@ type    = L
 movetype= H
 physics = N
 
-[State 1647, ê—pƒAƒjƒ]
+[State 1647, Dedicated anim]
 type = ChangeAnim
 trigger1 = SelfAnimExist(36647)
 trigger1 = time = 0
 value = 36647
 
-[State 1647, ”Ä—pƒAƒjƒ]
+[State 1647, Generic anim]
 type = ChangeAnim2
 trigger1 = !SelfAnimExist(36647)
 trigger1 = time = 0
 value = 9213
 
-[State 1647, ‘O–ÊƒGƒtƒFƒNƒg]
+[State 1647, Front effect]
 type = Explod
 trigger1 = SelfAnimExist(36642)
 trigger1 = Time = 0
@@ -4297,7 +4297,7 @@ ownpal = 0
 IgnoreHitPause = 0
 removeongethit = 1
 
-[State 1647, ‘O–ÊƒGƒtƒFƒNƒg]
+[State 1647, Front effect]
 type = Explod
 trigger1 = !SelfAnimExist(36642)
 trigger1 = Time = 0
@@ -4315,19 +4315,19 @@ IgnoreHitPause = 0
 removeongethit = 1
 
 
-[State 51220,3,‰æ–Ê‚ÌŒÅ’è]
+[State 51220,3,Screenbound]
 type = Screenbound
 trigger1 = 1
 value = 0
 
 
-[State 12102, ”ß–Â]
+[State 12102, Scream]
 type = PlaySnd
 trigger1 = Time > 14
 value = 4218,21+(Random%2)
 Persistent = 30
 
-[State 12102, Ÿ‚Ö]
+[State 12102, Next]
 type = ChangeState
 trigger1 = Time = 600
 value = 12113
@@ -4340,61 +4340,61 @@ type    = L
 movetype= H
 physics = N
 
-[State 1618, ”ß–Â]
+[State 1618, Scream]
 type = PlaySnd
 trigger1 = Time > 7
 value = 4218,21
 Persistent = 15
 
-[State 9102, ’·‚¢”ß–Â]
+[State 9102, Long scream]
 type = PlaySnd
 trigger1 = Alive
 trigger1 = Time = 327
 value = 11,0
 
-[State 9102, ’·‚¢”ß–Â]
+[State 9102, Long scream]
 type = PlaySnd
 trigger1 = Alive
 trigger1 = Time = 328
 value = 4218,22
 
 
-[State 9102, ’·‚¢”ß–Â]
+[State 9102, Long scream]
 type = PlaySnd
 trigger1 = Alive
 trigger1 = Time = 329
 value = 4218,23
 
-[State 9102, ’·‚¢”ß–Â]
+[State 9102, Long scream]
 type = PlaySnd
 trigger1 = Alive
 trigger1 = Time = 330
 value = 11,0
 
-[State 1648, ê—pƒAƒjƒ]
+[State 1648, Dedicated anim]
 type = ChangeAnim
 trigger1 = SelfAnimExist(36648)
 trigger1 = time = 0
 value = 36648
 
-[State 1648, ”Ä—pƒAƒjƒ]
+[State 1648, Generic anim]
 type = ChangeAnim2
 trigger1 = !SelfAnimExist(36648)
 trigger1 = time = 0
 value = 9214
 
-[State 1648, ƒGƒtƒFƒNƒgÁ‹]
+[State 1648, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 36642
 
-[State 1648, ƒGƒtƒFƒNƒgÁ‹]
+[State 1648, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 36647
 
 
-[State 1648, ‘O–ÊƒGƒtƒFƒNƒg]
+[State 1648, Front effect]
 type = Explod
 trigger1 = SelfAnimExist(36643)
 trigger1 = Time = 0
@@ -4411,7 +4411,7 @@ ownpal = 0
 IgnoreHitPause = 0
 removeongethit = 1
 
-[State 1648, ‘O–ÊƒGƒtƒFƒNƒg]
+[State 1648, Front effect]
 type = Explod
 trigger1 = !SelfAnimExist(36643)
 trigger1 = Time = 0
@@ -4428,14 +4428,14 @@ ownpal = 0
 IgnoreHitPause = 0
 removeongethit = 1
 
-[State 51220,3,‰æ–Ê‚ÌŒÅ’è]
+[State 51220,3,Screenbound]
 type = Screenbound
 trigger1 = 1
 value = 0
 
 
 
-[State 12103, Ÿ‚Ö]
+[State 12103, Next]
 type = ChangeState
 trigger1 = Time = 335
 value = 12105
@@ -4462,13 +4462,13 @@ Trigger1 = Time = 0
 value=5300
 
 
-[State 12100, Ÿ‚Ö]
+[State 12100, Next]
 type = ChangeState
 trigger1 = SelfAnimExist(36637)
 trigger1 = Time = 80
 value = 12121
 
-[State 12100, Ÿ‚Ö]
+[State 12100, Next]
 type = ChangeState
 trigger1 = !SelfAnimExist(36637)
 trigger1 = Time = 80
@@ -4487,21 +4487,21 @@ type=changeanim
 Trigger1 = Time = 0
 value=5110
 
-[State 51220,3,‰æ–Ê‚ÌŒÅ’è]
+[State 51220,3,Screenbound]
 type = Screenbound
 trigger1 = 1
 value = 0
 
 
 
-[State 1610, •]
+[State 1610, Width]
 type = Width
 trigger1 = 1
 edge = 75,75
 player = 32,32
 
 
-[State 12101, Ÿ‚Ö]
+[State 12101, Next]
 type = ChangeState
 trigger1 = Time = 300
 value = 12122
@@ -4514,31 +4514,31 @@ type    = L
 movetype= H
 physics = N
 
-[State 12102, ê—pƒAƒjƒ]
+[State 12102, Dedicated anim]
 type = ChangeAnim
 trigger1 = SelfAnimExist(36637)
 trigger1 = time = 0
 value = 36637
 
-[State 12102, ”Ä—pƒAƒjƒ]
+[State 12102, Generic anim]
 type = ChangeAnim2
 trigger1 = !SelfAnimExist(36637)
 trigger1 = time = 0
 value = 9216
 
-[State 12102, ”ß–Â]
+[State 12102, Scream]
 type = PlaySnd
 trigger1 = Time > 14
 value = 4218,21+(Random%2)
 Persistent = 30
 
-[State 51220,3,‰æ–Ê‚ÌŒÅ’è]
+[State 51220,3,Screenbound]
 type = Screenbound
 trigger1 = 1
 value = 0
 
 
-[State 12102, Ÿ‚Ö]
+[State 12102, Next]
 type = ChangeState
 trigger1 = Time = 600
 value = 12123
@@ -4551,51 +4551,51 @@ type    = L
 movetype= H
 physics = N
 
-[State 1618, ”ß–Â]
+[State 1618, Scream]
 type = PlaySnd
 trigger1 = Time > 7
 value = 4218,21
 Persistent = 15
 
-[State 9102, ’·‚¢”ß–Â]
+[State 9102, Long scream]
 type = PlaySnd
 trigger1 = Alive
 trigger1 = Time = 328
 value = 4218,22
 
 
-[State 9102, ’·‚¢”ß–Â]
+[State 9102, Long scream]
 type = PlaySnd
 trigger1 = Alive
 trigger1 = Time = 329
 value = 4218,23
 
-[State 9102, ’·‚¢”ß–Â]
+[State 9102, Long scream]
 type = PlaySnd
 trigger1 = Alive
 trigger1 = Time = 330
 value = 11,0
 
 
-[State 1618, ê—pƒAƒjƒ]
+[State 1618, Dedicated anim]
 type = ChangeAnim
 trigger1 = SelfAnimExist(36638)
 trigger1 = time = 0
 value = 36638
 
-[State 1618, ”Ä—pƒAƒjƒ]
+[State 1618, Generic anim]
 type = ChangeAnim2
 trigger1 = !SelfAnimExist(36638)
 trigger1 = time = 0
 value = 9217
 
-[State 51220,3,‰æ–Ê‚ÌŒÅ’è]
+[State 51220,3,Screenbound]
 type = Screenbound
 trigger1 = 1
 value = 0
 
 
-[State 12103, Ÿ‚Ö]
+[State 12103, Next]
 type = ChangeState
 trigger1 = Time = 335
 value = 12105
@@ -4611,26 +4611,26 @@ type    = L
 movetype= H
 physics = N
 
-[State 12102, ”Ä—pƒAƒjƒ]
+[State 12102, Generic anim]
 type = ChangeAnim2
 trigger1 = time = 0
 value = 74140108
 
-[State 51220,3,‰æ–Ê‚ÌŒÅ’è]
+[State 51220,3,Screenbound]
 type = Screenbound
 trigger1 = 1
 value = 0
 
 
 
-[State 1610, •]
+[State 1610, Width]
 type = Width
 trigger1 = 1
 edge = 75,75
 player = 32,32
 
 
-[State 12101, Ÿ‚Ö]
+[State 12101, Next]
 type = ChangeState
 trigger1 = Time = 1235
 value = 12105
@@ -4715,7 +4715,7 @@ velset=0,0
 sprpriority=1
 
 
-[State 9001, ƒLƒƒƒbƒ`]
+[State 9001, Catch]
 type = PlaySnd
 trigger1 = time = 0
 value = 8150,4
@@ -4729,7 +4729,7 @@ value = 4,24
 
 
 
-[State 9000,ƒ‚ƒŠ ]
+[State 9000,Morrigan ]
 type = Explod
 trigger1 = time = 0
 anim = 9001
@@ -4749,7 +4749,7 @@ removeongethit = 1
 
 
 
-[State 9000, ƒŠƒŠƒX]
+[State 9000, Lilith]
 type = Explod
 trigger1 = time = 0
 anim = 45105
@@ -4792,7 +4792,7 @@ facing=-1
 ownpal=1
 pausemovetime = 200
 
-[State 12000, Ÿ‚Ö]
+[State 12000, Next]
 type = ChangeState
 trigger1 = Time = 180
 value = 26111
@@ -4810,29 +4810,29 @@ sprpriority= 1
 ctrl=0
 
 
-[State 1610, •]
+[State 1610, Width]
 type = PosSet
 trigger1 = time = 0
 x = 0
 
-[State 1610, ’Í‚ñ‚¾‘Šè‚ÌˆÊ’u]
+[State 1610, Grabbed opponent position]
 type = TargetBind
 trigger1 = time = 0
 pos = ceil(3*const(size.xscale)),ceil(-20*const(size.yscale))
 ;pos = 0, -91
 
 
-[State 12003, Ÿ‚Ö]
+[State 12003, Next]
 type = ChangeState
 trigger1 = Random < 100
 value = 26112
 
-[State 12003, Ÿ‚Ö]
+[State 12003, Next]
 type = ChangeState
 trigger1 = Random < 100
 value = 26122
 
-[State 12003, Ÿ‚Ö]
+[State 12003, Next]
 type = ChangeState
 trigger1 = Random < 100
 value = 26132
@@ -4852,19 +4852,19 @@ anim=45111
 velset=0,0
 ctrl=0
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 9001
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 45105
 
 
 
-[State 1610, ’Í‚ñ‚¾‘Šè‚ÌƒXƒe[ƒg•ÏX]
+[State 1610, Target state change]
 type = TargetState
 trigger1 = NumTarget
 trigger1 = Time = 0
@@ -4878,13 +4878,13 @@ time = 107
 movetime = 107 
 
 
-[State 1622, ‘½­‚Íƒ_ƒ[ƒW]
+[State 1622, Some damage]
 type = TargetLifeAdd
 trigger1 = AnimElem = 2, = 0
 trigger2 = AnimElem = 5, = 0
 value = -4
 
-[State 1622, ‘½­‚Íƒ_ƒ[ƒW]
+[State 1622, Some damage]
 type = poweradd
 trigger1 = AnimElem = 2, = 0
 trigger2 = AnimElem = 5, = 0
@@ -4892,7 +4892,7 @@ value = 50
 kill = 0
 
 
-[State 1622, ‘½­‚Íƒ_ƒ[ƒW]
+[State 1622, Some damage]
 type = Targetpoweradd
 trigger1 = AnimElem = 2, = 0
 trigger2 = AnimElem = 5, = 0
@@ -4940,7 +4940,7 @@ trigger1 = time = 500
 value = 4,6
 
 
-[State 1610, •]
+[State 1610, Width]
 type = Width
 trigger1 = 1
 edge = 75,75
@@ -4948,7 +4948,7 @@ player = 32,32
 
 
 
-[State 1610, ’Í‚ñ‚¾‘Šè‚ÌˆÊ’u]
+[State 1610, Grabbed opponent position]
 type = TargetBind
 trigger1 = time = 0
 pos = ceil(3*const(size.xscale)),ceil(-30*const(size.yscale))
@@ -4956,7 +4956,7 @@ pos = ceil(3*const(size.xscale)),ceil(-30*const(size.yscale))
 
 
 
-[State 9000, ‘ä]
+[State 9000, Stage]
 type = Explod
 trigger1 = time = 0
 anim = 45100
@@ -4974,7 +4974,7 @@ facing = 1
 ownpal = 1
 removeongethit = 1
 
-[State 12002, ƒJ[ƒeƒ“]
+[State 12002, Curtain]
 type = Explod
 trigger1 = time = 0
 anim = 45112
@@ -4993,7 +4993,7 @@ pausemovetime = 300
 
 
 
-[State 12002, ƒ‰ƒCƒg]
+[State 12002, Light]
 type = Explod
 trigger1 = time = 0
 anim = 45101
@@ -5025,7 +5025,7 @@ supermovetime = 30
 removeongethit = 1
 
 
-[State 12002, ƒ‚ƒŠ]
+[State 12002, Morrigan]
 type = Explod
 trigger1 = time = 0
 anim = 45109
@@ -5044,7 +5044,7 @@ supermovetime = 30
 removeongethit = 1
 
 
-[State 12002, ƒŠƒŠƒX1]
+[State 12002, Lilith1]
 type = Explod
 trigger1 = time = 0
 anim = 45107
@@ -5062,7 +5062,7 @@ pausemovetime = -1
 supermovetime = 30
 removeongethit = 1
 
-[State 12002, ƒŠƒŠƒX2]
+[State 12002, Lilith2]
 type = Explod
 trigger1 = time = 0
 anim = 45108
@@ -5081,7 +5081,7 @@ supermovetime = 30
 removeongethit = 1
 
 
-[State 9000, ‚±‚¤‚à‚è1]
+[State 9000, Bat1]
 type = Explod
 trigger1 = time = 0
 anim = 45113
@@ -5098,7 +5098,7 @@ pausemovetime = -1
 facing = -1
 ownpal = 1
 removeongethit = 1
-[State 9000, ‚±‚¤‚à‚è2]
+[State 9000, Bat2]
 type = Explod
 trigger1 = time = 0
 anim = 45113
@@ -5117,7 +5117,7 @@ ownpal = 1
 removeongethit = 1
 
 
-[State 9000, ”{•”]
+[State 9000, Double part]
 type = Explod
 trigger1 = time = 0
 anim = 45114
@@ -5163,7 +5163,7 @@ pausemovetime = 200
 
 
 
-[State 12001, Ÿ‚Ö]
+[State 12001, Next]
 type = ChangeState
 trigger1 = Time = 800
 value = 26113
@@ -5189,63 +5189,63 @@ type=PosAdd
 trigger1 = time = 0
 x = -70
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 45100
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 45112
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 45113
 
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 45101
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 45102
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 45109
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 45107
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 45108
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 45110
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 45113
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 45114
 
-[State 1610, ’Í‚ñ‚¾‘Šè‚ÌˆÊ’u]
+[State 1610, Grabbed opponent position]
 type = TargetBind
 trigger1 = time = 0
 pos = ceil(70*const(size.xscale)),ceil(0*const(size.yscale))
@@ -5283,17 +5283,17 @@ velset=0,0
 ctrl=0
 
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 9001
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 45105
 
-[State 1610, ’Í‚ñ‚¾‘Šè‚ÌƒXƒe[ƒg•ÏX]
+[State 1610, Target state change]
 type = TargetState
 trigger1 = NumTarget
 trigger1 = Time = 0
@@ -5307,13 +5307,13 @@ time = 107
 movetime = 107 
 
 
-[State 1622, ‘½­‚Íƒ_ƒ[ƒW]
+[State 1622, Some damage]
 type = TargetLifeAdd
 trigger1 = AnimElem = 2, = 0
 trigger2 = AnimElem = 5, = 0
 value = -4
 
-[State 1622, ‘½­‚Íƒ_ƒ[ƒW]
+[State 1622, Some damage]
 type = poweradd
 trigger1 = AnimElem = 2, = 0
 trigger2 = AnimElem = 5, = 0
@@ -5321,7 +5321,7 @@ value = 50
 kill = 0
 
 
-[State 1622, ‘½­‚Íƒ_ƒ[ƒW]
+[State 1622, Some damage]
 type = Targetpoweradd
 trigger1 = AnimElem = 2, = 0
 trigger2 = AnimElem = 5, = 0
@@ -5367,7 +5367,7 @@ trigger1 = time = 500
 value = 4,6
 
 
-[State 1610, •]
+[State 1610, Width]
 type = Width
 trigger1 = 1
 edge = 75,75
@@ -5375,7 +5375,7 @@ player = 32,32
 
 
 
-[State 1610, ’Í‚ñ‚¾‘Šè‚ÌˆÊ’u]
+[State 1610, Grabbed opponent position]
 type = TargetBind
 trigger1 = time = 0
 pos = ceil(3*const(size.xscale)),ceil(-30*const(size.yscale))
@@ -5383,7 +5383,7 @@ pos = ceil(3*const(size.xscale)),ceil(-30*const(size.yscale))
 
 
 
-[State 9000, ‘ä]
+[State 9000, Stage]
 type = Explod
 trigger1 = time = 0
 anim = 45100
@@ -5401,7 +5401,7 @@ facing = 1
 ownpal = 1
 removeongethit = 1
 
-[State 12002, ƒJ[ƒeƒ“]
+[State 12002, Curtain]
 type = Explod
 trigger1 = time = 0
 anim = 45112
@@ -5420,7 +5420,7 @@ pausemovetime = 300
 
 
 
-[State 12002, ƒ‰ƒCƒg]
+[State 12002, Light]
 type = Explod
 trigger1 = time = 0
 anim = 45101
@@ -5452,7 +5452,7 @@ supermovetime = 30
 removeongethit = 1
 
 
-[State 12002, ƒ‚ƒŠ]
+[State 12002, Morrigan]
 type = Explod
 trigger1 = time = 0
 anim = 45109
@@ -5471,7 +5471,7 @@ supermovetime = 30
 removeongethit = 1
 
 
-[State 12002, ƒŠƒŠƒX1]
+[State 12002, Lilith1]
 type = Explod
 trigger1 = time = 0
 anim = 45107
@@ -5489,7 +5489,7 @@ pausemovetime = -1
 supermovetime = 30
 removeongethit = 1
 
-[State 12002, ƒŠƒŠƒX2]
+[State 12002, Lilith2]
 type = Explod
 trigger1 = time = 0
 anim = 45108
@@ -5508,7 +5508,7 @@ supermovetime = 30
 removeongethit = 1
 
 
-[State 9000, ‚±‚¤‚à‚è1]
+[State 9000, Bat1]
 type = Explod
 trigger1 = time = 0
 anim = 45113
@@ -5525,7 +5525,7 @@ pausemovetime = -1
 facing = -1
 ownpal = 1
 removeongethit = 1
-[State 9000, ‚±‚¤‚à‚è2]
+[State 9000, Bat2]
 type = Explod
 trigger1 = time = 0
 anim = 45113
@@ -5544,7 +5544,7 @@ ownpal = 1
 removeongethit = 1
 
 
-[State 9000, ”{•”]
+[State 9000, Double part]
 type = Explod
 trigger1 = time = 0
 anim = 45115
@@ -5590,7 +5590,7 @@ pausemovetime = 200
 
 
 
-[State 12001, Ÿ‚Ö]
+[State 12001, Next]
 type = ChangeState
 trigger1 = Time = 800
 value = 26113
@@ -5610,17 +5610,17 @@ velset=0,0
 ctrl=0
 
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 9001
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 45105
 
-[State 1610, ’Í‚ñ‚¾‘Šè‚ÌƒXƒe[ƒg•ÏX]
+[State 1610, Target state change]
 type = TargetState
 trigger1 = NumTarget
 trigger1 = Time = 0
@@ -5634,13 +5634,13 @@ time = 107
 movetime = 107 
 
 
-[State 1622, ‘½­‚Íƒ_ƒ[ƒW]
+[State 1622, Some damage]
 type = TargetLifeAdd
 trigger1 = AnimElem = 2, = 0
 trigger2 = AnimElem = 5, = 0
 value = -4
 
-[State 1622, ‘½­‚Íƒ_ƒ[ƒW]
+[State 1622, Some damage]
 type = poweradd
 trigger1 = AnimElem = 2, = 0
 trigger2 = AnimElem = 5, = 0
@@ -5648,7 +5648,7 @@ value = 50
 kill = 0
 
 
-[State 1622, ‘½­‚Íƒ_ƒ[ƒW]
+[State 1622, Some damage]
 type = Targetpoweradd
 trigger1 = AnimElem = 2, = 0
 trigger2 = AnimElem = 5, = 0
@@ -5694,7 +5694,7 @@ trigger1 = time = 500
 value = 4,6
 
 
-[State 1610, •]
+[State 1610, Width]
 type = Width
 trigger1 = 1
 edge = 75,75
@@ -5702,7 +5702,7 @@ player = 32,32
 
 
 
-[State 1610, ’Í‚ñ‚¾‘Šè‚ÌˆÊ’u]
+[State 1610, Grabbed opponent position]
 type = TargetBind
 trigger1 = time = 0
 pos = ceil(3*const(size.xscale)),ceil(-30*const(size.yscale))
@@ -5710,7 +5710,7 @@ pos = ceil(3*const(size.xscale)),ceil(-30*const(size.yscale))
 
 
 
-[State 9000, ‘ä]
+[State 9000, Stage]
 type = Explod
 trigger1 = time = 0
 anim = 45100
@@ -5728,7 +5728,7 @@ facing = 1
 ownpal = 1
 removeongethit = 1
 
-[State 12002, ƒJ[ƒeƒ“]
+[State 12002, Curtain]
 type = Explod
 trigger1 = time = 0
 anim = 45112
@@ -5747,7 +5747,7 @@ pausemovetime = 300
 
 
 
-[State 12002, ƒ‰ƒCƒg]
+[State 12002, Light]
 type = Explod
 trigger1 = time = 0
 anim = 45101
@@ -5779,7 +5779,7 @@ supermovetime = 30
 removeongethit = 1
 
 
-[State 12002, ƒ‚ƒŠ]
+[State 12002, Morrigan]
 type = Explod
 trigger1 = time = 0
 anim = 45109
@@ -5798,7 +5798,7 @@ supermovetime = 30
 removeongethit = 1
 
 
-[State 12002, ƒŠƒŠƒX1]
+[State 12002, Lilith1]
 type = Explod
 trigger1 = time = 0
 anim = 45107
@@ -5816,7 +5816,7 @@ pausemovetime = -1
 supermovetime = 30
 removeongethit = 1
 
-[State 12002, ƒŠƒŠƒX2]
+[State 12002, Lilith2]
 type = Explod
 trigger1 = time = 0
 anim = 45108
@@ -5835,7 +5835,7 @@ supermovetime = 30
 removeongethit = 1
 
 
-[State 9000, ‚±‚¤‚à‚è1]
+[State 9000, Bat1]
 type = Explod
 trigger1 = time = 0
 anim = 45113
@@ -5852,7 +5852,7 @@ pausemovetime = -1
 facing = -1
 ownpal = 1
 removeongethit = 1
-[State 9000, ‚±‚¤‚à‚è2]
+[State 9000, Bat2]
 type = Explod
 trigger1 = time = 0
 anim = 45113
@@ -5871,7 +5871,7 @@ ownpal = 1
 removeongethit = 1
 
 
-[State 9000, ”{•”]
+[State 9000, Double part]
 type = Explod
 trigger1 = time = 0
 anim = 45117
@@ -5917,7 +5917,7 @@ pausemovetime = 200
 
 
 
-[State 12001, Ÿ‚Ö]
+[State 12001, Next]
 type = ChangeState
 trigger1 = Time = 800
 value = 26113
@@ -5951,78 +5951,78 @@ movetype= H
 physics = N
 
 
-[State 1610, •]
+[State 1610, Width]
 type = PosSet
 trigger1 = time = 0
 x = 4
 y = -110
 
 
-[State 1610, •]
+[State 1610, Width]
 type = Width
 trigger1 = 1
 edge = 75,75
 player = 32,32
 
-[State 7560,ƒtƒƒtƒ]
+[State 7560,Float]
 type = velset
 trigger1 = time = 0
 y = -0.05
-[State 7560,ƒtƒƒtƒ]
+[State 7560,Float]
 type = velset
 trigger1 = time = 100
 y = 0.05
-[State 7560,ƒtƒƒtƒ]
+[State 7560,Float]
 type = velset
 trigger1 = time = 200
 y = -0.05
-[State 7560,ƒtƒƒtƒ]
+[State 7560,Float]
 type = velset
 trigger1 = time = 300
 y = 0.05
-[State 7560,ƒtƒƒtƒ]
+[State 7560,Float]
 type = velset
 trigger1 = time = 400
 y = -0.05
-[State 7560,ƒtƒƒtƒ]
+[State 7560,Float]
 type = velset
 trigger1 = time = 500
 y = 0.05
-[State 7560,ƒtƒƒtƒ]
+[State 7560,Float]
 type = velset
 trigger1 = time =600
 y = -0.05
-[State 7560,ƒtƒƒtƒ]
+[State 7560,Float]
 type = velset
 trigger1 = time = 700
 y = 0.05
 
 
-[State 12102, ê—pƒAƒjƒ]
+[State 12102, Dedicated anim]
 type = ChangeAnim
 trigger1 = SelfAnimExist(15906)
 trigger1 = time = 0
 value = 15906
 
-[State 12102, ”Ä—pƒAƒjƒ]
+[State 12102, Generic anim]
 type = ChangeAnim2
 trigger1 = !SelfAnimExist(15906)
 trigger1 = time = 0
 value = 1022
 
-[State 12102, ”ß–Â]
+[State 12102, Scream]
 type = PlaySnd
 trigger1 = Time > 14
 value = 4218,21+(Random%2)
 Persistent = 30
 
-[State 51220,3,‰æ–Ê‚ÌŒÅ’è]
+[State 51220,3,Screenbound]
 type = Screenbound
 trigger1 = 1
 value = 0
 
 
-[State 12102, Ÿ‚Ö]
+[State 12102, Next]
 type = ChangeState
 trigger1 = Time = 800
 value = 26212
@@ -6066,67 +6066,67 @@ movetype= H
 physics = N
 
 
-[State 1610, •]
+[State 1610, Width]
 type = PosSet
 trigger1 = time = 0
 x = 4
 y = -90
 
 
-[State 1610, •]
+[State 1610, Width]
 type = Width
 trigger1 = 1
 edge = 75,75
 player = 32,32
 
-[State 7560,ƒtƒƒtƒ]
+[State 7560,Float]
 type = velset
 trigger1 = time = 0
 y = -0.05
-[State 7560,ƒtƒƒtƒ]
+[State 7560,Float]
 type = velset
 trigger1 = time = 100
 y = 0.05
-[State 7560,ƒtƒƒtƒ]
+[State 7560,Float]
 type = velset
 trigger1 = time = 200
 y = -0.05
-[State 7560,ƒtƒƒtƒ]
+[State 7560,Float]
 type = velset
 trigger1 = time = 300
 y = 0.05
-[State 7560,ƒtƒƒtƒ]
+[State 7560,Float]
 type = velset
 trigger1 = time = 400
 y = -0.05
-[State 7560,ƒtƒƒtƒ]
+[State 7560,Float]
 type = velset
 trigger1 = time = 500
 y = 0.05
-[State 7560,ƒtƒƒtƒ]
+[State 7560,Float]
 type = velset
 trigger1 = time =600
 y = -0.05
-[State 7560,ƒtƒƒtƒ]
+[State 7560,Float]
 type = velset
 trigger1 = time = 700
 y = 0.05
 
 
-[State 1649, ê—pƒAƒjƒ]
+[State 1649, Dedicated anim]
 type = ChangeAnim
 trigger1 = SelfAnimExist(15910)
 trigger1 = time = 0
 value = 15910
 
-[State 1649, ê—pƒAƒjƒ2]
+[State 1649, Dedicated anim2]
 type = ChangeAnim2
 trigger1 = !SelfAnimExist(15910)
 trigger1 = SelfAnimExist(15915)
 trigger1 = time = 0
 value = 15915
 
-[State 1649, ”Ä—pƒAƒjƒ]
+[State 1649, Generic anim]
 type = ChangeAnim2
 trigger1 = !SelfAnimExist(15910)
 trigger1 = !SelfAnimExist(15915)
@@ -6134,7 +6134,7 @@ trigger1 = time = 0
 value = 15915
 
 
-[State 1811, Explod];œ‚æ‚è‘O‚É—ˆ‚é‰æ‘œA15910—p
+[State 1811, Explod]; Image in front of bullet, for 15910
 type = Explod
 triggerall = anim = 15910
 trigger1 = animelem = 1,= 1
@@ -6150,7 +6150,7 @@ bindtime = -1
 removetime = 12
 anim = 15912
 
-[State 1811, Explod];œ‚æ‚è‘O‚É—ˆ‚é‰æ‘œA15910—p
+[State 1811, Explod]; Image in front of bullet, for 15910
 type = Explod
 triggerall = anim = 15915
 trigger1 = animelem = 1,= 1
@@ -6166,19 +6166,19 @@ bindtime = -1
 removetime = 12
 anim = 15917
 
-[State 12102, ”ß–Â]
+[State 12102, Scream]
 type = PlaySnd
 trigger1 = Time > 14
 value = 4218,21+(Random%2)
 Persistent = 30
 
-[State 51220,3,‰æ–Ê‚ÌŒÅ’è]
+[State 51220,3,Screenbound]
 type = Screenbound
 trigger1 = 1
 value = 0
 
 
-[State 12102, Ÿ‚Ö]
+[State 12102, Next]
 type = ChangeState
 trigger1 = Time = 800
 value = 26212
@@ -6204,78 +6204,78 @@ movetype= H
 physics = N
 
 
-[State 1610, •]
+[State 1610, Width]
 type = PosSet
 trigger1 = time = 0
 x = 4
 y = -90
 
 
-[State 1610, •]
+[State 1610, Width]
 type = Width
 trigger1 = 1
 edge = 75,75
 player = 32,32
 
-[State 7560,ƒtƒƒtƒ]
+[State 7560,Float]
 type = velset
 trigger1 = time = 0
 y = -0.05
-[State 7560,ƒtƒƒtƒ]
+[State 7560,Float]
 type = velset
 trigger1 = time = 100
 y = 0.05
-[State 7560,ƒtƒƒtƒ]
+[State 7560,Float]
 type = velset
 trigger1 = time = 200
 y = -0.05
-[State 7560,ƒtƒƒtƒ]
+[State 7560,Float]
 type = velset
 trigger1 = time = 300
 y = 0.05
-[State 7560,ƒtƒƒtƒ]
+[State 7560,Float]
 type = velset
 trigger1 = time = 400
 y = -0.05
-[State 7560,ƒtƒƒtƒ]
+[State 7560,Float]
 type = velset
 trigger1 = time = 500
 y = 0.05
-[State 7560,ƒtƒƒtƒ]
+[State 7560,Float]
 type = velset
 trigger1 = time =600
 y = -0.05
-[State 7560,ƒtƒƒtƒ]
+[State 7560,Float]
 type = velset
 trigger1 = time = 700
 y = 0.05
 
 
-[State 12102, ê—pƒAƒjƒ]
+[State 12102, Dedicated anim]
 type = ChangeAnim2
 trigger1 = SelfAnimExist(18300)
 trigger1 = time = 0
 value = 45116
 
-[State 12102, ”Ä—pƒAƒjƒ]
+[State 12102, Generic anim]
 type = ChangeAnim2
 trigger1 = !SelfAnimExist(18300)
 trigger1 = time = 0
 value = 45116
 
-[State 12102, ”ß–Â]
+[State 12102, Scream]
 type = PlaySnd
 trigger1 = Time > 14
 value = 4218,21+(Random%2)
 Persistent = 30
 
-[State 51220,3,‰æ–Ê‚ÌŒÅ’è]
+[State 51220,3,Screenbound]
 type = Screenbound
 trigger1 = 1
 value = 0
 
 
-[State 12102, Ÿ‚Ö]
+[State 12102, Next]
 type = ChangeState
 trigger1 = Time = 800
 value = 26212
@@ -6376,7 +6376,7 @@ trigger1= anim=4111 && backedgedist<-25 || frontedgedist<-25
 
 ;------------------------------------------------------------
 ;
-;                         ‚Ü‚ñ‚®‚è
+;                         manguri
 ;
 ;-------------------------------------------------------------
 [Statedef 19001]
@@ -6489,14 +6489,14 @@ physics = N
 velset = 0,0
 ctrl = 0
 
-[State 11990, ’Í‚ñ‚¾‘Šè‚ÌƒXƒe[ƒg•ÏX]
+[State 11990, Target state change]
 type = TargetState
 trigger1 = NumTarget
 trigger1 = Time = 0
 value = 11980
 
 
-[State 11990,1];ƒXƒe[ƒg‚ğ•ÏX
+[State 11990,1]; State change
 type = ChangeState
 trigger1 = time>1
 value =  12060
@@ -6513,14 +6513,14 @@ velset=0,0
 sprpriority=1
 
 
-[State 1610, ’Í‚ñ‚¾‘Šè‚ÌƒXƒe[ƒg•ÏX]
+[State 1610, Target state change]
 type = TargetState
 trigger1 = NumTarget
 trigger1 = Time = 0
 value = 12160
 
 
-[State 9001, ƒLƒƒƒbƒ`]
+[State 9001, Catch]
 type = PlaySnd
 trigger1 = time = 0
 value = 8150,4
@@ -6550,7 +6550,7 @@ postype=p1
 facing=-1
 ownpal=1
 
-[State 12000, Ÿ‚Ö]
+[State 12000, Next]
 type = ChangeState
 trigger1 = Time = 80
 value = 12660
@@ -6586,24 +6586,24 @@ type = PlaySnd
 trigger1 = time = 30
 value = 4,4
 
-[State 1610, •]
+[State 1610, Width]
 type = Width
 trigger1 = 1
 edge = 75,75
 player = 32,32
 
-[State 1610, •]
+[State 1610, Width]
 type = PosSet
 trigger1 = time = 0
 x = 15
 
-[State 1610, ’Í‚ñ‚¾‘Šè‚ÌˆÊ’u]
+[State 1610, Grabbed opponent position]
 type = TargetBind
 trigger1 = time = 0
 pos = ceil(15*const(size.xscale)),ceil(-50*const(size.yscale))
 ;pos = 15, -50
 
-[State 9000, ƒxƒbƒh]
+[State 9000, Bed]
 type = Explod
 trigger1 = time = 0
 anim = 12001
@@ -6640,7 +6640,7 @@ facing=-1
 ownpal=1
 
 
-[State 12001, Ÿ‚Ö]
+[State 12001, Next]
 type = ChangeState
 trigger1 = Time = 300
 value = 12062
@@ -6666,7 +6666,7 @@ type = targetstate
 trigger1 = time = 0
 value = 12162
 
-[State 1610, ’Í‚ñ‚¾‘Šè‚ÌˆÊ’u]
+[State 1610, Grabbed opponent position]
 type = TargetBind
 trigger1 = time = 0
 pos = 0,ceil(-38*const(size.yscale))
@@ -6676,8 +6676,8 @@ type = PlaySnd
 trigger1 = time = 0
 value = 0,800
 
-;----------“§‰ß---------------------
-[State 6001, “§‰ßƒXƒCƒbƒ`—p]
+;----------Transparent---------------------
+[State 6001, Transparency switch]
 type = Varadd
 triggerall = Var(49) <= 1
 trigger1 = command = "holdfwd"
@@ -6686,24 +6686,24 @@ trigger3 = command = "holdup"
 trigger4 = command = "holddown"
 var(49) = 1
 
-[State 6001, “§‰ßƒXƒCƒbƒ`—p]
+[State 6001, Transparency switch]
 type = VarSet
 trigger1 = Var(49) >= 2
 var(49) = 0
 
-[State 6001, “§‰ß]
+[State 6001, Transparent]
 type = Trans
 trigger1 = Var(49) = 1
 trans = addalpha
 alpha = 100, 120
 
-[State 6001, •s“§‰ß]
+[State 6001, Opaque]
 type = Trans
 trigger1 = Var(49) = 0
 trans = none
 ;-------------------------------
 
-[State 6064, ‘Ì—ÍŒ¸­]
+[State 6064, Life decrease]
 type = targetLifeAdd
 trigger1 =  time >= 60
 value = -50
@@ -6736,7 +6736,7 @@ trigger1 = time = 0
 value = 12163
 
 
-[State 1610, ’Í‚ñ‚¾‘Šè‚ÌˆÊ’u]
+[State 1610, Grabbed opponent position]
 type = TargetBind
 trigger1 = time = 0
 pos = 0,ceil(-38*const(size.yscale))
@@ -6769,8 +6769,8 @@ sprpriority = -2
 ontop = 0
 removetime = 3
 
-;----------“§‰ß---------------------
-[State 6001, “§‰ßƒXƒCƒbƒ`—p]
+;----------Transparent---------------------
+[State 6001, Transparency switch]
 type = Varadd
 triggerall = Var(49) <= 1
 trigger1 = command = "holdfwd"
@@ -6779,18 +6779,18 @@ trigger3 = command = "holdup"
 trigger4 = command = "holddown"
 var(49) = 1
 
-[State 6001, “§‰ßƒXƒCƒbƒ`—p]
+[State 6001, Transparency switch]
 type = VarSet
 trigger1 = Var(49) >= 2
 var(49) = 0
 
-[State 6001, “§‰ß]
+[State 6001, Transparent]
 type = Trans
 trigger1 = Var(49) = 1
 trans = addalpha
 alpha = 100, 120
 
-[State 6001, •s“§‰ß]
+[State 6001, Opaque]
 type = Trans
 trigger1 = Var(49) = 0
 trans = none
@@ -6824,7 +6824,7 @@ trigger1 = time = 0
 value = 12164
 
 
-[State 1610, ’Í‚ñ‚¾‘Šè‚ÌˆÊ’u]
+[State 1610, Grabbed opponent position]
 type = TargetBind
 trigger1 = time = 0
 pos = 0,ceil(-38*const(size.yscale))
@@ -6852,8 +6852,8 @@ sprpriority = -2
 ontop = 0
 removetime = 3
 
-;----------“§‰ß---------------------
-[State 6001, “§‰ßƒXƒCƒbƒ`—p]
+;----------Transparent---------------------
+[State 6001, Transparency switch]
 type = Varadd
 triggerall = Var(49) <= 1
 trigger1 = command = "holdfwd"
@@ -6862,18 +6862,18 @@ trigger3 = command = "holdup"
 trigger4 = command = "holddown"
 var(49) = 1
 
-[State 6001, “§‰ßƒXƒCƒbƒ`—p]
+[State 6001, Transparency switch]
 type = VarSet
 trigger1 = Var(49) >= 2
 var(49) = 0
 
-[State 6001, “§‰ß]
+[State 6001, Transparent]
 type = Trans
 trigger1 = Var(49) = 1
 trans = addalpha
 alpha = 100, 120
 
-[State 6001, •s“§‰ß]
+[State 6001, Opaque]
 type = Trans
 trigger1 = Var(49) = 0
 trans = none
@@ -6907,7 +6907,7 @@ trigger1 = time = 0
 value = 12165
 
 
-[State 1610, ’Í‚ñ‚¾‘Šè‚ÌˆÊ’u]
+[State 1610, Grabbed opponent position]
 type = TargetBind
 trigger1 = time = 0
 pos = 0,ceil(-38*const(size.yscale))
@@ -6935,8 +6935,8 @@ sprpriority = -2
 ontop = 0
 removetime = 3
 
-;----------“§‰ß---------------------
-[State 6001, “§‰ßƒXƒCƒbƒ`—p]
+;----------Transparent---------------------
+[State 6001, Transparency switch]
 type = Varadd
 triggerall = Var(49) <= 1
 trigger1 = command = "holdfwd"
@@ -6945,18 +6945,18 @@ trigger3 = command = "holdup"
 trigger4 = command = "holddown"
 var(49) = 1
 
-[State 6001, “§‰ßƒXƒCƒbƒ`—p]
+[State 6001, Transparency switch]
 type = VarSet
 trigger1 = Var(49) >= 2
 var(49) = 0
 
-[State 6001, “§‰ß]
+[State 6001, Transparent]
 type = Trans
 trigger1 = Var(49) = 1
 trans = addalpha
 alpha = 100, 120
 
-[State 6001, •s“§‰ß]
+[State 6001, Opaque]
 type = Trans
 trigger1 = Var(49) = 0
 trans = none
@@ -6989,7 +6989,7 @@ trigger1 = time = 0
 value = 12166
 
 
-[State 1610, ’Í‚ñ‚¾‘Šè‚ÌˆÊ’u]
+[State 1610, Grabbed opponent position]
 type = TargetBind
 trigger1 = time = 0
 pos = 0,ceil(-38*const(size.yscale))
@@ -7059,8 +7059,8 @@ sprpriority = -2
 ontop = 0
 removetime = 20
 
-;----------“§‰ß---------------------
-[State 6001, “§‰ßƒXƒCƒbƒ`—p]
+;----------Transparent---------------------
+[State 6001, Transparency switch]
 type = Varadd
 triggerall = Var(49) <= 1
 trigger1 = command = "holdfwd"
@@ -7069,18 +7069,18 @@ trigger3 = command = "holdup"
 trigger4 = command = "holddown"
 var(49) = 1
 
-[State 6001, “§‰ßƒXƒCƒbƒ`—p]
+[State 6001, Transparency switch]
 type = VarSet
 trigger1 = Var(49) >= 2
 var(49) = 0
 
-[State 6001, “§‰ß]
+[State 6001, Transparent]
 type = Trans
 trigger1 = Var(49) = 1
 trans = addalpha
 alpha = 100, 120
 
-[State 6001, •s“§‰ß]
+[State 6001, Opaque]
 type = Trans
 trigger1 = Var(49) = 0
 trans = none
@@ -7106,29 +7106,29 @@ type = Playerpush
 trigger1 = 1
 value = 0
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 12006
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 12017
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 12018
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 12019
 
 
 
-[State 1642, ‰º”¼g]
+[State 1642, Lower body]
 type = null;Explod
 triggerall = PrevStateNo = 12013
 trigger1 = time = 0
@@ -7178,7 +7178,7 @@ elem = 1
 
 
 
-;[State 1610, ’Í‚ñ‚¾‘Šè‚ÌˆÊ’u]
+;[State 1610, Grabbed opponent position]
 ;type = TargetBind
 ;trigger1 = time = 0
 ;pos = 0,ceil(-50*const(size.yscale))
@@ -7197,8 +7197,8 @@ sprpriority = -1
 ontop = 0
 removetime = 150
 
-;----------“§‰ß---------------------
-[State 6001, “§‰ßƒXƒCƒbƒ`—p]
+;----------Transparent---------------------
+[State 6001, Transparency switch]
 type = Varadd
 triggerall = PrevStateNo = 12066
 triggerall = Var(49) <= 1
@@ -7208,12 +7208,12 @@ trigger3 = command = "holdup"
 trigger4 = command = "holddown"
 var(49) = 1
 
-[State 6001, “§‰ßƒXƒCƒbƒ`—p]
+[State 6001, Transparency switch]
 type = VarSet
 trigger1 = Var(49) >= 2
 var(49) = 0
 
-[State 6001, “§‰ßƒXƒCƒbƒ`—p]
+[State 6001, Transparency switch]
 type = VarSet
 triggerall = time = 145
 triggerall = numenemy
@@ -7224,19 +7224,19 @@ trigger2 = enemynear(0),Life <= 0
 trigger2 = enemynear(1),Life <= 0
 var(49) = 0
 
-[State 6001, “§‰ßƒXƒCƒbƒ`—p]
+[State 6001, Transparency switch]
 type = VarSet
 trigger1 = time = 150
 var(49) = 0
 
-[State 6001, “§‰ß]
+[State 6001, Transparent]
 type = Trans
 triggerall = PrevStateNo = 12066
 trigger1 = Var(49) = 1
 trans = addalpha
 alpha = 100, 120
 
-[State 6001, •s“§‰ß]
+[State 6001, Opaque]
 type = Trans
 triggerall = PrevStateNo = 12066
 trigger1 = Var(49) = 0
@@ -7320,38 +7320,38 @@ type=Posset
 trigger1 = time = 0
 y = 0
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 12006
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 12017
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 12117
 
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 12018
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 12019
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 12001
 
-[State 1610, ’Í‚ñ‚¾‘Šè‚ÌˆÊ’u]
+[State 1610, Grabbed opponent position]
 type = TargetBind
 trigger1 = time = 0
 pos = ceil(70*const(size.xscale)),ceil(0*const(size.yscale))
@@ -7362,30 +7362,30 @@ type = targetstate
 trigger1 = time = 0
 value = 12105
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 12031
 
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 12041
 
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 12043
 
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 12051
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 12053
@@ -7433,7 +7433,7 @@ type=Posset
 trigger1 = time = 0
 y = 0
 
-[State 1610, ’Í‚ñ‚¾‘Šè‚ÌˆÊ’u]
+[State 1610, Grabbed opponent position]
 type = TargetBind
 trigger1 = time = 0
 pos = ceil(70*const(size.xscale)),ceil(-50*const(size.yscale))
@@ -7454,7 +7454,7 @@ anim = 6616
 removetime = -1
 
 
-[State 9000, ƒxƒbƒh]
+[State 9000, Bed]
 type = Explod
 trigger1 = time = 0
 trigger1 = NumExplod(6619) = 0
@@ -7472,37 +7472,37 @@ sprpriority = 2
 
 
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 35
 ID = 12006
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 12017
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 12117
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 35
 ID = 12018
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 35
 ID = 12019
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 35
 ID = 12001
 
-[State 1610, ’Í‚ñ‚¾‘Šè‚ÌˆÊ’u]
+[State 1610, Grabbed opponent position]
 type = TargetBind
 trigger1 = time = 35
 pos = ceil(70*const(size.xscale)),ceil(0*const(size.yscale))
@@ -7513,30 +7513,30 @@ type = targetstate
 trigger1 = time = 0
 value = 12170
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 35
 ID = 12031
 
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 35
 ID = 12041
 
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 35
 ID = 12043
 
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 35
 ID = 12051
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 35
 ID = 12053
@@ -7552,7 +7552,7 @@ ID = 12053
 ;value = 4,7
 
 
-[State 4010, I‚í‚ç‚È‚¢]
+[State 4010, Does not end]
 type = AssertSpecial
 trigger1 = 1
 flag = roundnotover
@@ -7642,7 +7642,7 @@ type = targetstate
 trigger1 = time = 230
 value = 5150
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 230
 ID = 6617
@@ -7677,61 +7677,61 @@ trigger1 = time = 0
 y = 0
 
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 35
 ID = 12006
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 12017
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 12117
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 35
 ID = 12018
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 35
 ID = 12019
 
-[State 1610, ’Í‚ñ‚¾‘Šè‚ÌˆÊ’u]
+[State 1610, Grabbed opponent position]
 type = TargetBind
 trigger1 = time = 0
 pos = ceil(70*const(size.xscale)),ceil(-50*const(size.yscale))
 ;pos = 70, 0
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 35
 ID = 12031
 
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 35
 ID = 12041
 
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 35
 ID = 12043
 
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 35
 ID = 12051
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 35
 ID = 12053
@@ -7747,7 +7747,7 @@ ID = 12053
 ;value = 4,7
 
 
-[State 4010, I‚í‚ç‚È‚¢]
+[State 4010, Does not end]
 type = AssertSpecial
 trigger1 = 1
 flag = roundnotover
@@ -7779,7 +7779,7 @@ ctrl = 1
 
 
 
-;ƒ}ƒ“ƒOƒŠ‘Šè-------------------------------------------------------------------------------
+;Manguri opponent-------------------------------------------------------------------------------
 [Statedef 12160]
 type    = L
 movetype= H
@@ -7800,7 +7800,7 @@ Trigger1 = Time = 0
 value=5300
 
 
-[State 12100, Ÿ‚Ö]
+[State 12100, Next]
 type = ChangeState
 trigger1 = Time = 80
 value = 12161
@@ -7823,12 +7823,12 @@ type=changeanim
 Trigger1 = Time = 0
 value=5110
 
-[State 51220,3,‰æ–Ê‚ÌŒÅ’è]
+[State 51220,3,Screenbound]
 type = Screenbound
 trigger1 = 1
 value = 0
 
-[State 1610, •]
+[State 1610, Width]
 type = Width
 trigger1 = 1
 edge = 75,75
@@ -7849,19 +7849,19 @@ type = ScreenBound
 trigger1 = 1
 movecamera = 0,0
 
-[State 6206, ‚â‚ç‚ê‘¤‚Éê—pair—L‚è]
+[State 6206, Hitstun side has dedicated air]
 type = ChangeAnim
 Trigger1 = Time = 0
 Trigger1 = SelfAnimExist(180110) = 1
 value = 180110
 
-[State 6206, ‚â‚ç‚ê‘¤‚Éê—pair‚ª‚È‚¢ê‡]
+[State 6206, When hitstun side has no dedicated air]
 type = ChangeAnim2
 Trigger1 = Time = 0
 Trigger1 = SelfAnimExist(180110) = 0
 value = 12249
 
-[State 6206, ‚â‚ç‚ê‘¤‚Éê—pŠG‚ª‚È‚¢ê‡]
+[State 6206, When hitstun side has no dedicated graphic]
 type = ChangeAnim2
 Trigger1 = Time = 0
 Trigger1 = SelfAnimExist(180110) = 0
@@ -7888,19 +7888,19 @@ type = ScreenBound
 trigger1 = 1
 movecamera = 0,0
 
-[State 6206, ‚â‚ç‚ê‘¤‚Éê—pair—L‚è]
+[State 6206, Hitstun side has dedicated air]
 type = ChangeAnim
 Trigger1 = Time = 0
 Trigger1 = SelfAnimExist(180111) = 1
 value = 180111
 
-[State 6206, ‚â‚ç‚ê‘¤‚Éê—pair‚ª‚È‚¢ê‡]
+[State 6206, When hitstun side has no dedicated air]
 type = ChangeAnim2
 Trigger1 = Time = 0
 Trigger1 = SelfAnimExist(180111) = 0
 value = 12250
 
-[State 6206, ‚â‚ç‚ê‘¤‚Éê—pŠG‚ª‚È‚¢ê‡]
+[State 6206, When hitstun side has no dedicated graphic]
 type = ChangeAnim2
 Trigger1 = Time = 0
 Trigger1 = SelfAnimExist(180111) = 0
@@ -7913,7 +7913,7 @@ trigger1 = animelem = 4
 value = 4218, 21 + random%2
 channel = 0
 
-[State 6064, ‘Ì—ÍŒ¸­]
+[State 6064, Life decrease]
 type = LifeAdd
 trigger1 = animelem = 4
 value = -1
@@ -7933,19 +7933,19 @@ type = ScreenBound
 trigger1 = 1
 movecamera = 0,0
 
-[State 6206, ‚â‚ç‚ê‘¤‚Éê—pair—L‚è]
+[State 6206, Hitstun side has dedicated air]
 type = ChangeAnim
 Trigger1 = Time = 0
 Trigger1 = SelfAnimExist(180112) = 1
 value = 180112
 
-[State 6206, ‚â‚ç‚ê‘¤‚Éê—pair‚ª‚È‚¢ê‡]
+[State 6206, When hitstun side has no dedicated air]
 type = ChangeAnim2
 Trigger1 = Time = 0
 Trigger1 = SelfAnimExist(180112) = 0
 value = 12251
 
-[State 6206, ‚â‚ç‚ê‘¤‚Éê—pŠG‚ª‚È‚¢ê‡]
+[State 6206, When hitstun side has no dedicated graphic]
 type = ChangeAnim2
 Trigger1 = Time = 0
 Trigger1 = SelfAnimExist(180112) = 0
@@ -7959,7 +7959,7 @@ trigger1 = random%2 = 0
 value = 4218, 21 + random%2
 channel = 0
 
-[State 6064, ‘Ì—ÍŒ¸­]
+[State 6064, Life decrease]
 type = LifeAdd
 trigger1 = animelem = 4
 value = -1
@@ -7979,19 +7979,19 @@ type = ScreenBound
 trigger1 = 1
 movecamera = 0,0
 
-[State 6206, ‚â‚ç‚ê‘¤‚Éê—pair—L‚è]
+[State 6206, Hitstun side has dedicated air]
 type = ChangeAnim
 Trigger1 = Time = 0
 Trigger1 = SelfAnimExist(180113) = 1
 value = 180113
 
-[State 6206, ‚â‚ç‚ê‘¤‚Éê—pair‚ª‚È‚¢ê‡]
+[State 6206, When hitstun side has no dedicated air]
 type = ChangeAnim2
 Trigger1 = Time = 0
 Trigger1 = SelfAnimExist(180113) = 0
 value = 12252
 
-[State 6206, ‚â‚ç‚ê‘¤‚Éê—pŠG‚ª‚È‚¢ê‡]
+[State 6206, When hitstun side has no dedicated graphic]
 type = ChangeAnim2
 Trigger1 = Time = 0
 Trigger1 = SelfAnimExist(180113) = 0
@@ -8005,7 +8005,7 @@ trigger1 = random%4 = 0
 value = 4218, 21 + random%2
 channel = 0
 
-[State 6064, ‘Ì—ÍŒ¸­]
+[State 6064, Life decrease]
 type = LifeAdd
 trigger1 = animelem = 4
 value = -1
@@ -8025,19 +8025,19 @@ type = ScreenBound
 trigger1 = 1
 movecamera = 0,0
 
-[State 6206, ‚â‚ç‚ê‘¤‚Éê—pair—L‚è]
+[State 6206, Hitstun side has dedicated air]
 type = ChangeAnim
 Trigger1 = Time = 0
 Trigger1 = SelfAnimExist(180114) = 1
 value = 180114
 
-[State 6206, ‚â‚ç‚ê‘¤‚Éê—pair‚ª‚È‚¢ê‡]
+[State 6206, When hitstun side has no dedicated air]
 type = ChangeAnim2
 Trigger1 = Time = 0
 Trigger1 = SelfAnimExist(180114) = 0
 value = 12253
 
-[State 6206, ‚â‚ç‚ê‘¤‚Éê—pŠG‚ª‚È‚¢ê‡]
+[State 6206, When hitstun side has no dedicated graphic]
 type = ChangeAnim2
 Trigger1 = Time = 0
 Trigger1 = SelfAnimExist(180114) = 0
@@ -8049,24 +8049,24 @@ type = PlaySnd
 trigger1 = animelem = 8
 value = 11,0
 
-[State 6064, ‘Ì—ÍŒ¸­]
+[State 6064, Life decrease]
 type = LifeAdd
 trigger1 = AnimElem = 8
 value = -80
 kill = 0
 
-[State 6064, ‘Ì—ÍŒ¸­]
+[State 6064, Life decrease]
 type = LifeAdd
 trigger1 = AnimElem = 18
 value = -25
 kill = 0
 
-[State 6064, ‘Ì—ÍŒ¸­]
+[State 6064, Life decrease]
 type = LifeAdd
 trigger1 = AnimElem = 26
 value = -25
 
-[State 6064, ‘Ì—ÍŒ¸­]
+[State 6064, Life decrease]
 type = Lifeset
 trigger1 = AnimElem = 26
 trigger1= Random < 500
@@ -8184,28 +8184,28 @@ type = ScreenBound
 trigger1 = 1
 movecamera = 0,0
 
-[State 1648, ƒGƒtƒFƒNƒgÁ‹]
+[State 1648, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 36643
 
-[State 1648, ƒGƒtƒFƒNƒgÁ‹]
+[State 1648, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 36648
 
-[State 1648, ƒGƒtƒFƒNƒgÁ‹]
+[State 1648, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 36698
 
-[State 1699, ƒAƒjƒ]
+[State 1699, Anim]
 type = ChangeAnim
 trigger1 = SelfAnimExist(27319568) != 0
 trigger1 = anim != 27319568
 value = 27319568
 
-[State 1699, ƒAƒjƒ]
+[State 1699, Anim]
 type = ChangeAnim
 triggerall = SelfAnimExist(27319568) = 0
 trigger1 = SelfAnimExist(36800) != 0
@@ -8215,7 +8215,7 @@ trigger2 = anim = 36800
 value = 36800
 elem = 2
 
-[State 1699, ƒAƒjƒ]
+[State 1699, Anim]
 type = ChangeAnim
 triggerall = SelfAnimExist(27319568) = 0
 trigger1 = SelfAnimExist(36800) = 0
@@ -8226,7 +8226,7 @@ trigger2 = anim = 3000732
 value = 3000732
 elem = 2
 
-[State 1699, ˆÊ’u]
+[State 1699, Position]
 type = Posset
 triggerall = time = 0
 trigger1 =anim = 3000732
@@ -8234,7 +8234,7 @@ trigger2 = anim = 36800
 X = 6
 Y = -165
 
-[State 1699, ˆÊ’u]
+[State 1699, Position]
 type = Posset
 triggerall = time = 0
 trigger1 =anim = 27319568
@@ -8249,34 +8249,34 @@ physics = N
 velset = 0,0
 SprPriority = -3
 
-[State 51220,3,‰æ–Ê‚ÌŒÅ’è]
+[State 51220,3,Screenbound]
 type = Screenbound
 trigger1 = 1
 value = 0
 
-[State 1648, ƒGƒtƒFƒNƒgÁ‹]
+[State 1648, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 36643
 
-[State 1648, ƒGƒtƒFƒNƒgÁ‹]
+[State 1648, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 36648
 
-[State 1699, ê—pƒAƒjƒ]
+[State 1699, Dedicated anim]
 type = ChangeAnim
 trigger1 = SelfAnimExist(36699)
 trigger1 = time = 0
 value = 36699
 
-[State 1695, ”Ä—pƒAƒjƒ]
+[State 1695, Generic anim]
 type = ChangeAnim
 trigger1 = !SelfAnimExist(36699)
 trigger1 = time = 0
 value = 5110
 
-[State 1695, ‘O–ÊƒGƒtƒFƒNƒg]
+[State 1695, Front effect]
 type = Explod
 trigger1 = SelfAnimExist(36698)
 trigger1 = Time = 0

@@ -61,13 +61,13 @@ ctrl=0
 velset=0,0
 sprpriority=1
 
-[State 9001, キャッチ]
+[State 9001, Catch]
 type = PlaySnd
 trigger1 = time = 0
 value = 8150,4
 
 
-[State 1610, 掴んだ相手の位置]
+[State 1610, Grabbed opponent position]
 type = TargetBind
 trigger1 = time = 0
 pos = ceil(50*const(size.xscale)),ceil(0*const(size.yscale))
@@ -95,7 +95,7 @@ trigger1 = time = 0
 value = 8200,1
 
 
-[State 9000, Explodドリル1]
+[State 9000, Explod drill 1]
 type = Explod
 trigger1 = time = 30
 anim = 9102
@@ -112,7 +112,7 @@ ownpal = 1
 removeongethit = 1
 
 
-[State 9000, 次へ]
+[State 9000, Next]
 type = ChangeState
 trigger1 = Time = 74
 value = 9001
@@ -125,12 +125,12 @@ velset = 0,0
 anim=9100
 ctrl = 0
 
-[State 1610, 掴んだ相手の位置]
+[State 1610, Grabbed opponent position]
 type = TargetFacing
 trigger1 = time = 0
 value = -1
 
-[State 1610, 掴んだ相手の位置]
+[State 1610, Grabbed opponent position]
 type = TargetBind
 trigger1 = time = 0
 pos = ceil(70*const(size.xscale)),ceil(-30*const(size.yscale))
@@ -141,7 +141,7 @@ type=PosSet
 trigger1 = time = 0
 y = -20
 
-[State 9001, 飛沫]
+[State 9001, Splash]
 type = Explod
 trigger1 = time = 0
 anim = 9108
@@ -157,7 +157,7 @@ ownpal = 1
 removeongethit = 1
 
 
-[State 9001, ドリル]
+[State 9001, Drill]
 type = PlaySnd
 trigger1 = Time > 4
 value = 8150,2+(Random%2)
@@ -205,7 +205,7 @@ trigger1 = time = 941
 value = 8200,2
 
 
-[State 9001, 飛沫]
+[State 9001, Splash]
 type = Explod
 trigger1 = time = 0
 anim = 9107
@@ -220,7 +220,7 @@ supermovetime = 30
 ownpal = 1
 removeongethit = 1
 
-[State 9001, 尿]
+[State 9001, Urine]
 type = Explod
 trigger1 = time = 700
 anim = 9104
@@ -234,17 +234,17 @@ sprpriority = 6
 supermovetime = 30
 ownpal = 1
 removeongethit = 1
-[State 9001, 尿]
+[State 9001, Urine]
 type = PlaySnd
 trigger1 = time = 700
 value = 8200,0
-[State 9001, 尿]
+[State 9001, Urine]
 type = PlaySnd
 trigger1 = time = 750
 value = 4,6
 
 
-[State 9001, Explodドリル2]
+[State 9001, Explod drill 2]
 type = Explod
 trigger1 = time = 910
 anim = 9106
@@ -264,12 +264,12 @@ type = PlaySnd
 trigger1 = time = 910
 value = 4,20
 
-[State 9100, 落下]
+[State 9100, Fall]
 type=PosAdd
 trigger1 = time = 910
 y = 20
 
-[State 9000, 次へ]
+[State 9000, Next]
 type = ChangeState
 trigger1 = Time = 970
 value = 9002
@@ -283,12 +283,12 @@ physics = N
 velset=0,0
 ctrl=0
 
-[State 9103, エフェクト消去]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 99
 ID = 9104
 
-[State 9002, 終了]
+[State 9002, End]
 type = ChangeState
 trigger1 = Time = 100
 value = 0
@@ -304,7 +304,7 @@ velset=0,0
 ctrl=0
 
 
-[State 1610, 幅]
+[State 1610, Width]
 type = Width
 trigger1 = 1
 edge = 64,64
@@ -318,7 +318,7 @@ value=5300
 
 
 
-[State 9100, 次へ]
+[State 9100, Next]
 type = ChangeState
 trigger1 = Time = 90
 value = 9102
@@ -331,41 +331,41 @@ velset = 0,0
 ctrl = 0
 
 
-[State 1610, 幅]
+[State 1610, Width]
 type = Width
 trigger1 = 1
 edge = 94,94
 player = 32,32
 
 
-[State 51220,3,画面の固定]
+[State 51220,3,Screenbound]
 type = Screenbound
 trigger1 = 1
 value = 0
 
 
 
-[State 9100, 専用アニメ]
+[State 9100, Dedicated anim]
 type = ChangeAnim
 trigger1 = SelfAnimExist(15906)
 trigger1 = time = 0
 value = 15906
-[State 9100, 専用アニメ]
+[State 9100, Dedicated anim]
 type = AngleDraw
 trigger1 = 1
-[State 9100, 専用アニメ]
+[State 9100, Dedicated anim]
 type = AngleSet
 trigger1 = time = 0
 value = 180
 
 
-[State 9100, 汎用アニメ]
+[State 9100, Generic anim]
 type = ChangeAnim2
 trigger1 = !SelfAnimExist(15906)
 trigger1 = time = 0
 value = 9209
 
-[State 6064, 体力減少]
+[State 6064, Life decrease]
 type = LifeAdd
 trigger1 = Time = 0 || Time = 100 || Time = 200 || Time = 300 || Time = 400
 trigger2 = Time = 50 || Time = 150 || Time = 250 || Time = 350 || Time = 450
@@ -375,12 +375,12 @@ value = -10
 kill = 0
 
 
-[State 6064, 体力減少]
+[State 6064, Life decrease]
 type = LifeAdd
 trigger1 = Time = 700
 value = -100
 
-[State 6064, ゲージ回復]
+[State 6064, Gauge recovery]
 type = poweradd
 trigger1 = Time = 0 || Time = 100 || Time = 200 || Time = 300 || Time = 400
 trigger2 = Time = 50 || Time = 150 || Time = 250 || Time = 350 || Time = 450
@@ -389,13 +389,13 @@ trigger4 = Time = 550 || Time = 650 || Time = 750 || Time = 850 || Time = 950
 value = -100
 
 
-[State 9102, 長い悲鳴]
+[State 9102, Long scream]
 type = PlaySnd
 trigger1 = Alive
 trigger1 = Time = 700
 value = 11,0
 
-[State 9102, 悲鳴]
+[State 9102, Scream]
 type = PlaySnd
 trigger1 = Time > 23
 value = 4218,21+(Random%2)
@@ -403,7 +403,7 @@ Persistent = 50
 
 
 
-[State 9100, 次へ]
+[State 9100, Next]
 type = ChangeState
 trigger1 = Time = 900
 value = 9103
@@ -422,17 +422,17 @@ x = 50
 y = 0
 
 
-[State 9103, エフェクト消去]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 36643
 
-[State 9103, エフェクト消去]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 36648
 
-[State 9103, エフェクト消去]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 9214

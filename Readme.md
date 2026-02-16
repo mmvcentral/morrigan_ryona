@@ -122,23 +122,21 @@ Caution
 2015/7/28
 
 Commands
-Felicia　　　 A+X
-Q-BEE (enhanced performance)　 　　 B+Y
-Rei-Rei　　　 ↓↓C
-Morrigan front　　↓↓X
-Morrigan back　　　　 ↓↓A
-Barrette　　　　 ↓↓B
-Lilith (enhanced performance)　　　↓↓Y
+Felicia          A+X
+Q-BEE (enhanced performance)    B+Y
+Rei-Rei          ↓↓C
+Morrigan front   ↓↓X
+Morrigan back    ↓↓A
+Barrette         ↓↓B
+Lilith (enhanced performance)   ↓↓Y
 
 1 gauge
-↓↓ ＋ z Do you have manguri gaeshi, sff12250?
-If you have manguri anime 180110 series, if not, try 5011...
-
+↓↓ + z - Manguri Gaeshi (requires sff12250)
+If you have manguri anime 180110 series, use it; otherwise try 5011...
 50% chance of KO. Forced KO if HP is 0.
 
-↓↓ + a Random minion attack (Doggystyle, Cowgirl, or Chausu).
-If there is a special attack
-there is a 50% chance of an Impregnation KO. If HP is 0, an Impregnation KO is forced.
+↓↓ + a - Random minion attack (Doggystyle, Cowgirl, or Chausu).
+If there is a special attack, there is a 50% chance of an Impregnation KO. If HP is 0, an Impregnation KO is forced.
 When an Impregnation KO occurs, if there is an Impregnation KO type attack, it will transition to an Impregnation KO.
 (27319568 or 36800 or 3000732)
 

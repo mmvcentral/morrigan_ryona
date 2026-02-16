@@ -1,0 +1,72 @@
+================================================================================
+                    RYONA MORRIGAN - COMMANDS & CHARACTERS
+================================================================================
+
+CAUTION
+  ★ It is unknown whether your version of Ryona Morrigan is the latest,
+    so the patch may not work properly due to version differences.
+  ★ This is an unofficial patch modification. Please do not contact the
+    creator of Ryona Morrigan about this patch.
+
+2015/7/28
+
+--------------------------------------------------------------------------------
+CHARACTER COMMANDS (Basic)
+--------------------------------------------------------------------------------
+
+● Felicia          A+X
+● Q-BEE            B+Y
+● Rei-Rei          ↓↓C
+● Morrigan front   ↓↓X
+● Morrigan back    ↓↓A
+● Barrette         ↓↓B
+● Lilith           ↓↓Y
+
+--------------------------------------------------------------------------------
+CHARACTER COMMANDS (Enhanced / Ryona_Morrigan3)
+--------------------------------------------------------------------------------
+
+● Felicia          A+X
+★ Q-BEE (enhanced performance)    B+Y
+● Rei-Rei          ↓↓C
+★ Morrigan front (removed)         ↓↓X
+● Morrigan back    ↓↓A
+● Barrette         ↓↓B
+★ Lilith (enhanced performance)   ↓↓Y
+
+  ★ = Modified in Ryona_Morrigan3
+
+--------------------------------------------------------------------------------
+1 GAUGE SPECIALS
+--------------------------------------------------------------------------------
+
+↓↓ + z  Manguri Gaeshi
+        Requires sff12250. If you have manguri anime 180110 series, use it;
+        otherwise try 5011...
+        50% chance of Impregnation KO. Forced Impregnation KO if HP is 0.
+
+↓↓ + a  Random minion hitstun (Doggystyle, Cowgirl, or Chausu).
+        If dedicated hitstun exists,
+        50% chance of Impregnation KO. Forced Impregnation KO if HP is 0.
+
+When Impregnation KO occurs, if Impregnation KO type hitstun exists,
+it will transition to Impregnation KO.
+(27319568 or 36800 or 3000732)
+
+--------------------------------------------------------------------------------
+RYONA_MORRIGAN3 UPDATES
+--------------------------------------------------------------------------------
+
+★ Morrigan front
+  Command only removed
+
+★ Q-BEE
+  Oviposition-style performance
+
+★ Lilith
+  Triangle horse removed & vibrator performance (3 patterns)
+
+★ Morrigan back
+  Doggy style animation & bed color Act compatible
+
+★ Other bug fixes

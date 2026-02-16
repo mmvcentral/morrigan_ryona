@@ -1,4 +1,4 @@
-; Œ¢UŒ‚S
+; Dog attack S
 [Statedef 6077]
 type    = S
 movetype= A
@@ -19,17 +19,17 @@ type = PlaySnd
 trigger1 = AnimElem = 2
 value = 6060,0
 
-[State 6067]        ;Œ¢“oê
+[State 6067]        ; Dog appearance
 type = Helper
 trigger1 = Time = 5
 ID = 6150
 name = "dog"
 sprpriority = 4
 pos = ceil(5*const(size.xscale)),ceil(0*const(size.yscale))
-;pos = 5, 0; ¦‰º‹L’ˆÓ
+;pos = 5, 0; *See note below
 posttype = p1
-facing = 1       ;Œü‚«‚Í‚»‚Ì‚Ü‚Ü
-stateno = 6078  ;ŒÄ‚Ño‚³‚ê‚½ƒwƒ‹ƒp[‚Í‚±‚ÌƒXƒe[ƒg‚©‚çn‚Ü‚é
+facing = 1       ; Direction stays the same
+stateno = 6078  ; Summoned helper starts from this state
 helpertype = normal
 keyctrl = 0
 
@@ -45,7 +45,7 @@ trigger1 = P2StateNo = 6064
 value = 6079
 
 
-[State 6067, ƒXƒe[ƒg•ÏX]
+[State 6067, State change]
 type = ChangeState
 trigger1 = Time = 64
 value = 0
@@ -77,7 +77,7 @@ trigger1 = time = 890
 value = 4,21
 
 
-[State 6062];Ë¸
+[State 6062]; Ejaculation
 type = PlaySnd
 trigger1 = time = 1300
 value = 6065, 1
@@ -93,7 +93,7 @@ trigger1 = time = 1180 || time = 1232 || time = 1282
 value = 8200, 5
 
 
-[State 6062, Explod] ;–I
+[State 6062, Explod] ; Bee
 type = Explod
 trigger1 = time = 740
 anim = 2014
@@ -106,13 +106,13 @@ scale = 1, .8
 sprpriority = 2
 ontop = 0
 
-[State 6062];Ë¸
+[State 6062]; Ejaculation
 type = PlaySnd
 trigger1 = time = 1300
 value = 6080, 11
 
 
-[State 4614, Explod] ;¸‰t
+[State 4614, Explod] ; Semen
 type = Explod
 trigger1 = time = 1300
 anim = 2012
@@ -126,7 +126,7 @@ ontop = 0
 
 
 
-[State 4614, Explod] ;¸‰t1
+[State 4614, Explod] ; Semen1
 type = Explod
 trigger1 = time = 740
 anim = 2015
@@ -137,7 +137,7 @@ postype = p2
 scale = 1, .8
 sprpriority = 2
 ontop = 0
-[State 4614, Explod] ;¸‰t2
+[State 4614, Explod] ; Semen2
 type = Explod
 trigger1 = time = 1180
 anim = 2015
@@ -160,8 +160,8 @@ ctrl=1
 
 
 
-;ˆÈ‰º‚ªƒwƒ‹ƒp[‚ğ‘€ì‚·‚éƒXƒe[ƒgBƒqƒbƒg‚µ‚½‚çˆÊ’u‚ğ‚o‚Q‚É‚ ‚í‚¹‚éB
-;–hŒäA‚Ü‚½‚Í‰æ–Ê‰º‚ÅÁ–ÅƒXƒe[ƒg‚ÖˆÚsB
+; State that controls the helper. Align position to P2 when hit.
+; Transition to destroy state on guard or when off bottom of screen.
 [Statedef 6078,]
 type = A
 movetype = A
@@ -189,7 +189,7 @@ type = NotHitBy
 trigger1 = Time >= 0
 value = SCA ;,ST,HT
 
-[State 6068]                    ;‘ŠE‚µ‚Ü‚·‚æ‚¤‚ÉEEE(GL„D`A
+[State 6068]                    ; For mutual cancellation...
 type = HitOverRide
 Trigger1 = 1
 Time = -1
@@ -205,13 +205,13 @@ trigger1 = MoveHit = 1
 trigger1 = NumTarget
 value = 6064
 
-[State 6068,]                     ;ƒqƒbƒg‚·‚é‚Æ•ß”›I
+[State 6068,]                     ; Hit = capture!
 type = ChangeState 
 trigger1 = MoveHit = 1
 trigger1 = NumTarget
 value = 6062
 
-[State 6068,]                  ;ƒK[ƒh‚ÅÁ‚¦‚Ü‚·
+[State 6068,]                  ; Disappears on guard
 type = ChangeState
 trigger1 = MoveGuarded = 1
 value = 6066
@@ -219,15 +219,15 @@ value = 6066
 [State 6068]
 type = HitDef
 Trigger1 = Time = 0
-attr = S, SP          ;UŒ‚‘®«: ‚±‚ê‚Í Standing, Normal Throwi—§‚¿’Êí“Š‚°j
-hitflag = M-         ;‘Šè‚ª‚â‚ç‚êó‘Ô‚Å‚Í‚È‚¢’nã‚Ì‚Å‚µ‚©’Í‚Ş–‚ªo—ˆ‚Ü‚¹‚ñ
-priority = 1, miss    ;“Š‚°‚È‚Ì‚Å—Dæ“x‚ğ’á‚­A‚©‚Âmiss‚©dodge‚Ì‘®«‚Å‚È‚¯‚ê‚Î‚È‚è‚Ü‚¹‚ñ
-sparkno = -1          ;-1‚É‚·‚ê‚ÎƒqƒbƒgƒXƒp[ƒN‚ª•\¦‚µ‚È‚­‚È‚è‚Ü‚·
-sprpriority = 2       ;UŒ‚‚ª“–‚½‚Á‚½‚É‰æ‘œ•\¦—Dæ“x‚ğ1‚Éo—ˆ‚Ü‚·
+attr = S, SP          ; Attack attr: Standing, Normal Throw
+hitflag = M-         ; Can only grab when opponent is on ground, not in hitstun
+priority = 1, miss    ; Low priority for throw; must be miss or dodge attr
+sparkno = -1          ; -1 disables hit spark display
+sprpriority = 2       ; Can set display priority to 1 when attack hits
 p2facing = 1
-fall = 0         ;1‚É‚·‚ê‚Î‘Šè‚ªƒ_ƒEƒ“ó‘Ô
+fall = 0         ; 1 = opponent in down state
 
-;----Œ¢‚â‚ç‚ê----------------------------------------------------------------
+;---- Dog hitstun ----------------------------------------------------------------
 
 [Statedef 6062,]
 type = S
@@ -239,7 +239,7 @@ ctrl = 0
 sprpriority = 0
 
 
-[State 6062,a ];ê—pƒAƒjƒ‚ª–³‚¢ ƒXƒe[ƒg•ÏX
+[State 6062,a ]; No dedicated anim - state change
 type = ChangeState
 trigger1 = time = 0
 trigger1 = enemyNear,AnimExist(19230) = 0
@@ -252,7 +252,7 @@ trigger1 = time = 0
 trigger1 = enemyNear,SelfAnimExist(19234)
 value = 2003
 
-[State 4614, Explod] ;è‘O‚É•\¦‚µ‚½‚¢‰æ‘œ
+[State 4614, Explod] ; Image to display in front
 type = Explod
 trigger1 = time = 0
 anim = 2004
@@ -266,7 +266,7 @@ ontop = 0
 removetime = 896
 
 
-[State 4614, Explod] ;è‘O‚É•\¦‚µ‚½‚¢‰æ‘œ
+[State 4614, Explod] ; Image to display in front
 type = Explod
 trigger1 = time = 0
 anim = 2016
@@ -333,7 +333,7 @@ trigger8 = AnimElem = 181 || AnimElem = 212 || AnimElem = 214
 value = 8150, 3
 
 
-[State 6064, ƒQ[ƒW‰ñ•œ]
+[State 6064, Gauge recovery]
 type = poweradd
 trigger1 = AnimElem = 4 || AnimElem = 10 || AnimElem = 17 || AnimElem = 24
 trigger2 = AnimElem = 31 || AnimElem = 38 || AnimElem = 44 || AnimElem = 50
@@ -347,12 +347,12 @@ value = 150
 
 
 
-[State 6062];Ë¸
+[State 6062]; Ejaculation
 type = PlaySnd
 trigger1 = AnimElem = 191 || AnimElem = 201 || AnimElem = 210
 value = 6065, 0
 
-[State 6062];Ë¸
+[State 6062]; Ejaculation
 type = PlaySnd
 trigger1 = AnimElem = 191 || AnimElem = 201 || AnimElem = 210
 value = 6060, 1
@@ -362,7 +362,7 @@ type = PlaySnd
 trigger1 = AnimElem = 220
 value = 6065, 1
 
-[State 6062, Explod] ;¸‰t
+[State 6062, Explod] ; Semen
 type = Explod
 trigger1 = time = 795
 anim = 2012
@@ -382,14 +382,14 @@ type = BindToTarget
 trigger1 = Time >= 0
 id = -1
 pos = ceil(0*const(size.xscale)),ceil(20*const(size.yscale))
-;pos = 0, 20,food          ;‚±‚ÌˆÊ’u‚ğ’²ß‚·‚é‚±‚ÆB
+;pos = 0, 20,food          ; Adjust this position.
 
-[State 6062,a ];Œ¢Ë¸ê—pƒAƒjƒ ƒXƒe[ƒg•ÏX
+[State 6062,a ]; Dog ejaculation dedicated anim - state change
 type = ChangeState
 trigger1 = enemynear,StateNo = 6095
 value = 6090
 
-[State 6062,a ];Œ¢Ë¸ê—pƒAƒjƒ ƒXƒe[ƒg•ÏX
+[State 6062,a ]; Dog ejaculation dedicated anim - state change
 type = ChangeState
 trigger1 = enemynear,StateNo = 6097
 value = 6090
@@ -405,8 +405,8 @@ trigger1 = AnimTime = 0
 value = 6066
 ;-------------------------------------------end8454
 ;---------------------------------------------------------------------------
-; ‘Šè‘¤‚Ì“Š‚°‚ç‚êƒ‚[ƒVƒ‡ƒ“1
-; CNS ƒŒƒxƒ‹: ’†‹‰
+; Opponent thrown motion 1
+; CNS level: Intermediate
 ;
 [Statedef 6064]
 type    = L
@@ -416,14 +416,14 @@ velset = 0,0
 sprpriority = 1
 anim = 19231
 
-[State 6064]               ;ê—pƒAƒjƒ–³‚¢ 19230‚ª‘¶İ‚·‚é‚Æ‚«
+[State 6064]               ;No dedicated anim - when 19230 exists
 type = ChangeAnim2
 Triggerall = Time = 0
 ;trigger1 = SelfAnimExist(19230) = 1
 trigger1 = SelfAnimExist(19231) = 0
 value = 6621
 
-[State 4614, Explod] ;è‘O‚É•\¦‚µ‚½‚¢‰æ‘œ
+[State 4614, Explod] ; Image to display in front
 type = Explod
 trigger1 = time = 0
 trigger1 = SelfAnimExist(19234)
@@ -439,7 +439,7 @@ removetime = 891
 
 
 
-[State 6064, ”ß–Â1]
+[State 6064, Scream1]
 type = PlaySnd
 trigger1 = AnimElem = 9 || AnimElem = 21 || AnimElem = 27
 trigger2 = AnimElem = 39 || AnimElem = 45 || AnimElem = 51
@@ -448,31 +448,31 @@ trigger4 = AnimElem = 99 || AnimElem = 111 || AnimElem = 123 || AnimElem = 135
 trigger5 = AnimElem = 147 || AnimElem = 159 || AnimElem = 171 || AnimElem = 183
 value = 4218,21
 
-[State 6064, ”ß–Â2]
+[State 6064, Scream2]
 type = PlaySnd
 trigger1 = AnimElem = 3 || AnimElem = 15 || AnimElem = 33
 trigger2 = AnimElem = 57 || AnimElem = 63 || AnimElem = 87
 trigger3 = AnimElem = 81 || AnimElem = 93 || AnimElem = 179
 value = 4218,22
 
-[State 3522, ”ß–Â3]
+[State 3522, Scream3]
 type = PlaySnd
 trigger1 = AnimElem = 175
 value = 4218,23
 
-[State 6080-6, ƒXƒe[ƒg•ÏX]
+[State 6080-6, State change]
 type = ChangeState
 trigger1 = SelfAnimExist(19232) = 1
 trigger1 = Time = 580
 value = 6095
 
-[State 6080-6, ƒXƒe[ƒg•ÏX]
+[State 6080-6, State change]
 type = ChangeState
 trigger1 = SelfAnimExist(19232) = 0
 trigger1 = Time = 580
 value = 6097
 
-[State 6064,ƒ_ƒ[ƒW]
+[State 6064,Damage]
 type = LifeAdd
 ;triggerall = Life > 12
 trigger1 = AnimElem = 9 || AnimElem = 15 || AnimElem = 21 || AnimElem = 27
@@ -486,18 +486,18 @@ trigger8 = AnimElem = 165 || AnimElem = 171
 value = -8
 kill = 0
 
-[State 6064, ‘Ì—ÍŒ¸­]
+[State 6064, Life decrease]
 type = LifeAdd
 trigger1 = AnimElem = 175 || AnimElem = 177 || AnimElem = 179
 value = -10
 kill = 0
 
-[State 6064, ‘Ì—ÍŒ¸­]
+[State 6064, Life decrease]
 type = LifeAdd
 trigger1 = AnimElem = 181
 value = -20
 
-[State 6064,ƒ_ƒ[ƒW]
+[State 6064,Damage]
 type = PowerAdd
 triggerall = Life > 12
 trigger1 = AnimElem = 9 || AnimElem = 15 || AnimElem = 21 || AnimElem = 27
@@ -510,24 +510,24 @@ trigger7 = AnimElem = 147 || AnimElem = 153 || AnimElem = 159
 trigger8 = AnimElem = 165 || AnimElem = 171
 value = -50
 
-[State 6064, ƒpƒ[Œ¸­]
+[State 6064, Power decrease]
 type = PowerAdd
 trigger1 = AnimElem = 175
 value = -100
 
-[State 6064, ƒpƒ[Œ¸­]
+[State 6064, Power decrease]
 type = PowerAdd
 trigger1 = AnimElem = 177 || AnimElem = 179 || AnimElem = 181
 value = -50
 
 
 ;---------------------------------------------------------------------------
-; ‘Šè‘¤‚Ì“Š‚°‚ç‚êƒ‚[ƒVƒ‡ƒ“‚Q
-; CNS ƒŒƒxƒ‹: ’†‹‰
+; Opponent thrown motion 2
+; CNS level: Intermediate
 ;
-; ‚±‚ÌƒXƒe[ƒg‚Í‘Šè‚ª•ú‚è“Š‚°‚ç‚ê‚½Œã‚É’n–Ê‚É—‚¿‚é‚Ü‚Å‚Ì“®ì‚Å‚·B
-; ’…’n‚µ‚½‚âcmdƒtƒ@ƒCƒ‹‚É‚ ‚é"recovery"‚ÌƒRƒ}ƒ“ƒh‚ğ‘Šè‚ª“ü—Í‚µ‚½‚ÉA
-;uSelfStatev‚ÌƒXƒe[ƒgƒRƒ“ƒgƒ[ƒ‰‚Å‘Šè‚Ì§Œä‚ğ‰ğœ‚µAƒRƒ“ƒgƒ[ƒ‹‚ğ–ß‚³‚¹‚Ä‚¢‚Ü‚·B
+; This state handles opponent from throw until landing.
+; When opponent lands or inputs "recovery" from cmd file,
+; SelfState releases opponent control and returns control.
 
 [Statedef 6065]
 type    = A
@@ -537,46 +537,46 @@ velset = 0,0
 poweradd = 40
 
 
-[State 6065, ‘¬“x‰ÁZ] ;d—Í
+[State 6065, Velocity add] ; Gravity
 type = VelAdd
 Trigger1 = 1
 y = 10
 
-[State 6065, ”ß–Â3]
+[State 6065, Scream3]
 type = PlaySnd
 trigger1 = AnimElem = 1
 value = 4218,22
 
-[State 6065, ƒXƒe[ƒg•ÏX]
+[State 6065, State change]
 type = ChangeState
-triggerall = Vel Y > 0        ;š‚V
+triggerall = Vel Y > 0        ;â˜…ï¼—
 triggerall = Pos Y >= -20
 triggerall = alive
 triggerall = CanRecover
 trigger1 = Command = "recovery"
-value = 5110 ;common1.cnsQÆ
+value = 5110 ; See common1.cns
 
-[State 6065, §Œä‰ğœ‚µ‚Ä‘Šè‚ÌƒXƒe[ƒg‚É–ß‚·]
+[State 6065, Release control return to opponent state]
 type = SelfState
 triggerall = Vel Y > 0
 triggerall = alive
 triggerall = CanRecover
 trigger1 = Command = "recovery"
-value = 5110 ;common1.cnsQÆ
+value = 5110 ; See common1.cns
 
-[State 6065, §Œä‰ğœ‚µ‚Ä‘Šè‚ÌƒXƒe[ƒg‚É–ß‚·]
+[State 6065, Release control return to opponent state]
 type = SelfState
 trigger1 = Vel Y > 0
 trigger1 = Pos Y >= 0
-value = 5110 ;common1.cnsQÆ
+value = 5110 ; See common1.cns
 
-;š‚VFutriggerallv
-;@uğŒ‚ğŒÀ’è‚µ‚½‚èi‚è‚Şv‚½‚ß‚Ég‚í‚ê‚éƒgƒŠƒK[‚Ì’è‹`‚Å‚·B
-;@‚È‚Ì‚Åtrigger1‚È‚Ç‚ÍAtriggerall‚ÌğŒ‚ª‘S‚Ä‘µ‚í‚È‚¢ŒÀ‚èA—LŒø‚É‚È‚é–‚Í‚ ‚è‚Ü‚¹‚ñB
-;@‚È‚¨Atriggerall‚Ì‚İ‚Å‚Í“­‚©‚È‚¢‚Ì‚ÅAİ’u‚·‚é‚Ítrigger1‚Íâ‘Î‚ÉÁ‚³‚È‚¢‚Å‚­‚¾‚³‚¢B
+;â˜…ï¼—ï¼šã€Œtriggerallã€
+; Trigger definition for limiting conditions.
+; trigger1 etc. only valid when all triggerall conditions are met.
+; triggerall alone does not work; never remove trigger1 when setting up.
 ;
 ;---------------------------------------------------------------------------
-;ˆÈ‰ºƒwƒ‹ƒp[‚ÌÁ–ÅƒXƒe[ƒg
+; Helper destroy state below
 ;
 ;
 
@@ -590,17 +590,17 @@ velset   = 7,0
 anim     = 2005
 sprpriority = 2
 
-[State 6066, –³“G]
+[State 6066, Invincible]
 type = NotHitBy
 trigger1 = 1
 value = SCA
 
-[State 6066, Á–Å]
+[State 6066, Destroy]
 type = DestroySelf
 trigger1 =  ScreenPos X >= 360;
 trigger2 = ScreenPos X <= -30
 
-;Œ¢Ë¸--------------------------------------------
+; Dog ejaculation --------------------------------------------
 [Statedef 6090]
 type = S
 movetype = A
@@ -622,7 +622,7 @@ flag = noshadow
 flag2 = noFG
 
 
-[State 4614, Explod] ;è‘O‚É•\¦‚µ‚½‚¢‰æ‘œ
+[State 4614, Explod] ; Image to display in front
 type = Explod
 trigger1 = time = 0
 anim = 2017
@@ -639,17 +639,17 @@ removetime = 211
 
 
 
-[State 6062];Ë¸
+[State 6062]; Ejaculation
 type = PlaySnd
 trigger1 = AnimElem = 1|| AnimElem = 10 || AnimElem = 20 || AnimElem = 20 || AnimElem = 30
 value = 6065, 0
 
-[State 6062];Ë¸
+[State 6062]; Ejaculation
 type = PlaySnd
 trigger1 = AnimElem = 1|| AnimElem = 10 || AnimElem = 20 || AnimElem = 20 || AnimElem = 30
 value = 6060, 1
 
-[State 6062];Ë¸
+[State 6062]; Ejaculation
 type = PlaySnd
 trigger1 = AnimElem = 40
 value = 11, 0
@@ -659,7 +659,7 @@ type = SelfState
 trigger1 = AnimTime = 0
 value = 6066
 
-;Œ¢ê—pƒAƒjƒ‚ª–³‚¢--------------------------------------------
+; No dog dedicated anim --------------------------------------------
 [Statedef 6091]
 type = S
 movetype = A
@@ -679,7 +679,7 @@ type = SelfState
 trigger1 = AnimTime = 0
 value = 6066
 
-;Œ¢Ë¸‘Šè‘¤-----------------------------------
+; Dog ejaculation opponent side -----------------------------------
 [Statedef 6095]
 type    = L
 movetype= H
@@ -691,7 +691,7 @@ type = RemoveExplod
 trigger1 = time = 0
 ID = 19234
 
-[State 4614, Explod] ;è‘O‚É•\¦‚µ‚½‚¢‰æ‘œ
+[State 4614, Explod] ; Image to display in front
 type = Explod
 trigger1 = time = 0
 trigger1 = SelfAnimExist(19233)
@@ -706,7 +706,7 @@ ontop = 0
 removetime = 442
 
 
-[State 4614, Explod] ;è‘O‚É•\¦‚µ‚½‚¢‰æ‘œ2
+[State 4614, Explod] ; Image to display in front2
 type = Explod
 trigger1 = time = 0
 trigger1 = !SelfAnimExist(19233)
@@ -723,13 +723,13 @@ removetime = 442
 
 
 
-[State 6064, ”ß–Â];Ë¸”ß–Â
+[State 6064, Scream]; Ejaculation scream
 type = PlaySnd
 trigger1 = time = 157 || time = 209 || time = 261
 value = 4218,22
 
 
-[State 6064, ‘Ì—ÍŒ¸­]
+[State 6064, Life decrease]
 type = LifeAdd
 trigger1 = time = 157 || time = 209 || time = 261
 value = -10
@@ -737,7 +737,7 @@ kill = 0
 
 
 
-[State 6064, ƒpƒ[Œ¸­]
+[State 6064, Power decrease]
 type = PowerAdd
 trigger1 = time = 157 || time = 209 || time = 261
 value = -50
@@ -748,14 +748,14 @@ value = -50
 
 
 
-[State 1699, ‹N‚«ã‚ª‚è‚Ö]
+[State 1699, To recovery]
 type = ChangeState
 trigger1 = AnimTime = 0
 value = 6099
 
 
-;Œ¢Ë¸‘Šè‘¤2-----------------------------------
-;Œ¢Ë¸‘Šè‘¤2-----------------------------------
+; Dog ejaculation opponent side 2 -----------------------------------
+; Dog ejaculation opponent side 2 -----------------------------------
 [Statedef 6099]
 type    = L
 movetype= H
@@ -767,7 +767,7 @@ type = RemoveExplod
 trigger1 = time = 0
 ID = 19234
 
-[State 4614, Explod] ;è‘O‚É•\¦‚µ‚½‚¢‰æ‘œ
+[State 4614, Explod] ; Image to display in front
 type = Explod
 trigger1 = time = 0
 trigger1 = SelfAnimExist(19233)
@@ -782,7 +782,7 @@ ontop = 0
 removetime = 442
 
 
-[State 4614, Explod] ;è‘O‚É•\¦‚µ‚½‚¢‰æ‘œ2
+[State 4614, Explod] ; Image to display in front2
 type = Explod
 trigger1 = time = 0
 trigger1 = !SelfAnimExist(19233)
@@ -800,33 +800,33 @@ removetime = 442
 
 
 
-[State 6064, ”ß–Â];Ë¸”ß–Â
+[State 6064, Scream]; Ejaculation scream
 type = PlaySnd
 trigger1 = time = 157 || time = 209 || time = 261
 value = 4218,22
 
-[State 6064, ”ß–Â]
+[State 6064, Scream]
 type = PlaySnd
 trigger1 = time = 313
 value = 11,0
 
-[State 6064, ‘Ì—ÍŒ¸­]
+[State 6064, Life decrease]
 type = LifeAdd
 trigger1 = time = 157 || time = 209 || time = 261
 value = -10
 kill = 0
 
-[State 6064, ‘Ì—ÍŒ¸­]
+[State 6064, Life decrease]
 type = LifeAdd
 trigger1 = time = 313
 value = -20
 
-[State 6064, ƒpƒ[Œ¸­]
+[State 6064, Power decrease]
 type = PowerAdd
 trigger1 = time = 157 || time = 209 || time = 261
 value = -50
 
-[State 6064, ƒpƒ[Œ¸­]
+[State 6064, Power decrease]
 type = PowerAdd
 trigger1 = time = 313
 value = -100
@@ -835,7 +835,7 @@ value = -100
 
 
 
-[State 1699, ‹N‚«ã‚ª‚è‚Ö]
+[State 1699, To recovery]
 type = SelfState
 trigger1 = AnimTime = 0
 value = ifelse(Alive,5120,5150)
@@ -857,7 +857,7 @@ value = ifelse(Alive,5120,5150)
 
 
 
-;Œ¢Ë¸‘Šè‘¤-----------------------------------
+; Dog ejaculation opponent side -----------------------------------
 [Statedef 6097]
 type    = L
 movetype= H
@@ -870,7 +870,7 @@ trigger1 = time = 0
 ID = 19234
 
 
-[State 6064]               ;ê—pƒAƒjƒ–³‚¢ 19230‚ª‘¶İ‚·‚é‚Æ‚«
+[State 6064]               ;No dedicated anim - when 19230 exists
 type = ChangeAnim2
 Triggerall = Time = 0
 ;trigger1 = SelfAnimExist(19230) = 1
@@ -878,13 +878,13 @@ trigger1 = SelfAnimExist(19231) = 0
 value = 6623
 
 
-[State 6064, ”ß–Â];Ë¸”ß–Â
+[State 6064, Scream]; Ejaculation scream
 type = PlaySnd
 trigger1 = time = 157 || time = 209 || time = 261
 value = 4218,22
 
 
-[State 6064, ‘Ì—ÍŒ¸­]
+[State 6064, Life decrease]
 type = LifeAdd
 trigger1 = time = 157 || time = 209 || time = 261
 value = -10
@@ -892,7 +892,7 @@ kill = 0
 
 
 
-[State 6064, ƒpƒ[Œ¸­]
+[State 6064, Power decrease]
 type = PowerAdd
 trigger1 = time = 157 || time = 209 || time = 261
 value = -50
@@ -903,14 +903,14 @@ value = -50
 
 
 
-[State 1699, ‹N‚«ã‚ª‚è‚Ö]
+[State 1699, To recovery]
 type = ChangeState
 trigger1 = AnimTime = 0
 value = 6101
 
 
-;Œ¢Ë¸‘Šè‘¤2-----------------------------------
-;Œ¢Ë¸‘Šè‘¤2-----------------------------------
+; Dog ejaculation opponent side 2 -----------------------------------
+; Dog ejaculation opponent side 2 -----------------------------------
 [Statedef 6101]
 type    = L
 movetype= H
@@ -923,7 +923,7 @@ trigger1 = time = 0
 ID = 19234
 
 
-[State 6064]               ;ê—pƒAƒjƒ–³‚¢ 19230‚ª‘¶İ‚·‚é‚Æ‚«
+[State 6064]               ;No dedicated anim - when 19230 exists
 type = ChangeAnim2
 Triggerall = Time = 0
 ;trigger1 = SelfAnimExist(19230) = 1
@@ -931,13 +931,13 @@ trigger1 = SelfAnimExist(19231) = 0
 value = 6623
 
 
-[State 6064, ”ß–Â];Ë¸”ß–Â
+[State 6064, Scream]; Ejaculation scream
 type = PlaySnd
 trigger1 = time = 157 || time = 209 || time = 261
 value = 4218,22
 
 
-[State 6064, ‘Ì—ÍŒ¸­]
+[State 6064, Life decrease]
 type = LifeAdd
 trigger1 = time = 157 || time = 209 || time = 261
 value = -10
@@ -945,7 +945,7 @@ kill = 0
 
 
 
-[State 6064, ƒpƒ[Œ¸­]
+[State 6064, Power decrease]
 type = PowerAdd
 trigger1 = time = 157 || time = 209 || time = 261
 value = -50
@@ -954,7 +954,7 @@ value = -50
 
 
 
-[State 1699, ‹N‚«ã‚ª‚è‚Ö]
+[State 1699, To recovery]
 type = SelfState
 trigger1 = AnimTime = 0
 value = ifelse(Alive,5120,5150)
@@ -976,23 +976,23 @@ value = ifelse(Alive,5120,5150)
 
 
 
-;Œ¢ê—pƒAƒjƒ‚ª–³‚¢ ‘Šè‘¤------------------------------
+; No dog dedicated anim - opponent side -----------------------------
 [Statedef 6096]
 type    = L
 movetype= H
 physics = N
 
-[State 6064, ‘Ì—ÍŒ¸­]
+[State 6064, Life decrease]
 type = LifeAdd
 trigger1 = time = 3
 value = -260
 
-[State 6064, ”ß–Â]
+[State 6064, Scream]
 type = PlaySnd
 trigger1 = time = 3
 value = 4218,23
 
-[State 1699, ‹N‚«ã‚ª‚è‚Ö]
+[State 1699, To recovery]
 type = SelfState
 trigger1 =Time = 4
 value = ifelse(Alive,5120,5150)
@@ -1012,7 +1012,7 @@ value = ifelse(Alive,5120,5150)
 
 
 
-; Œ¢UŒ‚‹­
+; Dog attack strong
 [Statedef 7067]
 type    = S
 movetype= A
@@ -1031,17 +1031,17 @@ type = PlaySnd
 trigger1 = AnimElem = 2
 value = 6069,0
 
-[State 7067]        ;Œ¢“oê
+[State 7067]        ; Dog appearance
 type = Helper
 trigger1 = Time = 5
 ID = 7150
 name = "cat"
 sprpriority = 4
 pos = ceil(5*const(size.xscale)),ceil(0*const(size.yscale))
-;pos = 5, 0; ¦‰º‹L’ˆÓ
+;pos = 5, 0; *See note below
 posttype = p1
-facing = 1       ;Œü‚«‚Í‚»‚Ì‚Ü‚Ü
-stateno = 7068  ;ŒÄ‚Ño‚³‚ê‚½ƒwƒ‹ƒp[‚Í‚±‚ÌƒXƒe[ƒg‚©‚çn‚Ü‚é
+facing = 1       ; Direction stays the same
+stateno = 7068  ; Summoned helper starts from this state
 helpertype = normal
 keyctrl = 0
 
@@ -1054,7 +1054,7 @@ value = 7089
 
 
 
-[State 7067, ƒXƒe[ƒg•ÏX]
+[State 7067, State change]
 type = ChangeState
 trigger1 = Time = 64
 value = 0
@@ -1089,8 +1089,8 @@ ctrl=1
 
 
 
-;ˆÈ‰º‚ªƒwƒ‹ƒp[‚ğ‘€ì‚·‚éƒXƒe[ƒgBƒqƒbƒg‚µ‚½‚çˆÊ’u‚ğ‚o‚Q‚É‚ ‚í‚¹‚éB
-;–hŒäA‚Ü‚½‚Í‰æ–Ê‰º‚ÅÁ–ÅƒXƒe[ƒg‚ÖˆÚsB
+; State that controls the helper. Align position to P2 when hit.
+; Transition to destroy state on guard or when off bottom of screen.
 ;-------------------------------------------------
 
 [Statedef 7068,]
@@ -1120,7 +1120,7 @@ type = NotHitBy
 trigger1 = Time >= 0
 value = SCA ;,ST,HT
 
-[State 7068]                    ;‘ŠE‚µ‚Ü‚·‚æ‚¤‚ÉEEE(GL„D`A
+[State 7068]                    ; For mutual cancellation...
 type = HitOverRide
 Trigger1 = 1
 Time = -1
@@ -1136,13 +1136,13 @@ trigger1 = MoveHit = 1
 trigger1 = NumTarget
 value = 7085
 
-[State 7068,]                     ;ƒqƒbƒg‚·‚é‚Æ•ß”›I
+[State 7068,]                     ; Hit = capture!
 type = ChangeState 
 trigger1 = MoveHit = 1
 trigger1 = NumTarget
 value = 7080
 
-[State 7068,]                  ;ƒK[ƒh‚ÅÁ‚¦‚Ü‚·
+[State 7068,]                  ; Disappears on guard
 type = ChangeState
 trigger1 = MoveGuarded = 1
 value = 7066
@@ -1150,16 +1150,16 @@ value = 7066
 [State 7068]
 type = HitDef
 Trigger1 = Time = 0
-attr = S, SP          ;UŒ‚‘®«: ‚±‚ê‚Í Standing, Normal Throwi—§‚¿’Êí“Š‚°j
-hitflag = M-         ;‘Šè‚ª‚â‚ç‚êó‘Ô‚Å‚Í‚È‚¢’nã‚Ì‚Å‚µ‚©’Í‚Ş–‚ªo—ˆ‚Ü‚¹‚ñ
-priority = 1, miss    ;“Š‚°‚È‚Ì‚Å—Dæ“x‚ğ’á‚­A‚©‚Âmiss‚©dodge‚Ì‘®«‚Å‚È‚¯‚ê‚Î‚È‚è‚Ü‚¹‚ñ
-sparkno = -1          ;-1‚É‚·‚ê‚ÎƒqƒbƒgƒXƒp[ƒN‚ª•\¦‚µ‚È‚­‚È‚è‚Ü‚·
-sprpriority = 2       ;UŒ‚‚ª“–‚½‚Á‚½‚É‰æ‘œ•\¦—Dæ“x‚ğ1‚Éo—ˆ‚Ü‚·
+attr = S, SP          ; Attack attr: Standing, Normal Throw
+hitflag = M-         ; Can only grab when opponent is on ground, not in hitstun
+priority = 1, miss    ; Low priority for throw; must be miss or dodge attr
+sparkno = -1          ; -1 disables hit spark display
+sprpriority = 2       ; Can set display priority to 1 when attack hits
 p2facing = 1
-fall = 0         ;1‚É‚·‚ê‚Î‘Šè‚ªƒ_ƒEƒ“ó‘Ô
+fall = 0         ; 1 = opponent in down state
 
 ;-------------------------------------------------------------------------------
-; Œ¢är‚ß
+; Dog lick
 [Statedef 7080]
 type = S
 movetype = A
@@ -1193,60 +1193,60 @@ trigger1 = Time > 20
 value = 8150,3
 Persistent = 20
 
-[State 7080-3, ƒqƒbƒg”]
+[State 7080-3, Hit count]
 type = HitAdd
 trigger1 = AnimElem = 2
 value = 1
 
-[State 7080-4, ‘½­‚Íƒ_ƒ[ƒW]
+[State 7080-4, Some damage]
 type = TargetLifeAdd
 trigger1 = AnimElem = 2
 value = -20
 
-[State 7080-5, ƒQ[ƒW‘‰Á]
+[State 7080-5, Gauge increase]
 type = PowerAdd
 trigger1 = AnimElem = 2
 value = 100
 
-[State 7080-6, ƒXƒe[ƒg•ÏX]
+[State 7080-6, State change]
 type = ChangeState
 trigger1 = Time > 200
 value = ifelse((enemyNear,Alive),7066,6062) 
 
 
 
-; ‘Šè‘¤EŒ¢är‚ß
+; Opponent side - dog lick
 [Statedef 7085]
 type    = L
 movetype= H
 physics = N
 
-[State 1525, º]
+[State 1525, Voice]
 type = PlaySnd
 trigger1 = Time%28 = 10
 value = 4218,22
 
-[State 1525, ê—pƒAƒjƒ]
+[State 1525, Dedicated anim]
 type = ChangeAnim
 trigger1 = SelfAnimExist(36525)
 trigger1 = time = 0
 value = 36525
 
-[State 1525, ê—pƒAƒjƒ2] 
+[State 1525, Dedicated anim2] 
 type = ChangeAnim2
 Trigger1 = Time = 0
 trigger1 = SelfAnimExist(18200) = 1
 trigger1 = SelfAnimExist(36525) = 0
 value = 4822
 
-[State 1525, ”Ä—pƒAƒjƒ]
+[State 1525, Generic anim]
 type = ChangeAnim2
 trigger1 = SelfAnimExist(18200) = 0
 trigger1 = SelfAnimExist(36525) = 0
 trigger1 = time = 0
 value = 4832
 
-[State 1525, Explod] ;è‘O‚É•\¦‚µ‚½‚¢‰æ‘œ
+[State 1525, Explod] ; Image to display in front
 type = Explod
 trigger1 = time = 0
 trigger1 = SelfAnimExist(36526)
@@ -1279,12 +1279,12 @@ velset   = 7,0
 anim     = 2011
 sprpriority = 2
 
-[State 7066, –³“G]
+[State 7066, Invincible]
 type = NotHitBy
 trigger1 = 1
 value = SCA
 
-[State 7066, Á–Å]
+[State 7066, Destroy]
 type = DestroySelf
 trigger1 =  ScreenPos X >= 360;
 trigger2 = ScreenPos X <= -30
@@ -1324,18 +1324,18 @@ sprpriority=1
 facep2=1
 
 
-[State 45000]        ;Œ¢“oê
+[State 45000]        ; Dog appearance
 type = Helper
 trigger1 = Time = 5
 ID = 9999
 name = "Bulleta"
 sprpriority = 4
 pos = ceil(5*const(size.xscale)),ceil(0*const(size.yscale))
-;pos = 5, 0; ¦‰º‹L’ˆÓ
+;pos = 5, 0; *See note below
 scale = const(size.xscale),const(size.yscale)
 posttype = p1
-facing = 1       ;Œü‚«‚Í‚»‚Ì‚Ü‚Ü
-stateno = 9999  ;ŒÄ‚Ño‚³‚ê‚½ƒwƒ‹ƒp[‚Í‚±‚ÌƒXƒe[ƒg‚©‚çn‚Ü‚é
+facing = 1       ; Direction stays the same
+stateno = 9999  ; Summoned helper starts from this state
 helpertype = normal
 keyctrl = 0
 
@@ -1424,7 +1424,7 @@ trigger1 = time = 0
 value = 4,20
 
 
-[State 13100, Ÿ‚Ö]
+[State 13100, Next]
 type = ChangeState
 trigger1 = time = 1895
 value = 45002
@@ -1484,7 +1484,7 @@ type = NotHitBy
 trigger1 = Time >= 0
 value = SCA ;,ST,HT
 
-[State 6068]                    ;‘ŠE‚µ‚Ü‚·‚æ‚¤‚ÉEEE(GL„D`A
+[State 6068]                    ; For mutual cancellation...
 type = HitOverRide
 Trigger1 = 1
 Time = -1
@@ -1500,13 +1500,13 @@ trigger1 = MoveHit = 1
 trigger1 = NumTarget
 value = 47000
 
-[State 6068,]                     ;ƒqƒbƒg‚·‚é‚Æ•ß”›I
+[State 6068,]                     ; Hit = capture!
 type = ChangeState 
 trigger1 = MoveHit = 1
 trigger1 = NumTarget
 value = 46000
 
-[State 6068,]                  ;ƒK[ƒh‚ÅÁ‚¦‚Ü‚·
+[State 6068,]                  ; Disappears on guard
 type = ChangeState
 trigger1 = MoveGuarded = 1
 value = 6066
@@ -1514,13 +1514,13 @@ value = 6066
 [State 6068]
 type = HitDef
 Trigger1 = Time = 0
-attr = S, SP          ;UŒ‚‘®«: ‚±‚ê‚Í Standing, Normal Throwi—§‚¿’Êí“Š‚°j
-hitflag = M-         ;‘Šè‚ª‚â‚ç‚êó‘Ô‚Å‚Í‚È‚¢’nã‚Ì‚Å‚µ‚©’Í‚Ş–‚ªo—ˆ‚Ü‚¹‚ñ
-priority = 1, miss    ;“Š‚°‚È‚Ì‚Å—Dæ“x‚ğ’á‚­A‚©‚Âmiss‚©dodge‚Ì‘®«‚Å‚È‚¯‚ê‚Î‚È‚è‚Ü‚¹‚ñ
-sparkno = -1          ;-1‚É‚·‚ê‚ÎƒqƒbƒgƒXƒp[ƒN‚ª•\¦‚µ‚È‚­‚È‚è‚Ü‚·
-sprpriority = 2      ;UŒ‚‚ª“–‚½‚Á‚½‚É‰æ‘œ•\¦—Dæ“x‚ğ1‚Éo—ˆ‚Ü‚·
+attr = S, SP          ; Attack attr: Standing, Normal Throw
+hitflag = M-         ; Can only grab when opponent is on ground, not in hitstun
+priority = 1, miss    ; Low priority for throw; must be miss or dodge attr
+sparkno = -1          ; -1 disables hit spark display
+sprpriority = 2      ; Can set display priority to 1 when attack hits
 p2facing = 1
-fall = 0         ;1‚É‚·‚ê‚Î‘Šè‚ªƒ_ƒEƒ“ó‘Ô
+fall = 0         ; 1 = opponent in down state
 
 
 
@@ -1537,7 +1537,7 @@ ctrl = 0
 sprpriority = 3
 
 
-[State 51209,‚P]
+[State 51209,ï¼‘]
 type = PlaySnd
 trigger1 = time = 0
 value = 8150,4
@@ -1568,7 +1568,7 @@ postype=p1
 facing=-1
 ownpal=1
 
-[State 1610, •]
+[State 1610, Width]
 type = Width
 trigger1 = 1
 edge = 75,75
@@ -1581,7 +1581,7 @@ trigger1 = P2StateNo = 47101
 value = 46101
 
 
-[State 13100, Ÿ‚Ö]
+[State 13100, Next]
 type = ChangeState
 trigger1 = Time = 200
 value = 46001
@@ -1612,12 +1612,12 @@ flag = noshadow
 flag2 = noFG
 
 
-[State 1610, •]
+[State 1610, Width]
 type = PosSet
 trigger1 = time = 0
 x = 0
 
-[State 1610, •]
+[State 1610, Width]
 type = Width
 trigger1 = 1
 edge = 75,75
@@ -1637,7 +1637,7 @@ pos = ceil(-60*const(size.xscale)),ceil(-50*const(size.yscale))
 ;pos = 0, -50
 
 
-[State 12002, –{‘Ì2]
+[State 12002, Body 2]
 type = Explod
 trigger1 = time = 100
 anim = 45014
@@ -1654,7 +1654,7 @@ removeongethit = 1
 
 
 
-[State 12002, ”wŒi]
+[State 12002, Background]
 type = Explod
 trigger1 = time = 0
 anim = 45005
@@ -1670,7 +1670,7 @@ supermovetime = 30
 removeongethit = 1
 
 
-[State 12002, ”wŒi2]
+[State 12002, Background2]
 type = Explod
 trigger1 = time = 0
 anim = 45013
@@ -1685,7 +1685,7 @@ supermovetime = 30
 removeongethit = 1
 
 
-[State 12002, ƒuƒƒbƒN]
+[State 12002, Block]
 type = Explod
 trigger1 = time = 0
 anim = 45004
@@ -1699,7 +1699,7 @@ sprpriority = -1
 supermovetime = 30
 removeongethit = 1
 
-[State 12002, ƒuƒƒbƒN2]
+[State 12002, Block2]
 type = Explod
 trigger1 = time = 0
 anim = 45006
@@ -1713,7 +1713,7 @@ sprpriority = 2
 supermovetime = 30
 removeongethit = 1
 
-[State 13100, Ÿ‚Ö]
+[State 13100, Next]
 type = ChangeState
 trigger1 = Time = 200
 value = 46002
@@ -1739,66 +1739,66 @@ flag2 = noFG
 
 
 
-[State 51210,‰¹º]
+[State 51210,Sound]
 type = PlaySnd
 trigger1 = time = 300
 value = 6080,1
 
 
-[State 51209,‰¹º‚P];‘}“ü‰¹
+[State 51209,Soundï¼‘]; Insertion sound
 type = PlaySnd
 trigger1 = time = 16
 value = 6080,6
 
-[State 51209, ‰¹º2];ƒsƒXƒgƒ“1
+[State 51209, Sound2]; Piston 1
 type = PlaySnd
 trigger1 = time = 80 ||time = 100 || time = 120 || time = 140
 trigger2 = time = 160 ||time = 180 || time = 200 || time = 220
 value = 8200,4
 
-[State 51209, ‰¹º2-2];ƒsƒXƒgƒ“2
+[State 51209, Sound2-2]; Piston 2
 type = PlaySnd
 trigger1 = time = 240 ||time = 252 || time = 264 || time = 276
 trigger2 = time = 288 ||time = 300 || time = 312 || time = 324
 value = 8200,4
 
 
-[State 51209, ‰¹º2];ƒsƒXƒgƒ“3
+[State 51209, Sound2]; Piston 3
 type = PlaySnd
 trigger1 = time = 80 ||time = 100 || time = 120 || time = 140
 trigger2 = time = 160 ||time = 180 || time = 200 || time = 220
 value = 8150,3
 
-[State 51209, ‰¹º2-2];ƒsƒXƒgƒ“4
+[State 51209, Sound2-2]; Piston 4
 type = PlaySnd
 trigger1 = time = 240 ||time = 252 || time = 264 || time = 276
 trigger2 = time = 288 ||time = 300 || time = 312 || time = 324
 value = 8150,3
 
 
-[State 51209,‰¹º‚R];Ë¸‰¹
+[State 51209,Soundï¼“]; Ejaculation sound
 type = PlaySnd
 trigger1 = time =332||time = 367||time = 403
 value = 8200,5
 
-[State 51209,‰¹º‚S];šb‚¬º
+[State 51209,Soundï¼”];Moan
 type = PlaySnd
 trigger1 = time = 240
 value = 5000,23
 
-[State 51209,‰¹º‚S-2];šb‚¬º
+[State 51209,Soundï¼”-2];Moan
 type = PlaySnd
 trigger1 = time = 475
 value = 5000,90
 
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 45014
 
 
-[State 12002, –{‘Ì2]
+[State 12002, Body 2]
 type = Explod
 trigger1 = time = 0
 anim = 45018
@@ -1815,7 +1815,7 @@ removeongethit = 1
 
 
 
-[State 13100, Ÿ‚Ö]
+[State 13100, Next]
 type = ChangeState
 trigger1 = Time = 523
 value = 46003
@@ -1834,7 +1834,7 @@ ctrl = 0
 sprpriority = 3
 
 
-[State 51210,‰¹º]
+[State 51210,Sound]
 type = PlaySnd
 trigger1 = time = 0
 value = 6080,3
@@ -1848,80 +1848,80 @@ flag2 = noFG
 
 
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 45018
 
 
 
-[State 51210,‰¹º0];‘}“ü‰¹¬
+[State 51210,Sound0]; Insertion sound small
 type = PlaySnd
 trigger1 = time = 20
 value = 8150,2
 
-[State 51210,‰¹º‚P];‘}“ü‰¹‘å
+[State 51210,Soundï¼‘]; Insertion sound large
 type = PlaySnd
 trigger1 = time = 98||time = 558
 value = 6080,6
 
 
-[State 51210,‰¹º‚P];”÷“®
+[State 51210,Soundï¼‘]; Slight movement
 type = PlaySnd
 trigger1 = time = 66
 value = 8150,1
 
-[State 51210, ‰¹º2];ƒsƒXƒgƒ“1
+[State 51210, Sound2]; Piston 1
 type = PlaySnd
 trigger1 = time = 192 ||time = 212 || time = 232 || time = 252
 trigger2 = time = 272 ||time = 292 
 value = 8200,4
 
-[State 51210, ‰¹º2-2];ƒsƒXƒgƒ“2
+[State 51210, Sound2-2]; Piston 2
 type = PlaySnd
 trigger1 = time = 310 ||time = 322 || time = 334 || time = 346
 trigger2 = time = 358 ||time = 370 || time = 382 
 trigger3 = time = 603 ||time = 615 || time = 627 || time = 639|| time = 651|| time = 663|| time = 675
 value = 8200,4
 
-[State 51210, ‰¹º2];ƒsƒXƒgƒ“3
+[State 51210, Sound2]; Piston 3
 type = PlaySnd
 trigger1 = time = 192 ||time = 212 || time = 232 || time = 252
 trigger2 = time = 272 ||time = 292 
 value = 8150,3
 
-[State 51210, ‰¹º2-2];ƒsƒXƒgƒ“4
+[State 51210, Sound2-2]; Piston 4
 type = PlaySnd
 trigger1 = time = 310 ||time = 322 || time = 334 || time = 346
 trigger2 = time = 358 ||time = 370 || time = 382 
 trigger3 = time = 603 ||time = 615 || time = 627 || time = 639|| time = 651|| time = 663|| time = 675
 value = 8150,3
 
-[State 51210,‰¹º‚R];Ë¸‰¹
+[State 51210,Soundï¼“]; Ejaculation sound
 type = PlaySnd
 trigger1 = time =402||time = 429||time = 442||time = 462||time = 482
 trigger2 = time =683||time = 713||time = 743||time = 773
 value = 8200,5
 
-[State 51210,‰¹º‚R];Ë¸‰¹¬
+[State 51210,Soundï¼“]; Ejaculation sound small
 type = PlaySnd
 trigger1 = time =803||time = 833
 value = 8150,2
 
 
-[State 51210,‰¹º5-1];”²‚¢‚½‰¹
+[State 51210,Sound5-1]; Pullout sound
 type = PlaySnd
 trigger1 = time = 516||time = 903
 value = 6080,7
 
 
-[State 51210,‰¹º6];‰œ‚Ü‚Å“ü‚Á‚Ä‚«‚Ä‚éEEE“I‚È
+[State 51210,Sound6]; Deep insertion type
 type = PlaySnd
 trigger1 = time = 863
 value = 8150,0
 
 
-[State 12002, –{‘Ì2]
+[State 12002, Body 2]
 type = Explod
 trigger1 = time = 0
 anim = 45015
@@ -1962,7 +1962,7 @@ ownpal=1
 
 
 
-[State 13100, Ÿ‚Ö]
+[State 13100, Next]
 type = ChangeState
 trigger1 = Time = 973
 value = 46004
@@ -1986,35 +1986,35 @@ trigger1 = time = 0
 time = 70
 movetime = 70
 
-[State 1610, ’Í‚ñ‚¾‘Šè‚ÌˆÊ’u]
+[State 1610, Grabbed opponent position]
 type = TargetBind
 trigger1 = time = 0
 pos = ceil(0*const(size.xscale)),ceil(0*const(size.yscale))
 ;pos = 0, 0
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 45005
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 45013
 
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 45004
 
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 45006
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 45015
@@ -2055,7 +2055,7 @@ flag = noshadow
 flag2 = noFG
 
 
-[State 12002, ”wŒi]
+[State 12002, Background]
 type = Explod
 trigger1 = time = 0
 anim = 45005
@@ -2070,7 +2070,7 @@ sprpriority = -5
 supermovetime = 30
 removeongethit = 1
 
-[State 12002, ”wŒi2]
+[State 12002, Background2]
 type = Explod
 trigger1 = time = 0
 anim = 45013
@@ -2084,7 +2084,7 @@ sprpriority = 5
 supermovetime = 30
 removeongethit = 1
 
-[State 12002, –{‘Ì]
+[State 12002, Body]
 type = Explod
 trigger1 = time = 0
 anim = 45009
@@ -2100,7 +2100,7 @@ supermovetime = 30
 removeongethit = 1
 
 
-[State 12002, –{‘Ì2]
+[State 12002, Body 2]
 type = Explod
 trigger1 = time = 100
 anim = 45014
@@ -2116,7 +2116,7 @@ supermovetime = 30
 removeongethit = 1
 
 
-[State 12002, ƒuƒƒbƒN]
+[State 12002, Block]
 type = Explod
 trigger1 = time = 0
 anim = 45007
@@ -2130,7 +2130,7 @@ sprpriority = -1
 supermovetime = 30
 removeongethit = 1
 
-[State 12002, ƒuƒƒbƒN2]
+[State 12002, Block2]
 type = Explod
 trigger1 = time = 0
 anim = 45008
@@ -2145,7 +2145,7 @@ supermovetime = 30
 removeongethit = 1
 
 
-[State 13100, Ÿ‚Ö]
+[State 13100, Next]
 type = ChangeState
 trigger1 = Time = 200
 value = 46102
@@ -2170,48 +2170,48 @@ flag2 = noFG
 
 
 
-[State 51209,‰¹º‚P];‘}“ü‰¹
+[State 51209,Soundï¼‘]; Insertion sound
 type = PlaySnd
 trigger1 = time = 16
 value = 6080,6
 
-[State 51209, ‰¹º2];ƒsƒXƒgƒ“1
+[State 51209, Sound2]; Piston 1
 type = PlaySnd
 trigger1 = time = 80 ||time = 100 || time = 120 || time = 140
 trigger2 = time = 160 ||time = 180 || time = 200 || time = 220
 value = 8200,4
 
-[State 51209, ‰¹º2-2];ƒsƒXƒgƒ“2
+[State 51209, Sound2-2]; Piston 2
 type = PlaySnd
 trigger1 = time = 240 ||time = 252 || time = 264 || time = 276
 trigger2 = time = 288 ||time = 300 || time = 312 || time = 324
 value = 8200,4
 
 
-[State 51209, ‰¹º2];ƒsƒXƒgƒ“3
+[State 51209, Sound2]; Piston 3
 type = PlaySnd
 trigger1 = time = 80 ||time = 100 || time = 120 || time = 140
 trigger2 = time = 160 ||time = 180 || time = 200 || time = 220
 value = 8150,3
 
-[State 51209, ‰¹º2-2];ƒsƒXƒgƒ“4
+[State 51209, Sound2-2]; Piston 4
 type = PlaySnd
 trigger1 = time = 240 ||time = 252 || time = 264 || time = 276
 trigger2 = time = 288 ||time = 300 || time = 312 || time = 324
 value = 8150,3
 
 
-[State 51209,‰¹º‚R];Ë¸‰¹
+[State 51209,Soundï¼“]; Ejaculation sound
 type = PlaySnd
 trigger1 = time =332||time = 367||time = 403
 value = 8200,5
 
-[State 51209,‰¹º‚S];šb‚¬º
+[State 51209,Soundï¼”];Moan
 type = PlaySnd
 trigger1 = time = 240
 value = 5000,23
 
-[State 51209,‰¹º‚S-2];šb‚¬º
+[State 51209,Soundï¼”-2];Moan
 type = PlaySnd
 trigger1 = time = 475
 value = 5000,90
@@ -2219,18 +2219,18 @@ value = 5000,90
 
 
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 45009
 
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 45014
 
-[State 12002, –{‘Ì]
+[State 12002, Body]
 type = Explod
 trigger1 = time = 0
 anim = 45020
@@ -2245,25 +2245,25 @@ sprpriority = -1
 supermovetime = 30
 removeongethit = 1
 
-[State 51209,‰¹º‚P];‘}“ü‰¹
+[State 51209,Soundï¼‘]; Insertion sound
 type = PlaySnd
 trigger1 = time = 16
 value = 6085,2
 
-[State 51209, ‰¹º2];ƒsƒXƒgƒ“1
+[State 51209, Sound2]; Piston 1
 type = PlaySnd
 trigger1 = time = 81 ||time = 101 || time = 121 || time = 141
 trigger2 = time = 161 ||time = 181 || time = 201 || time = 221
 value = 6085,0
 
-[State 51209, ‰¹º2-2];ƒsƒXƒgƒ“2
+[State 51209, Sound2-2]; Piston 2
 type = PlaySnd
 trigger1 = time = 241 ||time = 253 || time = 265 || time = 277
 trigger2 = time = 289 ||time = 301 || time = 313 || time = 325
 value = 6085,1
 
 
-[State 51209,‰¹º‚R];Ë¸‰¹
+[State 51209,Soundï¼“]; Ejaculation sound
 type = PlaySnd
 trigger1 = time =332||time = 367||time = 403
 value = 6085,0
@@ -2272,7 +2272,7 @@ value = 6085,0
 
 
 
-[State 12002, –{‘Ì2]
+[State 12002, Body 2]
 type = Explod
 trigger1 = time = 0
 anim = 45018
@@ -2288,7 +2288,7 @@ supermovetime = 30
 removeongethit = 1
 
 
-[State 13100, Ÿ‚Ö]
+[State 13100, Next]
 type = ChangeState
 trigger1 = Time = 523
 value = 46103
@@ -2314,85 +2314,85 @@ flag = noshadow
 flag2 = noFG
 
 
-[State 51210,‰¹º0];‘}“ü‰¹¬
+[State 51210,Sound0]; Insertion sound small
 type = PlaySnd
 trigger1 = time = 20
 value = 8150,2
 
-[State 51210,‰¹º‚P];‘}“ü‰¹‘å
+[State 51210,Soundï¼‘]; Insertion sound large
 type = PlaySnd
 trigger1 = time = 98||time = 558
 value = 6080,6
 
 
-[State 51210,‰¹º‚P];”÷“®
+[State 51210,Soundï¼‘]; Slight movement
 type = PlaySnd
 trigger1 = time = 66
 value = 8150,1
 
-[State 51210, ‰¹º2];ƒsƒXƒgƒ“1
+[State 51210, Sound2]; Piston 1
 type = PlaySnd
 trigger1 = time = 192 ||time = 212 || time = 232 || time = 252
 trigger2 = time = 272 ||time = 292 
 value = 8200,4
 
-[State 51210, ‰¹º2-2];ƒsƒXƒgƒ“2
+[State 51210, Sound2-2]; Piston 2
 type = PlaySnd
 trigger1 = time = 310 ||time = 322 || time = 334 || time = 346
 trigger2 = time = 358 ||time = 370 || time = 382 
 trigger3 = time = 603 ||time = 615 || time = 627 || time = 639|| time = 651|| time = 663|| time = 675
 value = 8200,4
 
-[State 51210, ‰¹º2];ƒsƒXƒgƒ“3
+[State 51210, Sound2]; Piston 3
 type = PlaySnd
 trigger1 = time = 192 ||time = 212 || time = 232 || time = 252
 trigger2 = time = 272 ||time = 292 
 value = 8150,3
 
-[State 51210, ‰¹º2-2];ƒsƒXƒgƒ“4
+[State 51210, Sound2-2]; Piston 4
 type = PlaySnd
 trigger1 = time = 310 ||time = 322 || time = 334 || time = 346
 trigger2 = time = 358 ||time = 370 || time = 382 
 trigger3 = time = 603 ||time = 615 || time = 627 || time = 639|| time = 651|| time = 663|| time = 675
 value = 8150,3
 
-[State 51210,‰¹º‚R];Ë¸‰¹
+[State 51210,Soundï¼“]; Ejaculation sound
 type = PlaySnd
 trigger1 = time =402||time = 429||time = 442||time = 462||time = 482
 trigger2 = time =683||time = 713||time = 743||time = 773
 value = 8200,5
 
-[State 51210,‰¹º‚R];Ë¸‰¹¬
+[State 51210,Soundï¼“]; Ejaculation sound small
 type = PlaySnd
 trigger1 = time =803||time = 833
 value = 8150,2
 
 
-[State 51210,‰¹º5-1];”²‚¢‚½‰¹
+[State 51210,Sound5-1]; Pullout sound
 type = PlaySnd
 trigger1 = time = 516||time = 903
 value = 6080,7
 
 
-[State 51210,‰¹º6];‰œ‚Ü‚Å“ü‚Á‚Ä‚«‚Ä‚éEEE“I‚È
+[State 51210,Sound6]; Deep insertion type
 type = PlaySnd
 trigger1 = time = 863
 value = 8150,0
 
 
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 45020
 
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 45018
 
-[State 12002, –{‘Ì]
+[State 12002, Body]
 type = Explod
 trigger1 = time = 0
 anim = 45012
@@ -2407,49 +2407,49 @@ sprpriority = -1
 supermovetime = 30
 removeongethit = 1
 
-[State 51210,‰¹º0];‘}“ü‰¹¬
+[State 51210,Sound0]; Insertion sound small
 type = PlaySnd
 trigger1 = time = 20
 value = 6085,1
 
-[State 51210,‰¹º‚P];‘}“ü‰¹‘å
+[State 51210,Soundï¼‘]; Insertion sound large
 type = PlaySnd
 trigger1 = time = 98||time = 558
 value = 6085,2
 
 
-[State 51210,‰¹º‚P];”÷“®
+[State 51210,Soundï¼‘]; Slight movement
 type = PlaySnd
 trigger1 = time = 66
 value = 6085,0
 
-[State 51210, ‰¹º2];ƒsƒXƒgƒ“1
+[State 51210, Sound2]; Piston 1
 type = PlaySnd
 trigger1 = time = 193 ||time = 213 || time = 233 || time = 253
 trigger2 = time = 273 ||time = 293 
 value = 6085,0
 
-[State 51210, ‰¹º2-2];ƒsƒXƒgƒ“2
+[State 51210, Sound2-2]; Piston 2
 type = PlaySnd
 trigger1 = time = 311 ||time = 323 || time = 335 || time = 347
 trigger2 = time = 359 ||time = 371 || time = 383 
 trigger3 = time = 604 ||time = 616 || time = 628 || time = 640|| time = 652|| time = 664|| time = 676
 value = 6085,1
 
-[State 51210,‰¹º‚R];Ë¸‰¹
+[State 51210,Soundï¼“]; Ejaculation sound
 type = PlaySnd
 trigger1 = time =402||time = 429||time = 442||time = 462||time = 482
 trigger2 = time =683||time = 713||time = 743||time = 773
 value = 6085,0
 
-[State 51210,‰¹º‚R];Ë¸‰¹¬
+[State 51210,Soundï¼“]; Ejaculation sound small
 type = PlaySnd
 trigger1 = time =803||time = 833
 value = 6085,1
 
 
 
-[State 12002, –{‘Ì2]
+[State 12002, Body 2]
 type = Explod
 trigger1 = time = 0
 anim = 45015
@@ -2489,7 +2489,7 @@ facing=-1
 ownpal=1
 
 
-[State 13100, Ÿ‚Ö]
+[State 13100, Next]
 type = ChangeState
 trigger1 = Time = 973
 value = 46104
@@ -2507,34 +2507,34 @@ ctrl = 0
 sprpriority = -5
 
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 45005
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 45013
 
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 45007
 
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 45008
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 45015
 
-[State 9103, ƒGƒtƒFƒNƒgÁ‹]
+[State 9103, Effect remove]
 type = RemoveExplod
 trigger1 = time = 0
 ID = 45012
@@ -2569,7 +2569,7 @@ trigger1 = time = 0
 value=5300
 
 
-[State 13100, Ÿ‚Ö]
+[State 13100, Next]
 type = ChangeState
 trigger1 = Time = 190
 value = 47001
@@ -2587,13 +2587,13 @@ velset = 0,0
 
 
 
-[State 1647, ê—pƒAƒjƒƒƒŠ]
+[State 1647, Dedicated anim loli]
 type = ChangeAnim
 trigger1 = SelfAnimExist(51251)
 trigger1 = time = 0
 value = 51251
 
-[State 1647, ê—pƒAƒjƒ]
+[State 1647, Dedicated anim]
 type = ChangeAnim
 trigger1 = !SelfAnimExist(51251)
 trigger1 = SelfAnimExist(51231)
@@ -2601,14 +2601,14 @@ trigger1 = time = 0
 value = 51231
 
 
-[State 13100, ê—pƒAƒjƒ‚È‚µ]
+[State 13100, No dedicated anim]
 type = ChangeState
 trigger1 = !SelfAnimExist(51251)
 trigger1 = !SelfAnimExist(51231)
 trigger1 = time = 0
 value = 47101
 
-[State 1610, •]
+[State 1610, Width]
 type = PosSet
 trigger1 = time = 0
 x = 0
@@ -2622,14 +2622,14 @@ pos = ceil(-60*const(size.xscale)),ceil(-50*const(size.yscale))
 
 
 
-[State 1610, •]
+[State 1610, Width]
 type = Width
 trigger1 = 1
 edge = 75,75
 player = 32,32
 
 
-[State 13100, Ÿ‚Ö]
+[State 13100, Next]
 type = ChangeState
 trigger1 = Time = 200
 value = 47002
@@ -2644,13 +2644,13 @@ movetype= H
 physics = N
 velset = 0,0
 
-[State 1647, ê—pƒAƒjƒƒƒŠ]
+[State 1647, Dedicated anim loli]
 type = ChangeAnim
 trigger1 = SelfAnimExist(51252)
 trigger1 = time = 0
 value = 51252
 
-[State 1647, ê—pƒAƒjƒ]
+[State 1647, Dedicated anim]
 type = ChangeAnim
 trigger1 = !SelfAnimExist(51252)
 trigger1 = SelfAnimExist(51232)
@@ -2660,40 +2660,40 @@ value = 51232
 
 
 
-[State 51220,‰¹º‚P];”ß–Âİ’è@‘}“ü
+[State 51220,Soundï¼‘]; Scream setting - insertion
 type = PlaySnd
 trigger1 = time = 16
 value = 4218,23
 volume = 60
 channel =0
 
-[State 51220, ‰¹º2];”ß–Âİ’è@ƒsƒXƒgƒ“1
+[State 51220, Sound2]; Scream setting - Piston 1
 type = PlaySnd
 trigger1 = time = 80 ||time = 100 || time = 120 || time = 140
 trigger2 = time = 160 ||time = 180 || time = 200 || time = 220
 value = 4218,21
 channel =0
 
-[State 51220, ‰¹º3];”ß–Âİ’è@ƒsƒXƒgƒ“2
+[State 51220, Sound3]; Scream setting - Piston 2
 type = PlaySnd
 trigger1 = time = 240 ||time = 252 || time = 264 || time = 276
 trigger2 = time = 288 ||time = 300 || time = 312 || time = 324
 value = 4218,21+(Random % 3)
 channel =0
 
-[State 51220, ‰¹º4]            ;”ß–Âİ’è@Ë¸
+[State 51220, Sound4]            ;Scream setting - ejaculation
 type = PlaySnd
 trigger1 = time =332||time = 367
 value = 4218,21+ (Random % 2)
 channel = 0
 
-[State 51220, ‰¹º5]            ;”ß–Âİ’è@Ë¸
+[State 51220, Sound5]            ;Scream setting - ejaculation
 type = PlaySnd
 trigger1 = time = 403
 value = 11,0
 channel = 0
 
-[State 51220, ‰¹º6]            ;”ß–Âİ’è@—]‰C
+[State 51220, Sound6]            ;Scream setting - afterglow
 type = PlaySnd
 trigger1 = Time =523
 value = 4218,21
@@ -2703,7 +2703,7 @@ channel = 0
 
 
 
-[State 51220,ƒ_ƒ1];ƒ_ƒ[ƒWİ’è@‘}“ü
+[State 51220,Damage1]; Damage setting - insertion
 type = LifeAdd
 triggerall = Life > 21
 trigger1 = time = 16
@@ -2711,7 +2711,7 @@ value = -50
 kill = 0
 
 
-[State 51220,ƒ_ƒ2];ƒ_ƒ[ƒWİ’è@ƒsƒXƒgƒ“1
+[State 51220,Damage2]; Damage setting - Piston 1
 type = LifeAdd
 triggerall = Life > 21
 trigger1 = time = 80 ||time = 100 || time = 120 || time = 140
@@ -2720,7 +2720,7 @@ value = -4
 kill = 0
 
 
-[State 51220,ƒ_ƒ3];ƒ_ƒ[ƒWİ’è@ƒsƒXƒgƒ“2
+[State 51220,Damage3]; Damage setting - Piston 2
 type = LifeAdd
 triggerall = Life > 21
 trigger1 = time = 240 ||time = 252 || time = 264 || time = 276
@@ -2729,7 +2729,7 @@ value = -6
 kill = 0
 
 
-[State 51220,ƒ_ƒ4];ƒ_ƒ[ƒWİ’è@Ë¸
+[State 51220,Damage4]; Damage setting - ejaculation
 type = LifeAdd
 trigger1 =time =332||time = 367||time = 403
 value = -40
@@ -2738,7 +2738,7 @@ kill = 0
 
 
 
-[State 1610, •]
+[State 1610, Width]
 type = Width
 trigger1 = 1
 edge = 75,75
@@ -2747,7 +2747,7 @@ player = 32,32
 
 
 
-[State 13100, Ÿ‚Ö]
+[State 13100, Next]
 type = ChangeState
 trigger1 = Time = 523
 value = 47003
@@ -2762,13 +2762,13 @@ movetype= H
 physics = N
 velset = 0,0
 
-[State 1647, ê—pƒAƒjƒƒƒŠ]
+[State 1647, Dedicated anim loli]
 type = ChangeAnim
 trigger1 = SelfAnimExist(51253)
 trigger1 = time = 0
 value = 51253
 
-[State 1647, ê—pƒAƒjƒ]
+[State 1647, Dedicated anim]
 type = ChangeAnim
 trigger1 = !SelfAnimExist(51253)
 trigger1 = SelfAnimExist(51233)
@@ -2777,27 +2777,27 @@ value = 51233
 
 
 
-[State 51221,‰¹º‚P];”ß–Âİ’è@‘}“ü
+[State 51221,Soundï¼‘]; Scream setting - insertion
 type = PlaySnd
 trigger1 = time = 20||time = 564
 value = 4218,23
 volume = 60
 
-[State 51221,‰¹º‚P];”ß–Âİ’è@‘}“ü ‹­
+[State 51221,Soundï¼‘]; Scream setting - insertion strong
 type = PlaySnd
 trigger1 = time = 106
 value = 11,0
 volume = 60
 channel =0
 
-[State 51221,‰¹º‚P];”ß–Âİ’è@”÷“® ”²‚©‚ê‚½
+[State 51221,Soundï¼‘]; Scream setting - slight movement pullout
 type = PlaySnd
 trigger1 = time = 71||time = 524
 value = 4218,21
 volume = 60
 channel =0
 
-[State 51221, ‰¹º2];”ß–Âİ’è@ƒsƒXƒgƒ“1
+[State 51221, Sound2]; Scream setting - Piston 1
 type = PlaySnd
 trigger1 = time = 200 ||time = 220 || time = 240 || time = 260
 trigger2 = time = 280 ||time = 300 
@@ -2805,7 +2805,7 @@ value = 4218,21
 channel =0
 
 
-[State 51221, ‰¹º3];”ß–Âİ’è@ƒsƒXƒgƒ“2
+[State 51221, Sound3]; Scream setting - Piston 2
 type = PlaySnd
 trigger1 = time = 318 ||time = 330 || time = 342 || time = 354
 trigger2 = time = 366 ||time = 378 || time = 390 
@@ -2814,7 +2814,7 @@ value = 4218,21+(Random % 3)
 channel =0
 
 
-[State 51221, ‰¹º4]            ;”ß–Âİ’è@Ë¸
+[State 51221, Sound4]            ;Scream setting - ejaculation
 type = PlaySnd
 trigger1 = time =410||time = 437||time = 450||time = 470||time = 490
 trigger2 = time =691||time = 721||time = 751||time = 781
@@ -2822,14 +2822,14 @@ value = 4218,21+ (Random % 4)
 channel =0
 
 
-[State 51221,‰¹º5];”ß–Âİ’è@Ë¸‰¹¬
+[State 51221,Sound5]; Scream setting - ejaculation sound small
 type = PlaySnd
 trigger1 = time =811;||time = 841
 value = 4218,21
 channel =0
 
 
-[State 51221, ‰¹º6]            ;”ß–Âİ’è@—]‰C
+[State 51221, Sound6]            ;Scream setting - afterglow
 type = PlaySnd
 trigger1 = Time =911
 value = 5120,5
@@ -2838,7 +2838,7 @@ value = 5120,5
 
 
 
-[State 51221,ƒ_ƒ1];ƒ_ƒ[ƒWİ’è@‘}“ü
+[State 51221,Damage1]; Damage setting - insertion
 type = LifeAdd
 triggerall = Life > 21
 trigger1 = time = 20
@@ -2846,13 +2846,13 @@ value = -16
 kill = 0
 
 
-[State 51221,ƒ_ƒ1-1];ƒpƒ[ƒ_ƒ[ƒWİ’è@‘}“ü
+[State 51221,Damage1-1]; Power damage setting - insertion
 type = PowerAdd
 trigger1 = time = 20
 value = -40
 
 
-[State 51221,ƒ_ƒ2];ƒ_ƒ[ƒWİ’è@ƒsƒXƒgƒ“1
+[State 51221,Damage2]; Damage setting - Piston 1
 type = LifeAdd
 triggerall = Life > 21
 trigger1 = time = 200 ||time = 220 || time = 240 || time = 260
@@ -2861,13 +2861,13 @@ value = -2
 kill = 0
 
 
-[State 51221,ƒ_ƒ2-1];ƒpƒ[ƒ_ƒ[ƒWİ’è@ƒsƒXƒgƒ“1
+[State 51221,Damage2-1]; Power damage setting - Piston 1
 type = PowerAdd
 trigger1 = time = 200 ||time = 220 || time = 240 || time = 260
 trigger2 = time = 280 ||time = 300 
 value = -5
 
-[State 51221,ƒ_ƒ3];ƒ_ƒ[ƒWİ’è@ƒsƒXƒgƒ“2
+[State 51221,Damage3]; Damage setting - Piston 2
 type = LifeAdd
 triggerall = Life > 21
 trigger1 = time = 318 ||time = 330 || time = 342 || time = 354
@@ -2877,21 +2877,21 @@ value = -2
 kill = 0
 
 
-[State 51221,ƒ_ƒ3-1];ƒpƒ[ƒ_ƒ[ƒWİ’è@ƒsƒXƒgƒ“2
+[State 51221,Damage3-1]; Power damage setting - Piston 2
 type = PowerAdd
 trigger1 = time = 318 ||time = 330 || time = 342 || time = 354
 trigger2 = time = 366 ||time = 378 || time = 390 
 trigger3 = time = 611 ||time = 623 || time = 635 || time = 647|| time = 659|| time = 671|| time = 683
 value = -5
 
-[State 51221,ƒ_ƒ4];ƒ_ƒ[ƒWİ’è@Ë¸
+[State 51221,Damage4]; Damage setting - ejaculation
 type = LifeAdd
 trigger1 = time =410||time = 437||time = 450||time = 470||time = 490
 trigger2 = time =691||time = 721||time = 751||time = 781
 value = -16
 
 
-[State 51221,ƒ_ƒ4-1];ƒpƒ[ƒ_ƒ[ƒWİ’è@Ë¸
+[State 51221,Damage4-1]; Power damage setting - ejaculation
 type = PowerAdd
 trigger1 = time =410||time = 437||time = 450||time = 470||time = 490
 trigger2 = time =691||time = 721||time = 751||time = 781
@@ -2899,14 +2899,14 @@ value = -40
 
 
 
-[State 1610, •]
+[State 1610, Width]
 type = Width
 trigger1 = 1
 edge = 75,75
 player = 32,32
 
 
-[State 13100, Ÿ‚Ö]
+[State 13100, Next]
 type = ChangeState
 trigger1 = Time = 973
 value = 47004
@@ -2919,19 +2919,19 @@ type    = L
 movetype= H
 physics = N
 
-[State 1699, ê—pƒAƒjƒ]
+[State 1699, Dedicated anim]
 type = ChangeAnim
 trigger1 = SelfAnimExist(36699)
 trigger1 = time = 0
 value = 36699
 
-[State 1695, ”Ä—pƒAƒjƒ]
+[State 1695, Generic anim]
 type = ChangeAnim
 trigger1 = !SelfAnimExist(36699)
 trigger1 = time = 0
 value = 5110
 
-[State 1695, ‘O–ÊƒGƒtƒFƒNƒg]
+[State 1695, Front effect]
 type = Explod
 trigger1 = SelfAnimExist(36698)
 trigger1 = Time = 0
@@ -2976,24 +2976,24 @@ physics = N
 velset = 0,0
 
 
-[State 1647, ê—pƒAƒjƒ]
+[State 1647, Dedicated anim]
 type = ChangeAnim
 trigger1 = time = 0
 value = 0
 
-[State 1610, •]
+[State 1610, Width]
 type = PosSet
 trigger1 = time = 0
 x = 60
 y = 0
 
-[State 1610, •]
+[State 1610, Width]
 type = Width
 trigger1 = 1
 edge = 75,75
 player = 32,32
 
-[State 13100, Ÿ‚Ö]
+[State 13100, Next]
 type = ChangeState
 trigger1 = Time = 200
 value = 47102
@@ -3009,19 +3009,19 @@ physics = N
 velset = 0,0
 
 
-[State 1647, ê—pƒAƒjƒ]
+[State 1647, Dedicated anim]
 type = ChangeAnim
 trigger1 = time = 0
 value = 0
 
 
-[State 51220,ƒ_ƒ1];ƒ_ƒ[ƒWİ’è@‘}“ü
+[State 51220,Damage1]; Damage setting - insertion
 type = LifeAdd
 triggerall = Life > 21
 trigger1 = time = 16
 value = -50
 
-[State 51220,ƒ_ƒ2];ƒ_ƒ[ƒWİ’è@ƒsƒXƒgƒ“1
+[State 51220,Damage2]; Damage setting - Piston 1
 type = LifeAdd
 triggerall = Life > 21
 trigger1 = time = 80 ||time = 100 || time = 120 || time = 140
@@ -3030,7 +3030,7 @@ value = -4
 kill = 0
 
 
-[State 51220,ƒ_ƒ3];ƒ_ƒ[ƒWİ’è@ƒsƒXƒgƒ“2
+[State 51220,Damage3]; Damage setting - Piston 2
 type = LifeAdd
 triggerall = Life > 21
 trigger1 = time = 240 ||time = 252 || time = 264 || time = 276
@@ -3039,7 +3039,7 @@ value = -6
 kill = 0
 
 
-[State 51220,ƒ_ƒ4];ƒ_ƒ[ƒWİ’è@Ë¸
+[State 51220,Damage4]; Damage setting - ejaculation
 type = LifeAdd
 trigger1 =time =332||time = 367||time = 403
 value = -40
@@ -3049,7 +3049,7 @@ kill = 0
 
 
 
-[State 13100, Ÿ‚Ö]
+[State 13100, Next]
 type = ChangeState
 trigger1 = Time = 523
 value = 47103
@@ -3067,13 +3067,13 @@ physics = N
 velset = 0,0
 
 
-[State 1647, ê—pƒAƒjƒ]
+[State 1647, Dedicated anim]
 type = ChangeAnim
 trigger1 = time = 0
 value = 0
 
 
-[State 51221,ƒ_ƒ1];ƒ_ƒ[ƒWİ’è@‘}“ü
+[State 51221,Damage1]; Damage setting - insertion
 type = LifeAdd
 triggerall = Life > 21
 trigger1 = time = 20
@@ -3081,13 +3081,13 @@ value = -16
 kill = 0
 
 
-[State 51221,ƒ_ƒ1-1];ƒpƒ[ƒ_ƒ[ƒWİ’è@‘}“ü
+[State 51221,Damage1-1]; Power damage setting - insertion
 type = PowerAdd
 trigger1 = time = 20
 value = -40
 
 
-[State 51221,ƒ_ƒ2];ƒ_ƒ[ƒWİ’è@ƒsƒXƒgƒ“1
+[State 51221,Damage2]; Damage setting - Piston 1
 type = LifeAdd
 triggerall = Life > 21
 trigger1 = time = 200 ||time = 220 || time = 240 || time = 260
@@ -3096,13 +3096,13 @@ value = -2
 kill = 0
 
 
-[State 51221,ƒ_ƒ2-1];ƒpƒ[ƒ_ƒ[ƒWİ’è@ƒsƒXƒgƒ“1
+[State 51221,Damage2-1]; Power damage setting - Piston 1
 type = PowerAdd
 trigger1 = time = 200 ||time = 220 || time = 240 || time = 260
 trigger2 = time = 280 ||time = 300 
 value = -5
 
-[State 51221,ƒ_ƒ3];ƒ_ƒ[ƒWİ’è@ƒsƒXƒgƒ“2
+[State 51221,Damage3]; Damage setting - Piston 2
 type = LifeAdd
 triggerall = Life > 21
 trigger1 = time = 318 ||time = 330 || time = 342 || time = 354
@@ -3112,27 +3112,27 @@ value = -2
 kill = 0
 
 
-[State 51221,ƒ_ƒ3-1];ƒpƒ[ƒ_ƒ[ƒWİ’è@ƒsƒXƒgƒ“2
+[State 51221,Damage3-1]; Power damage setting - Piston 2
 type = PowerAdd
 trigger1 = time = 318 ||time = 330 || time = 342 || time = 354
 trigger2 = time = 366 ||time = 378 || time = 390 
 trigger3 = time = 611 ||time = 623 || time = 635 || time = 647|| time = 659|| time = 671|| time = 683
 value = -5
 
-[State 51221,ƒ_ƒ4];ƒ_ƒ[ƒWİ’è@Ë¸
+[State 51221,Damage4]; Damage setting - ejaculation
 type = LifeAdd
 trigger1 = time =410||time = 437||time = 450||time = 470||time = 490
 trigger2 = time =691||time = 721||time = 751||time = 781
 value = -16
 
-[State 51221,ƒ_ƒ4-1];ƒpƒ[ƒ_ƒ[ƒWİ’è@Ë¸
+[State 51221,Damage4-1]; Power damage setting - ejaculation
 type = PowerAdd
 trigger1 = time =410||time = 437||time = 450||time = 470||time = 490
 trigger2 = time =691||time = 721||time = 751||time = 781
 value = -40
 
 
-[State 13100, Ÿ‚Ö]
+[State 13100, Next]
 type = ChangeState
 trigger1 = Time = 973
 value = 47104
@@ -3148,7 +3148,7 @@ physics = N
 velset = 0,0
 
 
-[State 1647, ê—pƒAƒjƒ]
+[State 1647, Dedicated anim]
 type = ChangeAnim
 trigger1 = time = 0
 value = 0
