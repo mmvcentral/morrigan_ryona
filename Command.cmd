@@ -242,11 +242,11 @@ time=30
 
 ;===================<SPECIAL MOTIONS>===================
 
-[Command];犬アタック
+[Command]; Charge (Power Charge / Dog summon)
 name = "214c"
 command = b+y
 time=20
-[Command];犬アタック
+[Command]; Charge (Dodge / Tongue attack)
 name = "214y"
 command = a+x
 time=20
@@ -582,7 +582,7 @@ trigger1 = ctrl
 
 
 
-;犬アタックS（ゲージレベル１）
+; Charge S (Gauge 1) - Dog attack
 [State -1, dog attack s]
 type = ChangeState
 value = 6077
@@ -595,7 +595,7 @@ triggerall = NumHelper(6150) = 0
 trigger1 = statetype != A
 trigger1 = ctrl
 
-;犬アタック
+; Charge - Tongue attack (Rei-Rei)
 [State -1, Tongue attack b]
 type = ChangeState
 value = 7067

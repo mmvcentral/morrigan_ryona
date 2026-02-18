@@ -549,7 +549,7 @@ value = 4218,22
 
 [State 6065, State change]
 type = ChangeState
-triggerall = Vel Y > 0        ;★７
+triggerall = Vel Y > 0        ; Ref: trigger condition
 triggerall = Pos Y >= -20
 triggerall = alive
 triggerall = CanRecover
@@ -570,7 +570,7 @@ trigger1 = Vel Y > 0
 trigger1 = Pos Y >= 0
 value = 5110 ; See common1.cns
 
-;★７：「triggerall」
+; Note: triggerall limits conditions; trigger1 etc. valid only when all triggerall met.
 ; Trigger definition for limiting conditions.
 ; trigger1 etc. only valid when all triggerall conditions are met.
 ; triggerall alone does not work; never remove trigger1 when setting up.

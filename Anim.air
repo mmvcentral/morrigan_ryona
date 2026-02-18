@@ -10148,17 +10148,17 @@ LoopStart
 [Begin Action 74140108]
 -1,0,0,0,-1,,
 
-;�_���}KO
+; Impregnation KO
 [Begin Action 19728]
 19728, 0, 0,0, 12
 19728, 1, 0,0, 12
 
-;-------�s�܂�KO������---
+;------- Impregnation KO dedicated --------
 [Begin Action 27319568]
 16800,21, 0,165, 40,
 16800,22, 0,165, 15,
 ; ----------------------------------------------------------------------
-;�܂񂮂肪����
+; Manguri avoidance standby
 [Begin Action 21100]
 21100,  0,  0,-37,300,H
 ; 
@@ -10239,17 +10239,17 @@ Loopstart
 21100,  0,  0,-37, 20,H
 21100,  0,  0,-37, 50,H
 
-;�܂񂮂薢���ڗp1
+; Manguri avoidance slot 1
 [Begin Action 12238]
 5011,  0,  0,-15,300,H
 
 
-;�܂񂮂薢���ڗp2
+; Manguri avoidance slot 2
 [Begin Action 12239]
 5011,  0,  0,-15,300,H
 
 
-;�܂񂮂薢���ڗp3
+; Manguri avoidance slot 3
 [Begin Action 12240]
 5011,  0,  0,-15,  4,H
 5011, 10,  0,-15,  4,H
@@ -10258,7 +10258,7 @@ Loopstart
 5011, 10,  0,-15,  2,H
 
 
-;�܂񂮂薢���ڗp4
+; Manguri avoidance slot 4
 [Begin Action 12241]
 5011,  0,  0,-15,  2,H
 5011, 10,  0,-15,  2,H
@@ -10267,7 +10267,7 @@ Loopstart
 5011,  0,  0,-15,  2,H
 
 
-;�܂񂮂薢���ڗp5
+; Manguri avoidance slot 5
 [Begin Action 12242]
 5011,  0,  0,-15,  1,H
 5011, 10,  0,-15,  1,H
@@ -10276,7 +10276,7 @@ Loopstart
 5011,  0,  0,-15,  1,H
 
 
-;�܂񂮂薢���ڗp6
+; Manguri avoidance slot 6
 [Begin Action 12243]
 5011,  0,  0,-15,  4,H
 5011, 10,  0,-15,  4,H
@@ -10327,17 +10327,17 @@ Loopstart
 5011,  0,  0,-15, 50,H
 
 
-;�܂񂮂��Đ��p1
+; Manguri avoidance slot 1
 [Begin Action 12248]
 12250,  1,  0,-10,300,H
 
 
-;�܂񂮂��Đ��p2
+; Manguri avoidance slot 2
 [Begin Action 12249]
 12250,0, 0,-10, 300,H
 
 
-;�܂񂮂��Đ��p3
+; Manguri avoidance slot 3
 [Begin Action 12250]
 12250,0, 0,-10, 4,H
 12250,1, 0,-10, 4,H
@@ -10346,7 +10346,7 @@ Loopstart
 12250,1, 0,-10, 2,H
 
 
-;�܂񂮂��Đ��p4
+; Manguri avoidance slot 4
 [Begin Action 12251]
 12250,0, 0,-10, 2,H
 12250,1, 0,-10, 2,H
@@ -10355,7 +10355,7 @@ Loopstart
 12250,0, 0,-10, 2,H
 
 
-;�܂񂮂��Đ��p5
+; Manguri avoidance slot 5
 [Begin Action 12252]
 12250,0, 0,-10, 1,H
 12250,1, 0,-10, 1,H
@@ -10364,7 +10364,7 @@ Loopstart
 12250,0, 0,-10, 1,H
 
 
-;�܂񂮂��Đ��p6
+; Manguri avoidance slot 6
 [Begin Action 12253]
 12250,0, 0,-10, 4,H
 12250,1, 0,-10, 4,H
@@ -10418,7 +10418,7 @@ Loopstart
 2264,7, 0,0, -1
 
 
-;��������
+; Fade
 [Begin Action 6615]
  -1,  0,  0,  0, 10
 2264,9, 0,0, 10,,AS10D1
@@ -10433,21 +10433,21 @@ Loopstart
 2264,9, 0,0, 10,,AS10D1
 -1,0,0,0,-1
 
-;�D�PKO�@�o�b�N
+; Normal KO lock
 [Begin Action 6616]
  -1,  0,-440,-430,230
 2264,10,-440,-430, -1
 
-;�D�PKO�@�Ђ�
+; Normal KO start
 [Begin Action 6618]
 2264,11, 0,0, -1
 
-;�x�b�g
+; Bed
 [Begin Action 6619]
  -1,  0,-440,-430,230
 9201,0,0,0,-1,,
 
-;�󐸃A�j��
+; Standing animation
 [Begin Action 21105]
 21101,  0,  0,  0,  6,
 21101,  1,  0,  0,  3,

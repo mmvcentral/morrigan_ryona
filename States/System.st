@@ -2478,7 +2478,7 @@ value = 36800
 elem = 2
 
 
-[State 1699, アニメ]
+[State 1699, Anime]
 type = ChangeAnim
 triggerall = PrevStateNo = 12169
 trigger1 = AnimElem = 4
@@ -2487,8 +2487,7 @@ value = 3000732
 elem = 2
 
 
-[State 1081, 音を鳴らす]                     ;悲鳴設定
-type = PlaySnd
+[State 1081, PlaySnd]                     ; Hit detection / Sound
 triggerall = PrevStateNo = 12169
 triggerall = AnimElem = 2
 trigger1 = anim = 27319568
@@ -2514,7 +2513,7 @@ trigger1 = 1
 value = SCA
 time = 1
 
-[State 4010, 終わらない]
+[State 4010, Round not over]
 type = AssertSpecial
 triggerall = Time = [0, 550]
 trigger1 = anim = 27319568
@@ -2700,7 +2699,7 @@ value = 4
 
 
 
-;[State 4010, 終わらない]
+;[State 4010, Round not over]
 ;type = AssertSpecial
 ;triggerall = Enemy,StateNo = 5150
 ;triggerall = 1

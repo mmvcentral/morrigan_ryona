@@ -1,244 +1,117 @@
-         
-Morrigan Aensland by Phantom
-[v.0.95]
+# Ryona Morrigan
 
-- Contact: potsmugen@yahoo.com.br
-- Website: http://www.mugenguild.com/pots/
+**Morrigan Aensland** – Customized MUGEN character from the Darkstalkers series.
+
+---
+
+## Character Introduction
+
+**Character Name**: Morrigan Aensland  
+**Display Name**: Ryona Morrigan Sex  
+**Original Creator**: Phantom (Phantom.of.the.Server)  
+**Ryona Edition**: Phantom, Soka  
+**Contact**: potsmugen@yahoo.com.br  
+**Website**: http://www.mugenguild.com/pots/
+
+### Character Storyline
+
+Morrigan Aensland is a succubus and one of the three ruling lords of the demon world (Makai) in Capcom's Darkstalkers (Vampire) series. She is the daughter of Belial Aensland and inherits immense power. Morrigan often appears carefree and playful, seeking entertainment and strong opponents. She has a counterpart, Lilith, who was split from her soul. In the Ryona edition, she retains her core moveset while incorporating character-summon mechanics and alternate win poses.
+
+### Base Character
 
 - Customized version of Capcom's Morrigan from the Darkstalkers series
-- For Linux and Windows Mugen
-
-
-
-=====<Features>=====
-
-- All the essential stuff
-- Gameplay mix between CvS, Darkstalkers and other Capcom games
-- CvS-like movement
-- Zero Counter, from SFZ3
-- Dark Force and Chain Combos, from Darkstalkers
-- Dodge, Roll, and Power Charge, from CvS2
-- SF3 Parry and EX moves
+- For Linux and Windows MUGEN
+- Gameplay mix: CvS, Darkstalkers, and other Capcom games
+- CvS-like movement, Zero Counter (SFZ3), Dark Force and Chain Combos (Darkstalkers)
+- Dodge, Roll, Power Charge (CvS2), SF3 Parry, EX moves
 - Cancels and Super Cancels
-- Original and edited effects from various games
-- Sounds from various games, including DS and CvS2
-- CvS2 voice samples
-- MK blood effects
-- Various intros, win poses and special animations
+- CvS2 voice samples, MK blood effects
 - Special intro versus Viuda Negra by Borghi
-- 7 big portraits for you to choose from
-- A.I.
+- 7 big portraits to choose from
+- A.I. included
 
+---
 
+## Documentation Index
 
-=====<Movelist>=====
+All documentation is organized under the `docs/` folder. Related reference files are listed below.
 
-U - up          x - weak punch         a - weak kick
-D - down        y - medium punch       b - medium kick
-F - forward     z - strong punch       c - strong kick
-B - back        p - any punch          k - any kick
-s - start       2p- two punches        2k- two kicks
+| Document | Description |
+|----------|-------------|
+| [docs/INDEX.md](docs/INDEX.md) | Master documentation index |
+| [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | System architecture: fight mode, skills, animations, counter-parties |
+| [docs/TRANSLATION.md](docs/TRANSLATION.md) | Japanese and non-English text translations |
+| [docs/log.md](docs/log.md) | Version history and creator feature journals |
+| [commands_characters.txt](commands_characters.txt) | Ryona commands and character summons |
+| [Caution_Commands.txt](Caution_Commands.txt) | Patch cautions and command reference |
+| [KO-edition/Impregnation_KO_instructions.txt](KO-edition/Impregnation_KO_instructions.txt) | Impregnation KO setup |
 
-(Air)- Move must be performed in the air.
+---
 
-(EX)- Move with an EX version. EX moves are performed by pressing two punch/kick buttons.
-e.g.: Soul Fist - D, DF, F, p
-      EX Soul Fist - D, DF, F, 2p
+## Movelist (Abbreviations)
 
-EX moves are more powerful than regular Special moves, but consume half of a power stock.
+- **U** = up | **D** = down | **F** = forward | **B** = back  
+- **x** = weak punch | **y** = medium punch | **z** = strong punch  
+- **a** = weak kick | **b** = medium kick | **c** = strong kick  
+- **p** = any punch | **k** = any kick | **2p** = two punches | **2k** = two kicks  
 
+### Normal
 
+- Necro Desire: F+c  
+- Ecstatic Climb: DF+z  
+- Moon Tracer: F/B+2p (near)  
+- Breast Anguish: F/B+2k (near)  
 
-<NORMAL>
+### Special
 
-.Necro Desire:          F + c
-.Ecstatic Climb:        DF + z
-.Moon Tracer:           F/B + 2p (near opponent)
-.Breast Anguish:        F/B + 2k (near opponent)
+- Soul Fist: D,DF,F,p (Air also)(EX)  
+- Shadow Blade: F,D,DF,p (EX)  
+- Vector Drain: F,DF,D,DB,B,p (EX)  
 
+### Lv1 Super
 
-<SPECIAL>
+- Soul Phoenix: D,DF,F,D,DF,F,p (Air also)  
+- Cardinal Blade: D,DF,F,D,DF,k  
+- Valkyrie Turn: F,DF,D,DB,B,k  
 
-.Soul Fist:             D, DF, F, p (Air also)(EX)
-.Shadow Blade:          F, D, DF, p (EX)
-.Vector Drain:          F, DF, D, DB, B, p (EX)
+### Lv2 Super
 
+- Finishing Shower: y,x,B,a,b  
 
-<Lv1 SUPER>
+### Lv3 Super
 
-.Soul Phoenix:          D, DF, F, D, DF, F, p (Air also)
-.Cardinal Blade:        D, DF, F, D, DF, k
-.Valkyrie Turn:         F, DF, D, DB, B, k
+- Darkness Illusion: x,x,F,a,z  
+- Eternal Slumber: x,b,B,y,c  
+- Astral Vision: c+z  
 
+### System
 
-<Lv2 SUPER>
+- Fly Forward: F,F (hold) | Fly Backward: B,B (hold)  
+- Dodge: a+x | Power Charge: b+y (hold)  
+- Zero Counter: B,DB,D,p/k (during guard)  
+- Parry High: (tap) F | Parry Low: (tap) D | Air Parry: (tap) F (Air)  
 
-.Finishing Shower:      y, x, B, a, b
+---
 
+## Move Details
 
-<Lv3 SUPER>
+- Necro Desire is an overhead  
+- Eternal Slumber is unblockable  
+- During Astral Vision, unlimited Lv1 Supers; no Lv2 or Lv3  
 
-.Darkness Illusion:     x, x, F, a, z
-.Eternal Slumber:       x, b, B, y, c
-.Astral Vision:         c+z
+---
 
+## Caution
 
-<SYSTEM>
+- It is unknown whether your version of Ryona Morrigan is the latest; the patch may not work properly due to version differences.  
+- This is an unofficial patch modification. Please do not contact the creator of Ryona Morrigan about this patch.  
 
-.Fly Forward:           F, F (hold)
-.Fly Backward:          B, B (hold)
-.Fly Upward:            U (Hold during Fly Forward or Fly Backward)
-.Fly Downward:          D (Hold during Fly Forward)
-.Dodge:                 a + x
-.Dodge Attack:          p/k (during Dodge)
-.Forward Sidestep:      F + a + x
-.Backward Sidestep:     B + a + x
-.Parry High:            (tap) F
-.Parry Low:             (tap) D
-.Air Parry:             (tap) F (Air)
-.Power Charge:          b+y (hold)
-.Zero Counter:          B, DB, D, p/k (during standing or crouching guard)
-.Fall Recovery:         2p (while falling when hit)
-.Low Jump:              U (tap)
-.High Jump:             D, U
-.Chouhatsu:             s (hold to delay)
+---
 
+## License
 
+**Creative Circle License** – This is an edition from the original author(s).
 
-=====<Move Details>=====
-
-- Necro Desire is an overhead
-
-- Eternal Slumber is unblockable
-
-- You can use as many Lv1 Supers as you want during Astral Vision, but no Lv2 or Lv3
-
-
-
-Caution
-★I don't know if my version of Ryona Morrigan is the latest version, so the patch may not work properly due to version differences.
-★This is an unofficial patch modification. Please do not contact the creator of Ryona Morrigan about this patch.
-
-2015/7/28
-
-Commands
-Felicia          A+X
-Q-BEE (enhanced performance)    B+Y
-Rei-Rei          ↓↓C
-Morrigan front   ↓↓X
-Morrigan back    ↓↓A
-Barrette         ↓↓B
-Lilith (enhanced performance)   ↓↓Y
-
-1 gauge
-↓↓ + z - Manguri Gaeshi (requires sff12250)
-If you have manguri anime 180110 series, use it; otherwise try 5011...
-50% chance of KO. Forced KO if HP is 0.
-
-↓↓ + a - Random minion attack (Doggystyle, Cowgirl, or Chausu).
-If there is a special attack, there is a 50% chance of an Impregnation KO. If HP is 0, an Impregnation KO is forced.
-When an Impregnation KO occurs, if there is an Impregnation KO type attack, it will transition to an Impregnation KO.
-(27319568 or 36800 or 3000732)
-
-
-
-=====<Other Info>=====
-
-<Selecting the win pose>
-(Speech translations by Kibagami)
-
-A -> Morrigan changes her outfit to one of black leather, sits on some bats and says "Mata
-asonde ageru wa!" ("I will play again with you!") or "Waruiko ne!" ("Bad boy (girl)!")
-X -> Morrigan scratches her head and either giggles or says "Kimochii deshou"("That felt good")
-B or Y -> Morrigan releases a bunch of bats and starts hopping and laughing, while the bats
-fly around her
-C or Z -> Morrigan flips back and changes to a random outfit. Says one of three speeches:
-"Denaoshitoide!" ("Come again!"), "Dou? Kirei deshou?" ("So? Am I beautiful?") or
-"Mikakedaoshi ne!" ("You're a mere show!")
-
-
-- Try finishing off my Dan with Eternal Slumber =D
-
-
-
-=====<Version History>=====
-
-<v.0.95>
-- Fixes
-- Remade most Clsn based on Vampire Hunter data I had stored away for when remaking her
-
-
-<v.0.93>
-- Fixes and balance changes
-- Shadow Blade now has invulnerable startup
-- EX Soul Fist now dissipates if Morrigan is hit
-- Darkness Illusion's combo now comes out even if Morrigan has no victim, like in CvS2
-- Eternal Slumber is now faster but does less damage, and is considered a projectile attack
-- Can no longer guard during a dash
-
-
-<v.0.92>
-- Fixes and balance changes
-
-
-<v.0.91>
-- Some fixes
-- Fixed some cancelling involving Mid-Air Soul Phoenix and Valkyrie Turn
-- Eternal Slumber's projectile dissipates if Morrigan is hit out of the move
-- Added Back Sidestep
-- Added an effect to Valkyrie Turn
-- Added intro versus Viuda Negra by Borghi
-- New random outfit on a win pose
-- Started her A.I.
-- Added an extra "Lose by Time Over" anim
-- New sound during Vector Drain
-- Added a Doll cosplay to the random outfit win pose
-- Changed the way she changes clothes in that same win pose
-
-
-<v.0.9>
-- Fixes and tweaks
-- Added MK blood effects
-- Reduced defence, but added Life Recovery
-- Normal attacks now give back less power
-- Removed some cheap comboability
-- Dark Force now increases Morrigan's attack by 150%, previously 200%
-- Added Vector Drain, Valkyrie Turn and Eternal Slumber
-- Added a new intro
-- Soul Phoenix is now a fire projectile
-- Added an echo effect to Soul Phoenix and Cardinal Blade, like in Vampire Saviour's ES moves
-
-
-
-=====<What's Missing>=====
-
-- Sexual Embrace, Cryptic Needle, Mid-air Darkness Illusion and Soul Eraser
-- Pursuit and EX Pursuit
-- Some intros and win poses
-- Probably some original moves
-- "Lilith" mode, kind of like MvC Morrigan
-- Maybe add Excel Combo and turn Astral Vision (her Dark Force) into a Lv3 Super
-- Finish the A.I.
-- More...
-
-
-
-=====<Special Thanks>=====
-
-- The Dreamslayer, for ripping Morrigan's sprites, among other stuff from CvS2 and MvC2, and
-for his great Morrigan sprite edits. Also for getting me the name for Ecstatic Climb
-- To the testers: BBH, Black_Dahlia_Isis, Calypso, Cloudius, Jango, Jesuszilla, Kung Fu Man,
-psycore and Snake
-- H" and Warusaki3 for their CvS2 effects
-- Drowin, for letting me use the drill effect from his G-Akiha
-- Iced, for sending me all those artworks that kept me inspired =D
-- The Mugen Fighters Guild people for the support :P
-- Those who I forgot to mention :P
-- You, for downloading my char ;)
-
-
-
-=====<Disclaimer>=====
-
-- Morrigan, Darkstalkers and Capcom vs Snk are property of Capcom
-- This Mugen character is a non-profit fan work, it cannot be used for any commercial purposes
+- **Original authors**: Phantom (Phantom.of.the.Server), Soka  
+- Morrigan, Darkstalkers, and Capcom vs SNK are property of Capcom  
+- This MUGEN character is a non-profit fan work and cannot be used for commercial purposes  

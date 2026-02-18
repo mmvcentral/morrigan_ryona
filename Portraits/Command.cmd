@@ -1,6 +1,6 @@
 ; ___________________________________
 ;| Morrigan by Phantom.of.the.Server |
-; ｯｯｯｯｯｯｯｯｯｯｯｯｯｯｯｯｯｯｯｯｯｯｯｯｯｯｯｯｯｯｯｯｯｯｯ
+; ???????????????????????????????????
 ;==============================================================================================
 ;=======================================<COMMAND FILE>=========================================
 ;==============================================================================================
@@ -242,11 +242,11 @@ time=30
 
 ;===================<SPECIAL MOTIONS>===================
 
-[Command];犬アタック
+[Command]; Dog attack
 name = "214c"
 command = b+y
 time=20
-[Command];犬アタック
+[Command]; Tongue attack (Rei-Rei)
 name = "214y"
 command = a+x
 time=20
@@ -579,7 +579,7 @@ trigger1 = ctrl
 
 
 
-;犬アタックS（ゲージレベル１）
+; Dog attack S (Gauge level 1)
 [State -1, dog attack s]
 type = ChangeState
 value = 6077
@@ -592,7 +592,7 @@ triggerall = NumHelper(6150) = 0
 trigger1 = statetype != A
 trigger1 = ctrl
 
-;犬アタック
+; Tongue attack (Rei-Rei)
 [State -1, Tongue attack b]
 type = ChangeState
 value = 7067
